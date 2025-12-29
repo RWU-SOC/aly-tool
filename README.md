@@ -209,17 +209,6 @@ make html
 # View at docs/build/html/index.html
 ```
 
-## Comparison with Other Tools
-
-| Feature | ALY | CMake | West |
-|---------|-----|-------|------|
-| **Lines of Code** | 520 | 1000+ | 10000+ |
-| **Dependencies** | PyYAML only | Many | Many |
-| **Learning Curve** | Low | High | Medium |
-| **RTL-Specific** | Yes | No | No |
-| **Extensible** | Yes | Yes | Yes |
-| **Project Templates** | Yes | No | Yes |
-
 ## Requirements
 
 - Python 3.8+
@@ -233,10 +222,3 @@ Apache License 2.0
 ## Contributing
 
 Contributions welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-## Acknowledgments
-
-Inspired by:
-- [West](https://github.com/zephyrproject-rtos/west) - Zephyr's meta-tool
-- [Django](https://www.djangoproject.com/) - Project generation patterns
-- [Zephyr RTOS](https://www.zephyrproject.org/) - Build system organization
