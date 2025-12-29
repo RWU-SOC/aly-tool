@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aly"
+version = "1.0.0"
+authors = [
+    {name = "ALY Project Contributors"}
+]
+description = "Advanced Logic Yieldflow - A Python-based build system for RISC-V SoC development"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Embedded Systems",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["risc-v", "soc", "rtl", "firmware", "build-tool"]
+dependencies = [
+    "pyyaml>=5.1",
+]
+optional-dependencies.dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-timeout>=2.1",
+    "sphinx>=5.0",
+    "sphinx-rtd-theme>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/aly"
+Documentation = "https://aly.readthedocs.io"
+Repository = "https://github.com/yourusername/aly"
+Issues = "https://github.com/yourusername/aly/issues"
+
+[project.scripts]
+aly = "aly.app.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--verbose",
+    "--cov=aly",
+    "--cov-report=html:build/test_results/htmlcov",
+    "--cov-report=term-missing",
+]
+cache_dir = "build/test_results/.pytest_cache"
+
+[tool.coverage.run]
+source = ["src/aly"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+data_file = "build/test_results/.coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
