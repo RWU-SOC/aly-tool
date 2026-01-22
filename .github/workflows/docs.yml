@@ -5,11 +5,14 @@ on:
     branches: [ main ]
     paths:
       - 'docs/**'
+      - 'src/**'
+      - 'README.md'
       - '.github/workflows/docs.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'docs/**'
+      - 'src/**'
   workflow_dispatch:  # Manual trigger
 
 permissions:

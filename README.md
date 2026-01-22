@@ -1,59 +1,68 @@
-# 🚀 ALY - Advanced Logic Yieldflow
+# ALY - Advanced Logic Yieldflow
 
 **Professional Python build and verification tool for RTL/SoC development**
 
-[![Tests](https://github.com/yourusername/aly/workflows/Tests/badge.svg)](https://github.com/yourusername/aly/actions)
-[![Documentation](https://readthedocs.org/projects/aly/badge/?version=latest)](https://aly.readthedocs.io)
-[![PyPI](https://img.shields.io/pypi/v/aly.svg)](https://pypi.org/project/aly/)
+[![Tests](https://github.com/moha-abdi/aly-tool/workflows/Tests/badge.svg)](https://github.com/moha-abdi/aly-tool/actions)
+[![Documentation](https://github.com/moha-abdi/aly-tool/workflows/Build%20and%20Deploy%20Documentation/badge.svg)](https://moha-abdi.github.io/aly-tool/)
+[![PyPI](https://img.shields.io/pypi/v/aly-tool.svg)](https://pypi.org/project/aly-tool/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
 
 ## Features
 
 ### RTL Workflow
-- 🎯 **Multi-Tool Simulation** - XSIM, Questa/ModelSim, Verilator
-- ⚡ **Synthesis** - Vivado (FPGA), Yosys (open-source)
-- 🧪 **Regression Testing** - Parallel test execution
-- 📊 **Waveform Management** - Automated capture and viewing
+- **Multi-Tool Simulation** - XSIM, Questa/ModelSim, Verilator, Icarus Verilog
+- **Synthesis** - Vivado (FPGA), Yosys (open-source/ASIC)
+- **Linting** - Verilator lint, Vivado DRC
+- **Waveform Management** - Automated capture and viewing with GTKWave
 
 ### Firmware & Memory
-- 🔧 **RISC-V Toolchain** - CMake-based firmware builds
-- 💾 **Memory Generation** - ELF → hex/mem/bin/COE/Verilog
+- **RISC-V Toolchain** - Integrated firmware builds (RV32/RV64)
+- **Memory Generation** - ELF to hex/mem/bin/COE/Verilog conversion
 
 ### Developer Experience
-- 🏗️ **Project Templates** - Bootstrap complete SoC projects
-- 🔌 **Extension System** - Custom commands and backends
-- 📦 **Pluggable Backends** - Clean simulator/synthesis abstraction
-- ⚙️ **YAML Configuration** - Human-readable workflow config
+- **Project Templates** - Bootstrap complete SoC projects with `aly init`
+- **Manifest System** - YAML-based RTL, testbench, and firmware manifests
+- **Pluggable Backends** - Clean simulator/synthesis tool abstraction
+- **Hierarchical Configuration** - Project-wide settings with per-component overrides
 
 ## Quick Start
 
 ### Installation
 
 ```bash
-pip install aly
+pip install aly-tool
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/yourusername/aly.git
-cd aly
+git clone https://github.com/moha-abdi/aly-tool.git
+cd aly-tool
 pip install -e .
 ```
 
 ### Create a New Project
 
 ```bash
-# Create new SoC project
-aly init my-soc --type soc
+# Create new RV64I SoC project (default template)
+aly init my-soc
 cd my-soc
+
+# Create project with specific template
+aly init my-project --template soc
+
+# List available templates
+aly init --list-templates
+
+# Pass template variables
+aly init my-cpu --var language=verilog --var toolchain=riscv32
 ```
 
 ### RTL Simulation
 
 ```bash
-# Run with XSIM (Vivado)
+# Run simulation with XSIM (Vivado)
 aly sim --top soc_tb --tool xsim --waves
 
 # Run with Questa/ModelSim
@@ -61,46 +70,55 @@ aly sim --top soc_tb --tool questa --gui
 
 # Run with Verilator (fast)
 aly sim --top core_tb --tool verilator
+
+# Run with Icarus Verilog
+aly sim --top tb_alu --tool iverilog
 ```
 
 ### Synthesis
 
 ```bash
-# Vivado synthesis
-aly synth --tool vivado --top soc_top --part xc7a100tcsg324-1
+# Vivado synthesis for FPGA
+aly synth --target arty_a7
 
-# Yosys synthesis
-aly synth --tool yosys --top soc_top
+# Yosys synthesis (generic/ASIC)
+aly synth --tool yosys --target sky130
+```
+
+### Linting
+
+```bash
+# Lint all RTL
+aly lint --all
+
+# Lint specific module
+aly lint --module cpu_core
 ```
 
 ### Build Firmware
 
 ```bash
 # Build all firmware
-aly firmware
+aly firmware build --all
 
-# Generate memory files
-aly firmware --mem-format mem  # Memory files generated automatically
-```
+# Build specific firmware
+aly firmware build instr_test
 
-### Regression Testing
-
-```bash
-# Run all tests
-aly regress --tool verilator -j 8
-
-# Run specific suite
-aly regress --suite smoke --tool xsim
+# List available builds
+aly firmware list
 ```
 
 ### Other Commands
 
 ```bash
-# Show configuration
+# Show project information
 aly info
 
 # Clean build artifacts
 aly clean
+
+# Manage constraints
+aly constraints --list
 
 # Show version
 aly version
@@ -113,112 +131,204 @@ ALY generates well-organized SoC projects:
 ```
 my-soc/
 ├── .aly/                  # ALY configuration
-│   ├── config            # Project settings
-│   └── commands.yml      # Custom commands
+│   ├── config.yaml        # Project settings
+│   ├── sim.yaml           # Simulation config
+│   ├── synth.yaml         # Synthesis config
+│   ├── lint.yaml          # Linting config
+│   ├── toolchains.yaml    # Toolchain paths
+│   └── constraints.yaml   # Constraint sets
 ├── rtl/                   # HDL sources
-│   ├── core/             # Processor core
-│   ├── peripherals/      # Memory-mapped peripherals
-│   └── soc/              # Top-level integration
-├── firmware/              # Baremetal software
-│   ├── src/              # C/Assembly sources
-│   ├── include/          # Headers
-│   ├── startup/          # crt0.s
-│   └── linker/           # link.ld
-├── verification/          # Testbenches
-│   ├── unit/             # Module tests
-│   ├── integration/      # System tests
-│   └── tb/               # Testbench infrastructure
+│   ├── pkg/               # SystemVerilog packages
+│   ├── core/              # Processor core
+│   │   ├── alu/
+│   │   ├── decoder/
+│   │   └── regfile/
+│   ├── bus/               # Bus interfaces
+│   ├── mem/               # Memory modules
+│   └── soc_top/           # Top-level integration
+├── tb/                    # Testbenches
+│   ├── unit/              # Module tests
+│   └── integration/       # System tests
+├── fw/                    # Firmware
+│   └── instr_test/        # Test programs
+├── ip/                    # External IP
+├── synth/                 # Synthesis files
+│   └── constraints/       # XDC/SDC constraints
 ├── docs/                  # Documentation
-└── build/                # Build outputs (disposable)
+└── build/                 # Build outputs (gitignored)
 ```
 
-## Extension Commands
+## Manifest System
 
-Add custom commands to your project:
+ALY uses YAML manifests to describe RTL modules, testbenches, and firmware:
+
+### RTL Manifest (`rtl/core/manifest.yaml`)
 
 ```yaml
-# .aly/commands.yml
-aly-commands:
-  - file: scripts/my_commands.py
-    commands:
-      - name: simulate
-        class: Simulate
-        help: run RTL simulation
+name: cpu_core
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+modules:
+  - name: cpu_core
+    top: cpu_core
+    files:
+      - CPU.sv
+      - PC.sv
+    dependencies:
+      - name: cpu_pkg
+        type: package
+      - name: cpu_alu
+        type: rtl
 ```
 
-```python
-# scripts/my_commands.py
-from aly.commands import AlyCommand
+### Testbench Manifest (`tb/unit/manifest.yaml`)
 
-class Simulate(AlyCommand):
-    @staticmethod
-    def add_parser(parser_adder):
-        parser = parser_adder.add_parser('simulate', help='run RTL simulation')
-        return parser
-    
-    def run(self, args, unknown_args):
-        self.inf("Running simulation...")
-        # Your simulation logic here
-        return 0
+```yaml
+name: unit_tests
+type: testbench
+version: 1.0.0
+
+testbenches:
+  - name: tb_alu
+    top: tb_alu
+    files:
+      - tb_alu.sv
+    dependencies:
+      - name: cpu_alu
+        type: rtl
+
+testsuites:
+  - name: unit_tests
+    testbenches: [tb_alu, tb_regfile]
+    parallel: 4
+```
+
+### Firmware Manifest (`fw/instr_test/manifest.yaml`)
+
+```yaml
+name: instr_test
+type: firmware
+toolchain: riscv64
+
+builds:
+  - name: test_program
+    languages: [asm]
+    sources: [test.asm]
+    linker_script: linkers/memory.ld
+    outputs:
+      - format: elf
+      - format: mem
+        plusarg: MEM_FILE
+```
+
+## Template System
+
+Create custom project templates:
+
+```yaml
+# template.yaml
+name: my_template
+version: "1.0"
+description: "Custom SoC template"
+extends: base
+
+variables:
+  project_name:
+    description: "Project name"
+    default: "my_project"
+  language:
+    description: "HDL language"
+    choices: [systemverilog, verilog]
+
+structure:
+  directories:
+    - rtl
+    - tb
+    - fw
+
+files:
+  - src: "rtl/**/*"
+    dest: "rtl/"
+  - src: "config.yaml.j2"
+    dest: ".aly/config.yaml"
+    template: true
+```
+
+Use Jinja2 templating in `.j2` files:
+
+```jinja
+{% if language == 'systemverilog' %}
+import {{ project_name }}_pkg::*;
+{% endif %}
+
+module {{ project_name }}_top (
+    input logic clk_i,
+    input logic rst_i
+);
+endmodule
 ```
 
 ## Documentation
 
-Full documentation available at [aly.readthedocs.io](https://aly.readthedocs.io)
+Full documentation available at [moha-abdi.github.io/aly-tool](https://moha-abdi.github.io/aly-tool/)
 
-- [Getting Started](https://aly.readthedocs.io/getting-started)
-- [Command Reference](https://aly.readthedocs.io/commands)
-- [Extension Development](https://aly.readthedocs.io/extensions)
-- [API Documentation](https://aly.readthedocs.io/api)
+- [Getting Started](https://moha-abdi.github.io/aly-tool/quickstart.html)
+- [Configuration](https://moha-abdi.github.io/aly-tool/configuration.html)
+- [Template System](https://moha-abdi.github.io/aly-tool/templates.html)
+- [Command Reference](https://moha-abdi.github.io/aly-tool/commands/index.html)
+- [API Documentation](https://moha-abdi.github.io/aly-tool/api/index.html)
 
 ## Development
 
 ### Setup Development Environment
 
 ```bash
-git clone https://github.com/yourusername/aly.git
-cd aly
+git clone https://github.com/moha-abdi/aly-tool.git
+cd aly-tool
 pip install -e ".[dev]"
 ```
 
 ### Run Tests
 
 ```bash
-# Run all tests with coverage
+# Run all tests
 pytest
 
-# Run specific test file
-pytest tests/test_commands.py
+# Run with coverage
+pytest --cov=aly
 
-# Run with verbose output
-pytest -v
-
-# Run tests in parallel (requires pytest-xdist)
-pytest -n auto
-
-# View HTML coverage report
-# Reports are generated in build/test_results/htmlcov/
-python -m http.server --directory build/test_results/htmlcov 8000
+# Run specific test
+pytest tests/test_init.py -v
 ```
 
 ### Build Documentation
 
 ```bash
 cd docs
+pip install -r requirements.txt
 make html
 # View at docs/build/html/index.html
 ```
 
 ## Requirements
 
-- Python 3.8+
-- RISC-V toolchain (riscv64-unknown-elf-gcc) for firmware builds
-- Vivado (optional, for simulation)
+- Python 3.10+
+- Optional: RISC-V toolchain (`riscv64-unknown-elf-gcc`) for firmware builds
+- Optional: Vivado for XSIM simulation and FPGA synthesis
+- Optional: Verilator for fast simulation
+- Optional: Yosys for open-source synthesis
 
 ## License
 
-Apache License 2.0
+Apache License 2.0 - See [LICENSE](LICENSE) for details.
 
 ## Contributing
 
-Contributions welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Contributions welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## Acknowledgments
+
+- Built with Python and Jinja2
+- Inspired by modern build systems like Bazel and Buck

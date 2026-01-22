@@ -41,7 +41,7 @@ Getting Started
 .. code-block:: bash
 
    # Install ALY
-   pip install aly
+   pip install aly-tool
 
    # Initialize a new project
    aly init my_project --template basic
