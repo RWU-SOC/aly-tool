@@ -1,0 +1,20 @@
+name: mem
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+modules:
+
+  - name: DMem
+    language: systemverilog
+    files:
+      - DMem.sv
+      - DMemBack.sv
+      - DMemCore.sv
+      - DMemFront.sv
+
+  - name: IMem
+    language: systemverilog
+    files:
+      - IMem.sv
+

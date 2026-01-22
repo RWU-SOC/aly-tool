@@ -1,0 +1,17 @@
+name: cgu
+version: 1.0.0
+type: rtl
+language: systemverilog
+modules:
+
+  - name: cgu
+    language: systemverilog
+    files:
+      - Cgu.sv
+      - CguCore.sv
+    dependencies:
+      - name: SBpi
+        type: rtl
+        
+
+

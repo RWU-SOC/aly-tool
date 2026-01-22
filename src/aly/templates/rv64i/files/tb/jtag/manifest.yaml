@@ -1,0 +1,102 @@
+name: rv64i_jtag_tb
+type: testbench
+version: 1.0.0
+description: Testbenches for RV64I JTAG
+author: Mohamed Aly
+
+testbenches:
+  # =========================================================================
+  # JTAG unit tests (no firmware dependency)
+  # =========================================================================
+  - name: tb_dr_cell
+    description: JTAG DR cell testbench
+    top: tb_dr_cell
+    files:
+      - tb_dr_cell.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, dr_cell]
+
+  - name: tb_dr_reg
+    description: JTAG DR register testbench
+    top: tb_dr_reg
+    files:
+      - tb_dr_reg.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, dr_reg]
+
+  - name: tb_ir_cell
+    description: JTAG IR cell testbench
+    top: tb_ir_cell
+    files:
+      - tb_ir_cell.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, ir_cell]
+
+  - name: tb_ir_reg
+    description: JTAG IR register testbench
+    top: tb_ir_reg
+    files:
+      - tb_ir_reg.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, ir_reg]
+
+  - name: tb_jtag
+    description: JTAG top-level testbench
+    top: tb_jtag
+    files:
+      - tb_jtag.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, top]
+
+  - name: tb_tap_fsm
+    description: JTAG TAP FSM testbench
+    top: tb_tap_fsm
+    files:
+      - tb_tap_fsm.sv
+    dependencies:
+      - name: rv64i_jtag
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, jtag, tap_fsm]
+ 
+ 
+testsuites:
+      - name: jtag_unit_tests
+        description: Test suite for JTAG unit tests
+        testbenches:
+          - tb_dr_cell
+          - tb_dr_reg
+          - tb_ir_cell
+          - tb_ir_reg
+          - tb_jtag
+          - tb_tap_fsm
+        parallel: 4
+        timeout: 60
+        stop_on_fail: true

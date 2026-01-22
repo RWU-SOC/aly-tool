@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_mux
+# =============================================================================
+# Multiplexer unit test
+# =============================================================================
+
+name: tb_mux
+type: testbench
+version: "1.0.0"
+description: "Multiplexer unit test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_mux
+{% if language == 'systemverilog' %}
+  file: tb_mux.sv
+{% elif language == 'verilog' %}
+  file: tb_mux.v
+{% elif language == 'vhdl' %}
+  file: tb_mux.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_mux.sv
+{% elif language == 'verilog' %}
+  - tb_mux.v
+{% elif language == 'vhdl' %}
+  - tb_mux.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

@@ -1,0 +1,95 @@
+# Base Template
+# Shared files inherited by other templates (not meant to be used directly)
+
+name: base
+version: "1.0"
+description: "Base template with shared configuration files"
+
+# =============================================================================
+# Variables
+# =============================================================================
+variables:
+  project_name:
+    description: "Project name (lowercase, no spaces)"
+    default: "my-project"
+    pattern: "^[a-z][a-z0-9_-]*$"
+    
+
+  project_version:
+    description: "Initial project version"
+    default: "1.0.0"
+
+  author:
+    description: "Author name"
+    default: ""
+
+  git_init:
+    description: "Initialize git repository"
+    default: true
+
+# =============================================================================
+# Directory Structure
+# =============================================================================
+structure:
+  directories:
+    - docs:
+        - _static
+        - _templates
+
+# =============================================================================
+# Files
+# =============================================================================
+files:
+  - src: "gitignore"
+    dest: ".gitignore"
+
+  - src: "aly_config.yaml.j2"
+    dest: ".aly/config.yaml"
+    template: true
+
+  - src: "aly_commands.yml"
+    dest: ".aly/commands.yml"
+
+  # Documentation requirements (placed before sphinx-quickstart runs)
+  - src: "docs/requirements.txt"
+    dest: "docs/requirements.txt"
+
+  - src: "docs/README.md.j2"
+    dest: "docs/README.md"
+    template: true
+
+  # Custom Sphinx RST files (will be placed in source/ after quickstart)
+  # Note: These are processed after hooks run, so source/ will exist
+  - src: "docs/source/index.rst.j2"
+    dest: "docs/source/index.rst"
+    template: true
+
+  - src: "docs/getting_started.rst.j2"
+    dest: "docs/source/getting_started.rst"
+    template: true
+
+  - src: "docs/architecture.rst.j2"
+    dest: "docs/source/architecture.rst"
+    template: true
+
+  - src: "docs/api.rst.j2"
+    dest: "docs/source/api.rst"
+    template: true
+
+  - src: "docs/development.rst.j2"
+    dest: "docs/source/development.rst"
+    template: true
+
+# =============================================================================
+# Hooks
+# =============================================================================
+hooks:
+  post_create:
+    - cmd: "pip install -q sphinx sphinx-rtd-theme"
+      when: true
+    - cmd: "sphinx-quickstart docs -q -p {{ project_name }} -a {{ author }} -v {{ project_version }} --ext-autodoc --ext-viewcode --ext-todo --makefile --batchfile --sep"
+      when: true
+    - cmd: "git init"
+      when: git_init
+    - cmd: "git add ."
+      when: git_init

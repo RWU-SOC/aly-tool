@@ -1,0 +1,63 @@
+# IP Manifest: sync_fifo
+# =============================================================================
+# Synchronous FIFO IP core
+# =============================================================================
+
+name: sync_fifo
+type: ip                    # ✅ ADD: Required for registry
+version: "1.0.0"
+description: "Synchronous FIFO with configurable depth and width"
+vendor: "{{ author }}"      # ✅ ADD: Vendor field
+license: Apache-2.0
+
+language: {{ language }}
+
+# Source files
+files:
+{% if language == 'systemverilog' %}
+  - rtl/sync_fifo.sv
+{% elif language == 'verilog' %}
+  - rtl/sync_fifo.v
+{% elif language == 'vhdl' %}
+  - rtl/sync_fifo.vhd
+{% endif %}
+
+# Parameters (for documentation)
+parameters:
+  DEPTH: 16
+  WIDTH: 32
+
+# Interfaces (for documentation)
+interfaces:
+  - name: clk
+    direction: input
+    width: 1
+  - name: rst
+    direction: input
+    width: 1
+  - name: wr_en
+    direction: input
+    width: 1
+  - name: wr_data
+    direction: input
+    width: WIDTH
+  - name: rd_en
+    direction: input
+    width: 1
+  - name: rd_data
+    direction: output
+    width: WIDTH
+  - name: full
+    direction: output
+    width: 1
+  - name: empty
+    direction: output
+    width: 1
+
+# Testbench (optional - discovered separately if in tb/ subdirectory)
+# testbench: tb/tb_sync_fifo.{{ language_ext }}
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: ip

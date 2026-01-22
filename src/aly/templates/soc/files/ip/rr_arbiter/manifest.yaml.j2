@@ -1,0 +1,47 @@
+# IP Manifest: rr_arbiter
+# =============================================================================
+# Round-robin arbiter IP core
+# =============================================================================
+
+name: rr_arbiter
+type: ip
+version: "1.0.0"
+description: "Round-robin arbiter with configurable number of requesters"
+vendor: "{{ author }}"
+license: Apache-2.0
+
+language: {{ language }}
+
+# Source files
+files:
+{% if language == 'systemverilog' %}
+  - rtl/rr_arbiter.sv
+{% elif language == 'verilog' %}
+  - rtl/rr_arbiter.v
+{% elif language == 'vhdl' %}
+  - rtl/rr_arbiter.vhd
+{% endif %}
+
+# Parameters (for documentation)
+parameters:
+  NUM_REQUESTERS: 4
+
+# Interfaces (for documentation)
+interfaces:
+  - name: clk
+    direction: input
+    width: 1
+  - name: rst
+    direction: input
+    width: 1
+  - name: req
+    direction: input
+    width: NUM_REQUESTERS
+  - name: grant
+    direction: output
+    width: NUM_REQUESTERS
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: ip

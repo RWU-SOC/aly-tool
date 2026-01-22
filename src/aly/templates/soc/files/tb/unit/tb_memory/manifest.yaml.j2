@@ -1,0 +1,57 @@
+# Testbench Manifest: tb_memory
+# =============================================================================
+# Memory module test with firmware dependency
+# =============================================================================
+
+name: tb_memory
+type: testbench
+version: "1.0.0"
+description: "Memory module test"
+
+language: {{ language }}
+
+top:
+  module: tb_memory
+{% if language == 'systemverilog' %}
+  file: tb_memory.sv
+{% elif language == 'verilog' %}
+  file: tb_memory.v
+{% elif language == 'vhdl' %}
+  file: tb_memory.vhd
+{% endif %}
+
+files:
+{% if language == 'systemverilog' %}
+  - tb_memory.sv
+{% elif language == 'verilog' %}
+  - tb_memory.v
+{% elif language == 'vhdl' %}
+  - tb_memory.vhd
+{% endif %}
+
+# Dependencies
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+{% if toolchain != 'none' %}
+# Firmware dependency (NEW FORMAT)
+firmware:
+  - build: mem_test          # Name of firmware build
+    plusarg: MEM_FILE        # Plusarg for memory file
+    
+{% endif %}
+
+default_timeout: 100000
+
+tags:
+  - unit
+  - memory
+{% if toolchain != 'none' %}
+  - firmware
+{% endif %}
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

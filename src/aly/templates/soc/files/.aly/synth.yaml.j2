@@ -1,0 +1,77 @@
+# Synthesis Configuration
+# =============================================================================
+# Synthesis tools, targets, and settings
+# =============================================================================
+
+# Default synthesis tool
+default_tool: {{ synth_tool }}
+
+# Build directory for synthesis artifacts
+build_dir: build/synth
+
+# =============================================================================
+# Synthesis Tool Configurations
+# =============================================================================
+tools:
+  vivado:
+    bin: vivado
+    batch_opts:
+      - "-mode"
+      - "batch"
+      - "-source"
+
+  quartus:
+    bin: quartus_sh
+    batch_opts: []
+
+  yosys:
+    bin: yosys
+    script_ext: ".ys"
+
+# =============================================================================
+# Synthesis Targets
+# =============================================================================
+# Define FPGA targets with their specific configurations
+targets:
+  arty_a7:
+    tool: vivado
+    part: xc7a100tcsg324-1
+    top: fpga_top
+    constraints:
+      - synth/constraints/arty_a7.xdc
+    options:
+      strategy: "Flow_PerfOptimized_high"
+      # flatten_hierarchy: "rebuilt"
+
+  # Example: Add more targets as needed
+  # nexys_a7:
+  #   tool: vivado
+  #   part: xc7a100tcsg324-1
+  #   top: fpga_top
+  #   constraints:
+  #     - synth/constraints/nexys_a7.xdc
+
+  # ice40:
+  #   tool: yosys
+  #   part: ice40hx8k-ct256
+  #   top: fpga_top
+
+# =============================================================================
+# Synthesis Options
+# =============================================================================
+options:
+  # Resource optimization
+  optimize:
+    - area     # Optimize for area
+    # - speed  # Optimize for speed
+    # - power  # Optimize for power
+
+  # Timing constraints
+  timing:
+    clock_uncertainty: "0.1"  # ns
+
+  # Reporting
+  reports:
+    - utilization
+    - timing
+    - power

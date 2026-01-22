@@ -1,0 +1,120 @@
+============
+Architecture
+============
+
+Overview
+--------
+
+{{ project_name }} implements the RISC-V RV64I base integer instruction set.
+The processor uses a single-cycle microarchitecture for simplicity.
+
+Block Diagram
+-------------
+
+.. code-block:: text
+
+                    ┌─────────────────────────────────────────────┐
+                    │                    SoC Top                   │
+                    │  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+                    │  │   CGU    │  │   JTAG   │  │   GPIO   │  │
+                    │  └────┬─────┘  └────┬─────┘  └────┬─────┘  │
+                    │       │             │             │         │
+                    │  ┌────┴─────────────┴─────────────┴────┐   │
+                    │  │              CPU Core                │   │
+                    │  │  ┌─────┐ ┌────────┐ ┌──────┐       │   │
+                    │  │  │ PC  │ │RegFile │ │ ALU  │       │   │
+                    │  │  └──┬──┘ └────────┘ └──────┘       │   │
+                    │  │     │   ┌─────────┐  ┌─────────┐   │   │
+                    │  │     │   │ Decoder │  │ Control │   │   │
+                    │  │     │   └─────────┘  └─────────┘   │   │
+                    │  └────┬────────────────────────┬──────┘   │
+                    │       │                        │          │
+                    │  ┌────┴────┐              ┌────┴────┐     │
+                    │  │  IMEM   │              │  DMEM   │     │
+                    │  └─────────┘              └─────────┘     │
+                    └─────────────────────────────────────────────┘
+
+CPU Core
+--------
+
+The CPU core consists of the following modules:
+
+* **PC (Program Counter)**: Holds the address of the current instruction
+* **RegFile**: 32 x 64-bit general-purpose registers (x0 hardwired to 0)
+* **ALU**: Arithmetic Logic Unit supporting all RV64I operations
+* **Decoder**: Instruction field extraction
+* **ImmGen**: Immediate value generation
+* **Control**: Control signal generation
+
+Instruction Set
+---------------
+
+{{ project_name }} supports the following RV64I instructions:
+
+**Arithmetic**
+   ADD, ADDI, SUB, ADDW, ADDIW, SUBW
+
+**Logical**
+   AND, ANDI, OR, ORI, XOR, XORI
+
+**Shift**
+   SLL, SLLI, SRL, SRLI, SRA, SRAI, SLLW, SLLIW, SRLW, SRLIW, SRAW, SRAIW
+
+**Compare**
+   SLT, SLTI, SLTU, SLTIU
+
+**Load/Store**
+   LB, LH, LW, LD, LBU, LHU, LWU
+   SB, SH, SW, SD
+
+**Branch**
+   BEQ, BNE, BLT, BGE, BLTU, BGEU
+
+**Jump**
+   JAL, JALR
+
+**Upper Immediate**
+   LUI, AUIPC
+
+Memory Map
+----------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Address Range
+     - Region
+     - Description
+   * - 0x0000_0000 - 0x0000_7FFF
+     - IMEM
+     - Instruction memory ({{ imem_depth }} words)
+   * - 0x8000_0000 - 0x8000_1FFF
+     - DMEM
+     - Data memory ({{ dmem_depth }} doublewords)
+   * - 0x0001_0000 - 0x0001_00FF
+     - GPIO
+     - GPIO registers
+
+GPIO Registers
+--------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 60
+
+   * - Offset
+     - Name
+     - Description
+   * - 0x00
+     - ID
+     - GPIO ID register (read-only)
+   * - 0x08
+     - DIR
+     - Direction register (0=input, 1=output)
+   * - 0x10
+     - DATA
+     - Output data register
+   * - 0x18
+     - INPUT
+     - Input capture register (read-only)

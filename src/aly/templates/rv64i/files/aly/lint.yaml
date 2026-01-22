@@ -1,0 +1,64 @@
+# Lint Configuration
+# =============================================================================
+# Static analysis and linting settings
+# =============================================================================
+
+# Default linter tool
+default_tool: verilator
+
+# Severity level for reporting (error, warning, info)
+severity: warning
+
+# =============================================================================
+# Linter Tool Configurations
+# =============================================================================
+tools:
+  verilator:
+    bin: verilator
+    args:
+      - "--lint-only"
+      - "-Wall"
+      - "--sv"
+
+  slang:
+    bin: slang
+    args:
+      - "--lint-only"
+
+  # Commercial tools (uncomment if available)
+  # spyglass:
+  #   bin: spyglass
+  #   args: []
+  #
+  # hal:
+  #   bin: hal
+  #   args: []
+
+# =============================================================================
+# Lint Rules Configuration
+# =============================================================================
+rules:
+  # Enable/disable specific rule categories
+  categories:
+    synthesis: true      # Synthesis compatibility checks
+    simulation: true     # Simulation issues
+    style: false         # Style/coding guidelines
+    performance: true    # Performance recommendations
+
+  # Specific rule overrides
+  enable: []
+    # - UNUSED
+    # - UNDRIVEN
+
+  disable: []
+    # - WIDTH           # Disable width mismatch warnings
+    # - DECLFILENAME    # Disable filename matching checks
+
+# =============================================================================
+# Waivers
+# =============================================================================
+# Files or patterns to exclude from linting
+waivers:
+  - "ip/vendor/**"      # Third-party IP
+  - "**/*_sim.sv"       # Simulation-only files
+  # - "rtl/legacy/**"   # Legacy code under cleanup

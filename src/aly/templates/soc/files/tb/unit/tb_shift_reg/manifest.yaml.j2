@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_shift_reg
+# =============================================================================
+# Shift register unit test
+# =============================================================================
+
+name: tb_shift_reg
+type: testbench
+version: "1.0.0"
+description: "Shift register unit test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_shift_reg
+{% if language == 'systemverilog' %}
+  file: tb_shift_reg.sv
+{% elif language == 'verilog' %}
+  file: tb_shift_reg.v
+{% elif language == 'vhdl' %}
+  file: tb_shift_reg.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_shift_reg.sv
+{% elif language == 'verilog' %}
+  - tb_shift_reg.v
+{% elif language == 'vhdl' %}
+  - tb_shift_reg.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

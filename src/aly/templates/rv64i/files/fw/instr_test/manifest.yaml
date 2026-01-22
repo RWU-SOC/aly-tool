@@ -1,0 +1,383 @@
+name: instr_test
+type: firmware
+author: Mohamed Aly
+version: 1.0.0
+
+toolchain: riscv64
+
+builds:
+  # ASM builds
+  - name: allinstructions
+    languages: [asm]
+    sources: [allinstructions.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: filldmem
+    languages: [asm]
+    sources: [filldmem.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr01loadbyte
+    languages: [asm]
+    sources: [instr01loadbyte.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr02loadhalf
+    languages: [asm]
+    sources: [instr02loadhalf.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr03loadword
+    languages: [asm]
+    sources: [instr03loadword.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr04loadbyteu
+    languages: [asm]
+    sources: [instr04loadbyteu.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr05loadhalfu
+    languages: [asm]
+    sources: [instr05loadhalfu.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr06addi
+    languages: [asm]
+    sources: [instr06addi.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr07slli
+    languages: [asm]
+    sources: [instr07slli.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr19add
+    languages: [asm]
+    sources: [instr19add.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr29lui
+    languages: [asm]
+    sources: [instr29lui.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr99loadimem
+    languages: [asm]
+    sources: [instr99loadimem.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: readgpioid
+    languages: [asm]
+    sources: [readgpioid.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: rv64i
+    languages: [asm]
+    sources: [rv64i.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  # C builds
+  - name: main01
+    languages: [c]
+    sources: [main01.c]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      c: [-O2, -Wall]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: main02
+    languages: [c]
+    sources: [main02.c]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      c: [-O2, -Wall]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: readGpioID
+    languages: [c]
+    sources: [readGpioID.c]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      c: [-O2, -Wall]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        

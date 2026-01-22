@@ -1,0 +1,47 @@
+name: load_store_test
+type: firmware
+version: "1.0.0"
+description: "Load/store data memory verification firmware"
+
+toolchain: {{ toolchain }}
+
+languages:
+  - asm
+
+files:
+  - startup/crt0.S
+  - tests/asm/load_store_test.S
+
+includes:
+  - hal/include
+
+linker_script: linker/sim.ld
+start_addr: 0x80000000
+
+flags:
+  common:
+    - -fno-builtin
+    - -nostdlib
+  asm:
+    - -x
+    - assembler-with-cpp
+  ld:
+    - -nostartfiles
+
+outputs:
+  - format: elf
+    
+  - format: mem
+    
+    plusarg: MEM_FILE
+
+mem:
+  - name: load_store_test.mem
+    format: mem
+    word_width: 64
+    byte_order: little
+    fill: 0x00000013
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: firmware

@@ -1,0 +1,76 @@
+===============
+Getting Started
+===============
+
+Prerequisites
+-------------
+
+* Python 3.8 or later
+* ALY CLI tool
+* RISC-V GCC toolchain (for firmware)
+* Vivado or Verilator (for simulation/synthesis)
+
+Installation
+------------
+
+1. Install ALY CLI:
+
+   .. code-block:: bash
+
+      pip install aly
+
+2. Install RISC-V toolchain:
+
+   .. code-block:: bash
+
+      # Ubuntu/Debian
+      sudo apt install gcc-riscv64-unknown-elf
+
+      # macOS (via Homebrew)
+      brew install riscv64-elf-gcc
+
+Project Structure
+-----------------
+
+.. code-block:: text
+
+   {{ project_name }}/
+   ├── .aly/                  # ALY configuration
+   │   ├── config.yaml        # Main config
+   │   ├── sim.yaml           # Simulation config
+   │   ├── synth.yaml         # Synthesis config
+   │   └── ...
+   ├── rtl/                   # RTL source code
+   │   ├── pkg/               # Packages
+   │   ├── core/              # CPU core
+   │   ├── bus/               # Bus interfaces
+   │   ├── mem/               # Memory modules
+   │   └── ...
+   ├── tb/                    # Testbenches
+   │   ├── integration/       # Integration tests
+   │   └── unit/              # Unit tests
+   ├── fw/                    # Firmware
+   └── docs/                  # Documentation
+
+Quick Start
+-----------
+
+1. Run unit tests:
+
+   .. code-block:: bash
+
+      aly sim tb_alu
+      aly sim tb_regfile
+
+2. Run integration test:
+
+   .. code-block:: bash
+
+      aly firmware build test
+      aly sim tb_{{ project_name }}
+
+3. Synthesize for FPGA:
+
+   .. code-block:: bash
+
+      aly synth --target arty_a7

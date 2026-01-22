@@ -1,0 +1,15 @@
+name: bus
+version: 1.0.0
+type: rtl
+language: systemverilog
+modules:
+  - name: MBpi
+    language: systemverilog
+    files:
+      - MBpi.sv
+
+  - name: SBpi
+    language: systemverilog
+    files:
+      - SBpi.sv
+

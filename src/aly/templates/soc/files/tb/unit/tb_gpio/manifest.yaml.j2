@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_gpio
+# =============================================================================
+# GPIO module test
+# =============================================================================
+
+name: tb_gpio
+type: testbench
+version: "1.0.0"
+description: "GPIO module test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_gpio
+{% if language == 'systemverilog' %}
+  file: tb_gpio.sv
+{% elif language == 'verilog' %}
+  file: tb_gpio.v
+{% elif language == 'vhdl' %}
+  file: tb_gpio.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_gpio.sv
+{% elif language == 'verilog' %}
+  - tb_gpio.v
+{% elif language == 'vhdl' %}
+  - tb_gpio.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

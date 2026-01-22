@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_regfile
+# =============================================================================
+# Register file unit test
+# =============================================================================
+
+name: tb_regfile
+type: testbench
+version: "1.0.0"
+description: "Register file unit test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_regfile
+{% if language == 'systemverilog' %}
+  file: tb_regfile.sv
+{% elif language == 'verilog' %}
+  file: tb_regfile.v
+{% elif language == 'vhdl' %}
+  file: tb_regfile.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_regfile.sv
+{% elif language == 'verilog' %}
+  - tb_regfile.v
+{% elif language == 'vhdl' %}
+  - tb_regfile.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

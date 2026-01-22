@@ -1,0 +1,814 @@
+# Full SoC Template
+# Complete project structure for RTL, firmware, and verification
+
+name: soc
+version: "1.0"
+description: "Full SoC project with RTL, firmware, and verification (RISC-V/ARM/FPGA/Pure RTL)"
+
+extends: base
+
+# =============================================================================
+# Variables
+# =============================================================================
+variables:
+  project_name:
+    description: "Project name"
+    default: "my-soc"
+    pattern: "^[a-z][a-z0-9_-]*$"
+
+  project_version:
+    default: "1.0.0"
+
+  language:
+    description: "HDL language for the project"
+    choices: [systemverilog, verilog, vhdl]
+    default: systemverilog
+
+  toolchain:
+    description: "Firmware toolchain (none for pure RTL projects)"
+    choices: [none, riscv64, riscv32, arm]
+    default: none
+
+  simulator:
+    description: "Default RTL simulator"
+    choices: [xsim, questa, verilator, iverilog]
+    default: xsim
+
+  synth_tool:
+    description: "Default synthesis tool"
+    choices: [vivado, quartus, yosys]
+    default: vivado
+
+# =============================================================================
+# Directory Structure
+# =============================================================================
+structure:
+  directories:
+    # ALY configuration
+    - .aly
+
+    # RTL sources
+    - rtl:
+        - core:
+            - pipeline
+            - csr
+            - alu
+            - decoder
+        - lib
+        - bus:
+            - axi
+            - ahb
+            - apb
+            - xbar
+        - mem:
+            - sram
+            - rom
+            - cache
+        - periph:
+            - uart
+            - gpio
+            - spi
+            - i2c
+            - timer
+            - jtag
+        - clk_rst
+        - top
+        - pkg
+        - include
+
+    # Testbenches
+    - tb:
+        - unit:
+            - tb_counter
+            - tb_fifo
+            - tb_mux
+            - tb_regfile
+            - tb_shift_reg
+            - tb_memory
+            - tb_gpio
+            - tb_uart_tx
+        - integration
+        - system:
+            - instr_tests
+        - env
+        - bfm
+        - tasks
+
+    # Firmware
+    - fw:
+        - boot
+        - mem_test
+        - gpio_test
+        - uart_test
+        - hal:
+            - src
+            - include
+        - drivers
+        - tests:
+            - asm
+            - c
+        - apps
+        - startup
+        - linker
+
+    # Test suites
+    - tests:
+        - smoke
+        - nightly
+
+    # Simulation infrastructure
+    - sim:
+        - filelists
+        - cfg:
+            - questa
+            - xsim
+            - verilator
+        - waves
+        - regress
+
+    # Synthesis
+    - synth:
+        - constraints
+        - vivado
+        - quartus
+        - yosys
+        - targets:
+            - arty_a7
+
+    # External IP
+    - ip:
+        - vendor
+        - generated
+        # Local IP blocks with manifest.yaml
+        - sync_fifo:
+            - rtl
+            - tb
+        - rr_arbiter:
+            - rtl
+            - tb
+        - cdc_sync:
+            - rtl
+            - tb
+
+    # Base template provides Sphinx documentation setup
+
+    # Scripts
+    - scripts:
+        - sim
+        - regress
+        - synth
+        - fpga
+        - gen
+        - lint
+        - ci
+
+# =============================================================================
+# Files
+# =============================================================================
+files:
+  # ==========================================================================
+  # ALY Configuration Files (.aly/ directory)
+  # ==========================================================================
+  
+  # Global project configuration
+  - src: ".aly/config.yaml.j2"
+    dest: ".aly/config.yaml"
+    template: true
+
+  # Toolchain configuration
+  - src: ".aly/toolchains.yaml.j2"
+    dest: ".aly/toolchains.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  # Simulation configuration
+  - src: ".aly/sim.yaml.j2"
+    dest: ".aly/sim.yaml"
+    template: true
+
+  # Synthesis configuration
+  - src: ".aly/synth.yaml.j2"
+    dest: ".aly/synth.yaml"
+    template: true
+
+  # Lint configuration
+  - src: ".aly/lint.yaml.j2"
+    dest: ".aly/lint.yaml"
+    template: true
+
+  # Formal verification configuration
+  - src: ".aly/formal.yaml.j2"
+    dest: ".aly/formal.yaml"
+    template: true
+
+  # FPGA programming configuration
+  - src: ".aly/fpga.yaml.j2"
+    dest: ".aly/fpga.yaml"
+    template: true
+
+  # Regression configuration
+  - src: ".aly/regress.yaml.j2"
+    dest: ".aly/regress.yaml"
+    template: true
+
+  # CI/CD configuration
+  - src: ".aly/ci.yaml.j2"
+    dest: ".aly/ci.yaml"
+    template: true
+
+  # Release management configuration
+  - src: ".aly/release.yaml.j2"
+    dest: ".aly/release.yaml"
+    template: true
+
+  # Metrics tracking configuration
+  - src: ".aly/metrics.yaml.j2"
+    dest: ".aly/metrics.yaml"
+    template: true
+
+  # Constraints configuration
+  - src: ".aly/constraints.yaml.j2"
+    dest: ".aly/constraints.yaml"
+    template: true
+
+  # IP management configuration
+  - src: ".aly/ip.yaml.j2"
+    dest: ".aly/ip.yaml"
+    template: true
+
+  # Specification/requirements configuration
+  - src: ".aly/spec.yaml.j2"
+    dest: ".aly/spec.yaml"
+    template: true
+
+  # Design review configuration
+  - src: ".aly/review.yaml.j2"
+    dest: ".aly/review.yaml"
+    template: true
+
+  # Documentation configuration
+  - src: ".aly/doc.yaml.j2"
+    dest: ".aly/doc.yaml"
+    template: true
+
+  # Project README
+  - src: "README.md.j2"
+    dest: "README.md"
+    template: true
+
+  # RTL manifest (for source discovery)
+  - src: "rtl/manifest.yaml.j2"
+    dest: "rtl/manifest.yaml"
+    template: true
+
+  # Testbench manifests
+  - src: "tb/unit/tb_counter/manifest.yaml.j2"
+    dest: "tb/unit/tb_counter/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_fifo/manifest.yaml.j2"
+    dest: "tb/unit/tb_fifo/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_mux/manifest.yaml.j2"
+    dest: "tb/unit/tb_mux/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_regfile/manifest.yaml.j2"
+    dest: "tb/unit/tb_regfile/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_shift_reg/manifest.yaml.j2"
+    dest: "tb/unit/tb_shift_reg/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_memory/manifest.yaml.j2"
+    dest: "tb/unit/tb_memory/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_memory_instr/manifest.yaml.j2"
+    dest: "tb/unit/tb_memory_instr/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_memory_data/manifest.yaml.j2"
+    dest: "tb/unit/tb_memory_data/manifest.yaml"
+    template: true
+
+  - src: "tb/system/tb_rv64i/manifest.yaml.j2"
+    dest: "tb/system/tb_rv64i/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_gpio/manifest.yaml.j2"
+    dest: "tb/unit/tb_gpio/manifest.yaml"
+    template: true
+
+  - src: "tb/unit/tb_uart_tx/manifest.yaml.j2"
+    dest: "tb/unit/tb_uart_tx/manifest.yaml"
+    template: true
+
+  # Firmware manifests
+  - src: "fw/boot/manifest.yaml.j2"
+    dest: "fw/boot/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  - src: "fw/mem_test/manifest.yaml.j2"
+    dest: "fw/mem_test/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  - src: "fw/gpio_test/manifest.yaml.j2"
+    dest: "fw/gpio_test/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  - src: "fw/uart_test/manifest.yaml.j2"
+    dest: "fw/uart_test/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  - src: "fw/instr_test/manifest.yaml.j2"
+    dest: "fw/instr_test/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  - src: "fw/load_store_test/manifest.yaml.j2"
+    dest: "fw/load_store_test/manifest.yaml"
+    template: true
+    when: toolchain != 'none'
+
+  # Test suite manifests
+  - src: "tests/smoke/manifest.yaml.j2"
+    dest: "tests/smoke/manifest.yaml"
+    template: true
+
+  # ==========================================================================
+  # RTL Source Files (Hello World Examples)
+  # Language-specific files selected by 'language' variable
+  # ==========================================================================
+  
+  # --------------------------------------------------------------------------
+  # SystemVerilog RTL Sources
+  # --------------------------------------------------------------------------
+  # Package
+  - src: "rtl/pkg/soc_pkg.sv"
+    dest: "rtl/pkg/soc_pkg.sv"
+    when: language == 'systemverilog'
+
+  - src: "rtl/core/as_pack.sv"
+    dest: "rtl/core/as_pack.sv"
+    when: language == 'systemverilog'
+  
+  # Library - Reusable building blocks
+  - src: "rtl/lib/counter.sv"
+    dest: "rtl/lib/counter.sv"
+    when: language == 'systemverilog'
+  
+  - src: "rtl/lib/fifo.sv"
+    dest: "rtl/lib/fifo.sv"
+    when: language == 'systemverilog'
+  
+  - src: "rtl/lib/mux.sv"
+    dest: "rtl/lib/mux.sv"
+    when: language == 'systemverilog'
+  
+  - src: "rtl/lib/regfile.sv"
+    dest: "rtl/lib/regfile.sv"
+    when: language == 'systemverilog'
+  
+  - src: "rtl/lib/shift_reg.sv"
+    dest: "rtl/lib/shift_reg.sv"
+    when: language == 'systemverilog'
+  
+  # Memory modules
+  - src: "rtl/mem/memory.sv"
+    dest: "rtl/mem/memory.sv"
+    when: language == 'systemverilog'
+  
+  # Peripherals
+  - src: "rtl/periph/gpio/gpio.sv"
+    dest: "rtl/periph/gpio/gpio.sv"
+    when: language == 'systemverilog'
+  
+  - src: "rtl/periph/uart/uart_tx.sv"
+    dest: "rtl/periph/uart/uart_tx.sv"
+    when: language == 'systemverilog'
+
+  # --------------------------------------------------------------------------
+  # Verilog RTL Sources
+  # --------------------------------------------------------------------------
+  # Package/Parameters
+  - src: "rtl/pkg/soc_pkg.v"
+    dest: "rtl/pkg/soc_pkg.v"
+    when: language == 'verilog'
+  
+  # Library - Reusable building blocks
+  - src: "rtl/lib/counter.v"
+    dest: "rtl/lib/counter.v"
+    when: language == 'verilog'
+  
+  - src: "rtl/lib/fifo.v"
+    dest: "rtl/lib/fifo.v"
+    when: language == 'verilog'
+  
+  - src: "rtl/lib/mux.v"
+    dest: "rtl/lib/mux.v"
+    when: language == 'verilog'
+  
+  - src: "rtl/lib/regfile.v"
+    dest: "rtl/lib/regfile.v"
+    when: language == 'verilog'
+  
+  - src: "rtl/lib/shift_reg.v"
+    dest: "rtl/lib/shift_reg.v"
+    when: language == 'verilog'
+  
+  # Memory modules
+  - src: "rtl/mem/memory.v"
+    dest: "rtl/mem/memory.v"
+    when: language == 'verilog'
+  
+  # Peripherals
+  - src: "rtl/periph/gpio/gpio.v"
+    dest: "rtl/periph/gpio/gpio.v"
+    when: language == 'verilog'
+  
+  - src: "rtl/periph/uart/uart_tx.v"
+    dest: "rtl/periph/uart/uart_tx.v"
+    when: language == 'verilog'
+
+  # --------------------------------------------------------------------------
+  # VHDL RTL Sources
+  # --------------------------------------------------------------------------
+  # Package
+  - src: "rtl/pkg/soc_pkg.vhd"
+    dest: "rtl/pkg/soc_pkg.vhd"
+    when: language == 'vhdl'
+  
+  # Library - Reusable building blocks
+  - src: "rtl/lib/counter.vhd"
+    dest: "rtl/lib/counter.vhd"
+    when: language == 'vhdl'
+  
+  - src: "rtl/lib/fifo.vhd"
+    dest: "rtl/lib/fifo.vhd"
+    when: language == 'vhdl'
+  
+  - src: "rtl/lib/mux.vhd"
+    dest: "rtl/lib/mux.vhd"
+    when: language == 'vhdl'
+  
+  - src: "rtl/lib/regfile.vhd"
+    dest: "rtl/lib/regfile.vhd"
+    when: language == 'vhdl'
+  
+  - src: "rtl/lib/shift_reg.vhd"
+    dest: "rtl/lib/shift_reg.vhd"
+    when: language == 'vhdl'
+  
+  # Memory modules
+  - src: "rtl/mem/memory.vhd"
+    dest: "rtl/mem/memory.vhd"
+    when: language == 'vhdl'
+  
+  # Peripherals
+  - src: "rtl/periph/gpio/gpio.vhd"
+    dest: "rtl/periph/gpio/gpio.vhd"
+    when: language == 'vhdl'
+  
+  - src: "rtl/periph/uart/uart_tx.vhd"
+    dest: "rtl/periph/uart/uart_tx.vhd"
+    when: language == 'vhdl'
+
+  # ==========================================================================
+  # Testbench Files
+  # Language-specific testbenches selected by 'language' variable
+  # ==========================================================================
+  
+  # --------------------------------------------------------------------------
+  # SystemVerilog Testbenches
+  # --------------------------------------------------------------------------
+  # Unit testbenches - basic modules
+  - src: "tb/unit/tb_counter/tb_counter.sv"
+    dest: "tb/unit/tb_counter/tb_counter.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_fifo/tb_fifo.sv"
+    dest: "tb/unit/tb_fifo/tb_fifo.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_mux/tb_mux.sv"
+    dest: "tb/unit/tb_mux/tb_mux.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_regfile/tb_regfile.sv"
+    dest: "tb/unit/tb_regfile/tb_regfile.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_shift_reg/tb_shift_reg.sv"
+    dest: "tb/unit/tb_shift_reg/tb_shift_reg.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_memory/tb_memory.sv"
+    dest: "tb/unit/tb_memory/tb_memory.sv"
+    when: language == 'systemverilog'
+  
+  # Unit testbenches - peripherals
+  - src: "tb/unit/tb_gpio/tb_gpio.sv"
+    dest: "tb/unit/tb_gpio/tb_gpio.sv"
+    when: language == 'systemverilog'
+  
+  - src: "tb/unit/tb_uart_tx/tb_uart_tx.sv"
+    dest: "tb/unit/tb_uart_tx/tb_uart_tx.sv"
+    when: language == 'systemverilog'
+
+  # --------------------------------------------------------------------------
+  # Verilog Testbenches
+  # --------------------------------------------------------------------------
+  # Unit testbenches - basic modules
+  - src: "tb/unit/tb_counter/tb_counter.v"
+    dest: "tb/unit/tb_counter/tb_counter.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_fifo/tb_fifo.v"
+    dest: "tb/unit/tb_fifo/tb_fifo.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_mux/tb_mux.v"
+    dest: "tb/unit/tb_mux/tb_mux.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_regfile/tb_regfile.v"
+    dest: "tb/unit/tb_regfile/tb_regfile.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_shift_reg/tb_shift_reg.v"
+    dest: "tb/unit/tb_shift_reg/tb_shift_reg.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_memory/tb_memory.v"
+    dest: "tb/unit/tb_memory/tb_memory.v"
+    when: language == 'verilog'
+  
+  # Unit testbenches - peripherals
+  - src: "tb/unit/tb_gpio/tb_gpio.v"
+    dest: "tb/unit/tb_gpio/tb_gpio.v"
+    when: language == 'verilog'
+  
+  - src: "tb/unit/tb_uart_tx/tb_uart_tx.v"
+    dest: "tb/unit/tb_uart_tx/tb_uart_tx.v"
+    when: language == 'verilog'
+
+  # --------------------------------------------------------------------------
+  # VHDL Testbenches
+  # --------------------------------------------------------------------------
+  # Unit testbenches - basic modules
+  - src: "tb/unit/tb_counter/tb_counter.vhd"
+    dest: "tb/unit/tb_counter/tb_counter.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_fifo/tb_fifo.vhd"
+    dest: "tb/unit/tb_fifo/tb_fifo.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_mux/tb_mux.vhd"
+    dest: "tb/unit/tb_mux/tb_mux.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_regfile/tb_regfile.vhd"
+    dest: "tb/unit/tb_regfile/tb_regfile.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_shift_reg/tb_shift_reg.vhd"
+    dest: "tb/unit/tb_shift_reg/tb_shift_reg.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_memory/tb_memory.vhd"
+    dest: "tb/unit/tb_memory/tb_memory.vhd"
+    when: language == 'vhdl'
+  
+  # Unit testbenches - peripherals
+  - src: "tb/unit/tb_gpio/tb_gpio.vhd"
+    dest: "tb/unit/tb_gpio/tb_gpio.vhd"
+    when: language == 'vhdl'
+  
+  - src: "tb/unit/tb_uart_tx/tb_uart_tx.vhd"
+    dest: "tb/unit/tb_uart_tx/tb_uart_tx.vhd"
+    when: language == 'vhdl'
+
+  # ==========================================================================
+  # Firmware Files
+  # ==========================================================================
+  - src: "fw/hal/include/hal.h"
+    dest: "fw/hal/include/hal.h"
+
+  - src: "fw/startup/crt0.S"
+    dest: "fw/startup/crt0.S"
+
+  - src: "fw/linker/sim.ld"
+    dest: "fw/linker/sim.ld"
+
+  - src: "fw/linker/fpga.ld"
+    dest: "fw/linker/fpga.ld"
+
+  # Firmware test programs - Assembly
+  - src: "fw/tests/asm/boot.S"
+    dest: "fw/tests/asm/boot.S"
+    when: toolchain != 'none'
+
+  - src: "fw/tests/asm/gpio_test.S"
+    dest: "fw/tests/asm/gpio_test.S"
+    when: toolchain != 'none'
+
+  - src: "fw/tests/asm/uart_test.S"
+    dest: "fw/tests/asm/uart_test.S"
+    when: toolchain != 'none'
+
+  # Firmware test programs - C
+  - src: "fw/tests/c/mem_test.c"
+    dest: "fw/tests/c/mem_test.c"
+    when: toolchain != 'none'
+
+  - src: "fw/tests/c/counter.c"
+    dest: "fw/tests/c/counter.c"
+    when: toolchain != 'none'
+
+  - src: "fw/tests/c/uart_print.c"
+    dest: "fw/tests/c/uart_print.c"
+    when: toolchain != 'none'
+
+  # ==========================================================================
+  # Simulation Infrastructure
+  # ==========================================================================
+  - src: "sim/filelists/rtl_all.f"
+    dest: "sim/filelists/rtl_all.f"
+
+  - src: "sim/filelists/tb_unit.f"
+    dest: "sim/filelists/tb_unit.f"
+
+  - src: "sim/filelists/tb_system.f"
+    dest: "sim/filelists/tb_system.f"
+
+  # Note: Regression suites are now defined in .aly/sources.yaml under tb.regression
+  # The sim/regress/ directory can be used for custom regression scripts if needed
+
+  # ==========================================================================
+  # Synthesis Infrastructure
+  # ==========================================================================
+  - src: "synth/vivado/synth.tcl"
+    dest: "synth/vivado/synth.tcl"
+
+  - src: "synth/targets/arty_a7/config.yaml"
+    dest: "synth/targets/arty_a7/config.yaml"
+
+  - src: "synth/constraints/arty_a7.xdc"
+    dest: "synth/constraints/arty_a7.xdc"
+
+  # ==========================================================================
+  # IP Blocks (with manifest.yaml for tool discovery)
+  # Each IP has RTL sources and optional testbenches
+  # ==========================================================================
+  
+  # --------------------------------------------------------------------------
+  # Sync FIFO IP
+  # --------------------------------------------------------------------------
+  - src: "ip/sync_fifo/manifest.yaml.j2"
+    dest: "ip/sync_fifo/manifest.yaml"
+    template: true
+
+  # Sync FIFO RTL - SystemVerilog
+  - src: "ip/sync_fifo/rtl/sync_fifo.sv"
+    dest: "ip/sync_fifo/rtl/sync_fifo.sv"
+    when: language == 'systemverilog'
+
+  # Sync FIFO RTL - Verilog
+  - src: "ip/sync_fifo/rtl/sync_fifo.v"
+    dest: "ip/sync_fifo/rtl/sync_fifo.v"
+    when: language == 'verilog'
+
+  # Sync FIFO RTL - VHDL
+  - src: "ip/sync_fifo/rtl/sync_fifo.vhd"
+    dest: "ip/sync_fifo/rtl/sync_fifo.vhd"
+    when: language == 'vhdl'
+
+  # Sync FIFO TB Manifest
+  - src: "ip/sync_fifo/tb/manifest.yaml.j2"
+    dest: "ip/sync_fifo/tb/manifest.yaml"
+    template: true
+
+  # Sync FIFO TB - SystemVerilog
+  - src: "ip/sync_fifo/tb/tb_sync_fifo.sv"
+    dest: "ip/sync_fifo/tb/tb_sync_fifo.sv"
+    when: language == 'systemverilog'
+
+  # Sync FIFO TB - Verilog
+  - src: "ip/sync_fifo/tb/tb_sync_fifo.v"
+    dest: "ip/sync_fifo/tb/tb_sync_fifo.v"
+    when: language == 'verilog'
+
+  # Sync FIFO TB - VHDL
+  - src: "ip/sync_fifo/tb/tb_sync_fifo.vhd"
+    dest: "ip/sync_fifo/tb/tb_sync_fifo.vhd"
+    when: language == 'vhdl'
+
+  # --------------------------------------------------------------------------
+  # Round-Robin Arbiter IP
+  # --------------------------------------------------------------------------
+  - src: "ip/rr_arbiter/manifest.yaml.j2"
+    dest: "ip/rr_arbiter/manifest.yaml"
+    template: true
+
+  # RR Arbiter RTL - SystemVerilog
+  - src: "ip/rr_arbiter/rtl/rr_arbiter.sv"
+    dest: "ip/rr_arbiter/rtl/rr_arbiter.sv"
+    when: language == 'systemverilog'
+
+  # RR Arbiter RTL - Verilog
+  - src: "ip/rr_arbiter/rtl/rr_arbiter.v"
+    dest: "ip/rr_arbiter/rtl/rr_arbiter.v"
+    when: language == 'verilog'
+
+  # RR Arbiter RTL - VHDL
+  - src: "ip/rr_arbiter/rtl/rr_arbiter.vhd"
+    dest: "ip/rr_arbiter/rtl/rr_arbiter.vhd"
+    when: language == 'vhdl'
+
+  # RR Arbiter TB Manifest
+  - src: "ip/rr_arbiter/tb/manifest.yaml.j2"
+    dest: "ip/rr_arbiter/tb/manifest.yaml"
+    template: true
+
+  # RR Arbiter TB - SystemVerilog
+  - src: "ip/rr_arbiter/tb/tb_rr_arbiter.sv"
+    dest: "ip/rr_arbiter/tb/tb_rr_arbiter.sv"
+    when: language == 'systemverilog'
+
+  # RR Arbiter TB - Verilog
+  - src: "ip/rr_arbiter/tb/tb_rr_arbiter.v"
+    dest: "ip/rr_arbiter/tb/tb_rr_arbiter.v"
+    when: language == 'verilog'
+
+  # RR Arbiter TB - VHDL
+  - src: "ip/rr_arbiter/tb/tb_rr_arbiter.vhd"
+    dest: "ip/rr_arbiter/tb/tb_rr_arbiter.vhd"
+    when: language == 'vhdl'
+
+  # --------------------------------------------------------------------------
+  # CDC Synchronizer IP
+  # --------------------------------------------------------------------------
+  - src: "ip/cdc_sync/manifest.yaml.j2"
+    dest: "ip/cdc_sync/manifest.yaml"
+    template: true
+
+  # CDC Sync RTL - SystemVerilog
+  - src: "ip/cdc_sync/rtl/cdc_sync_single.sv"
+    dest: "ip/cdc_sync/rtl/cdc_sync_single.sv"
+    when: language == 'systemverilog'
+
+  - src: "ip/cdc_sync/rtl/cdc_sync_bus.sv"
+    dest: "ip/cdc_sync/rtl/cdc_sync_bus.sv"
+    when: language == 'systemverilog'
+
+  # CDC Sync RTL - Verilog
+  - src: "ip/cdc_sync/rtl/cdc_sync_single.v"
+    dest: "ip/cdc_sync/rtl/cdc_sync_single.v"
+    when: language == 'verilog'
+
+  - src: "ip/cdc_sync/rtl/cdc_sync_bus.v"
+    dest: "ip/cdc_sync/rtl/cdc_sync_bus.v"
+    when: language == 'verilog'
+
+  # CDC Sync RTL - VHDL
+  - src: "ip/cdc_sync/rtl/cdc_sync_single.vhd"
+    dest: "ip/cdc_sync/rtl/cdc_sync_single.vhd"
+    when: language == 'vhdl'
+
+  - src: "ip/cdc_sync/rtl/cdc_sync_bus.vhd"
+    dest: "ip/cdc_sync/rtl/cdc_sync_bus.vhd"
+    when: language == 'vhdl'
+
+  # CDC Sync TB Manifest
+  - src: "ip/cdc_sync/tb/manifest.yaml.j2"
+    dest: "ip/cdc_sync/tb/manifest.yaml"
+    template: true
+
+  # CDC Sync TB - SystemVerilog
+  - src: "ip/cdc_sync/tb/tb_cdc_sync.sv"
+    dest: "ip/cdc_sync/tb/tb_cdc_sync.sv"
+    when: language == 'systemverilog'
+
+  # CDC Sync TB - Verilog
+  - src: "ip/cdc_sync/tb/tb_cdc_sync.v"
+    dest: "ip/cdc_sync/tb/tb_cdc_sync.v"
+    when: language == 'verilog'
+
+  # CDC Sync TB - VHDL
+  - src: "ip/cdc_sync/tb/tb_cdc_sync.vhd"
+    dest: "ip/cdc_sync/tb/tb_cdc_sync.vhd"
+    when: language == 'vhdl'
+
+  # ==========================================================================
+  # Other Files
+  # ==========================================================================
+  - src: "build/README.md"
+    dest: "build/README.md"

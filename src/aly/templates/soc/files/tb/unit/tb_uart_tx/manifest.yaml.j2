@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_uart_tx
+# =============================================================================
+# UART transmitter test
+# =============================================================================
+
+name: tb_uart_tx
+type: testbench
+version: "1.0.0"
+description: "UART transmitter test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_uart_tx
+{% if language == 'systemverilog' %}
+  file: tb_uart_tx.sv
+{% elif language == 'verilog' %}
+  file: tb_uart_tx.v
+{% elif language == 'vhdl' %}
+  file: tb_uart_tx.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_uart_tx.sv
+{% elif language == 'verilog' %}
+  - tb_uart_tx.v
+{% elif language == 'vhdl' %}
+  - tb_uart_tx.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

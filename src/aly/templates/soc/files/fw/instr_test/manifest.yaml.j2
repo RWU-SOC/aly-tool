@@ -1,0 +1,47 @@
+name: instr_test
+type: firmware
+version: "1.0.0"
+description: "Instruction fetch test firmware (simple sequence)"
+
+toolchain: {{ toolchain }}
+
+languages:
+  - c
+
+files:
+  - startup/crt0.S
+  - tests/c/instr_test.c
+
+includes:
+  - hal/include
+
+linker_script: linker/sim.ld
+start_addr: 0x80000000
+
+flags:
+  common:
+    - -fno-builtin
+    - -nostdlib
+  c:
+    - -O2
+    - -Wall
+  ld:
+    - -nostartfiles
+
+outputs:
+  - format: elf
+    
+  - format: mem
+    
+    plusarg: IMEM_FILE
+
+mem:
+  - name: instr_test.mem
+    format: mem
+    word_width: 32
+    byte_order: little
+    fill: 0x00000013
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: firmware

@@ -1,0 +1,251 @@
+name: rv64imac_tb
+type: testbench
+version: 1.0.0
+description: Testbenches for RV64IMAC processor
+author: Mohamed Aly
+
+testbenches:
+  # =========================================================================
+  # Integration tests with firmware
+  # =========================================================================
+  - name: tb_rv64i
+    description: Base RV64I testbench
+    top: tb_rv64i
+    files:
+      - tb_rv64i.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: rv64i
+        type: firmware
+    default_timeout: 100000
+    tags: [integration]
+
+  - name: tb_rv64i_allinstructions
+    description: All instructions test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_allinstructions.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: allinstructions
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction]
+
+  - name: tb_rv64i_filldmem
+    description: Fill data memory test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_filldmem.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: filldmem
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, memory]
+
+  - name: tb_rv64i_instr01loadbyte
+    description: Load byte instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr01loadbyte.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+      - name: instr01loadbyte
+        type: firmware
+      - name: rv64i_soc
+        type: rtl
+        
+    default_timeout: 100000
+    tags: [integration, instruction, load]
+
+  - name: tb_rv64i_instr02loadhalf
+    description: Load halfword instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr02loadhalf.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr02loadhalf
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, load]
+
+  - name: tb_rv64i_instr03loadword
+    description: Load word instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr03loadword.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr03loadword
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, load]
+
+  - name: tb_rv64i_instr04loadbyteu
+    description: Load byte unsigned instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr04loadbyteu.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr04loadbyteu
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, load]
+
+  - name: tb_rv64i_instr05loadhalfu
+    description: Load halfword unsigned instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr05loadhalfu.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr05loadhalfu
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, load]
+
+  - name: tb_rv64i_instr06addi
+    description: ADDI instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr06addi.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr06addi
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, arithmetic]
+
+  - name: tb_rv64i_instr07slli
+    description: SLLI instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr07slli.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr07slli
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, shift]
+
+  - name: tb_rv64i_instr19add
+    description: ADD instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr19add.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr19add
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction, arithmetic]
+
+  - name: tb_rv64i_instr29lui
+    description: LUI instruction test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr29lui.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr29lui
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, instruction]
+
+  - name: tb_rv64i_instr99loadimem
+    description: Load instruction memory test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_instr99loadimem.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: instr99loadimem
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, memory]
+
+  - name: tb_rv64i_jtag
+    description: JTAG interface test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_jtag.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 100000
+    tags: [integration, jtag]
+
+  - name: tb_rv64i_readgpioid
+    description: Read GPIO ID test
+    top: tb_rv64i
+    files:
+      - tb_rv64i_readgpioid.sv
+    dependencies:
+      - name: rv64i_soc
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+      - name: readgpioid
+        type: firmware
+    default_timeout: 100000
+    tags: [integration, gpio]
+
+testsuites:
+  - name: instruction_tests
+    description: All instruction tests
+    testbenches:
+      - tb_rv64i_instr01loadbyte
+      - tb_rv64i_instr02loadhalf
+      - tb_rv64i_instr03loadword
+      - tb_rv64i_instr04loadbyteu
+      - tb_rv64i_instr05loadhalfu
+      - tb_rv64i_instr06addi
+      - tb_rv64i_instr07slli
+      - tb_rv64i_instr19add
+      - tb_rv64i_instr29lui
+    parallel: 1
+    timeout: 60
+
+

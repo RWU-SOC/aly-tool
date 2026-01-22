@@ -1,0 +1,57 @@
+# ALY build outputs
+build/
+
+# Sphinx documentation
+docs/build/
+docs/source/_build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Vivado
+*.jou
+*.log
+*.pb
+*.str
+xsim.dir/
+*.wdb
+.Xil/
+
+# Questa/ModelSim
+work/
+*.wlf
+transcript
+modelsim.ini
+
+# Verilator
+obj_dir/
+*.vcd
+*.fst
+
+# Synthesis outputs (in build/, but just in case)
+*.dcp
+*.bit
+*.bin
+*.mmi
+
+# Firmware compilation
+*.o
+*.elf
+*.lst
+*.map
+*.mem
+*.hex
+
+# Generated IP (if not in build/)
+ip/generated/
+ip/xilinx/

@@ -1,0 +1,222 @@
+# RV64I RISC-V Processor Template
+# Based on RV64IMAC_RWU project structure
+
+name: rv64i
+version: "1.0"
+description: "RV64I RISC-V processor project template with full SoC infrastructure"
+extends: base
+
+# =============================================================================
+# Variables
+# =============================================================================
+variables:
+  project_name:
+    description: "Project name (lowercase, no spaces)"
+    default: "rv64i_soc"
+    pattern: "^[a-z][a-z0-9_-]*$"
+
+  project_version:
+    description: "Initial project version"
+    default: "1.0.0"
+
+  author:
+    description: "Author name"
+    default: ""
+
+  git_init:
+    description: "Initialize git repository"
+    default: true
+
+  # RV64I specific variables
+  language:
+    description: "HDL language"
+    default: "systemverilog"
+    choices:
+      - systemverilog
+      - verilog
+
+  toolchain:
+    description: "Firmware toolchain"
+    default: "riscv64"
+    choices:
+      - riscv64
+      - riscv32
+      - none
+
+  simulator:
+    description: "Default simulator"
+    default: "xsim"
+    choices:
+      - xsim
+      - verilator
+      - questa
+      - iverilog
+
+  synth_tool:
+    description: "Default synthesis tool"
+    default: "vivado"
+    choices:
+      - vivado
+      - yosys
+
+  # Processor parameters
+  reg_width:
+    description: "Register width (64 for RV64I)"
+    default: 64
+
+  imem_depth:
+    description: "Instruction memory depth"
+    default: 8192
+
+  dmem_depth:
+    description: "Data memory depth"
+    default: 1024
+
+  num_gpios:
+    description: "Number of GPIO pins"
+    default: 8
+
+# =============================================================================
+# Directory Structure
+# =============================================================================
+structure:
+  directories:
+    # RTL directories
+    - rtl:
+        - pkg               # SystemVerilog packages
+        - core:
+            - alu           # ALU modules
+            - control       # Control unit
+            - decoder       # Instruction decoder
+            - regfile       # Register file
+            - muxes         # Multiplexers
+        - bus               # Bus interfaces
+        - mem               # Memory modules
+        - cgu               # Clock generation unit
+        - gpio              # GPIO peripheral
+        - jtag              # JTAG interface
+        - soc_top           # Top-level SoC module
+
+    # Testbench directories
+    - tb:
+        - integration       # Integration tests
+        - unit              # Unit tests
+        - jtag              # JTAG testbenches
+        - uart              # UART testbenches
+
+    # Firmware directories
+    - fw:
+        - instr_test:
+            - include
+            - linkers
+
+    # IP blocks (for external IP)
+    - ip:
+        - vendor
+
+    # Synthesis
+    - synth:
+        - constraints:
+            - boards
+        - scripts
+
+    # Documentation
+    - docs:
+        - _static
+        - _templates
+        - source
+
+# =============================================================================
+# Files
+# =============================================================================
+files:
+  # ----- Configuration Files -----
+  - src: "gitignore"
+    dest: ".gitignore"
+
+  - src: "aly/config.yaml.j2"
+    dest: ".aly/config.yaml"
+    template: true
+
+  - src: "aly/sim.yaml.j2"
+    dest: ".aly/sim.yaml"
+    template: true
+
+  - src: "aly/synth.yaml.j2"
+    dest: ".aly/synth.yaml"
+    template: true
+
+  - src: "aly/lint.yaml"
+    dest: ".aly/lint.yaml"
+
+  - src: "aly/toolchains.yaml"
+    dest: ".aly/toolchains.yaml"
+
+  - src: "aly/fpga.yaml"
+    dest: ".aly/fpga.yaml"
+
+  - src: "aly/constraints.yaml"
+    dest: ".aly/constraints.yaml"
+
+  # ----- RTL Files -----
+  - src: "rtl/**/*"
+    dest: "rtl/"
+  
+  # ----- IP Files -----
+  - src: "ip/**/*"
+    dest: "ip/"
+    
+  # ----- Testbenches -----
+  - src: "tb/**/*"
+    dest: "tb/"
+
+ 
+  # ----- Firmware -----
+  - src: "fw/instr_test/*"
+    dest: "fw/instr_test/"
+
+  # ----- Synthesis Constraints -----
+  - src: "synth/constraints/*"
+    dest: "synth/constraints/"
+
+  # ----- Documentation -----
+  - src: "docs/requirements.txt"
+    dest: "docs/requirements.txt"
+
+  - src: "docs/README.md.j2"
+    dest: "docs/README.md"
+    template: true
+
+  - src: "docs/source/index.rst.j2"
+    dest: "docs/source/index.rst"
+    template: true
+
+  - src: "docs/source/getting_started.rst.j2"
+    dest: "docs/source/getting_started.rst"
+    template: true
+
+  - src: "docs/source/architecture.rst.j2"
+    dest: "docs/source/architecture.rst"
+    template: true
+
+  - src: "docs/source/api.rst.j2"
+    dest: "docs/source/api.rst"
+    template: true
+
+  - src: "docs/source/development.rst.j2"
+    dest: "docs/source/development.rst"
+    template: true
+
+# =============================================================================
+# Hooks
+# =============================================================================
+hooks:
+  post_create:
+    - cmd: "pip install -q sphinx sphinx-rtd-theme"
+      when: true
+    - cmd: "sphinx-quickstart docs -q -p {{ project_name }} -a {{ author }} -v {{ project_version }} --ext-autodoc --ext-viewcode --ext-todo --makefile --batchfile --sep"
+      when: true
+    - cmd: "git init"
+      when: git_init
+    - cmd: "git add ."
+      when: git_init

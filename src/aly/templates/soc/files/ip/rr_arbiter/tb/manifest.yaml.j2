@@ -1,0 +1,28 @@
+name: tb_rr_arbiter
+type: testbench
+version: "1.0.0"
+description: "Testbench for round-robin arbiter IP"
+
+language: {{ language }}
+
+top:
+  module: tb_rr_arbiter
+  file: tb_rr_arbiter.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+files:
+  - tb_rr_arbiter.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+dependencies:
+  - name: rr_arbiter
+    type: ip
+    
+
+default_timeout: 10000
+
+tags:
+  - ip
+  - arbiter
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

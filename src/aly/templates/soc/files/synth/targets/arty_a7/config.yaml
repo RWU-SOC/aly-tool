@@ -1,0 +1,20 @@
+# Arty A7-100T Configuration
+board: arty_a7_100
+part: xc7a100tcsg324-1
+tool: vivado
+
+clocks:
+  sys_clk: 100MHz
+
+pins:
+  sys_clk: E3
+  sys_rst_n: C2
+
+  uart_tx: D10
+  uart_rx: A9
+
+  led:
+    - H5
+    - J5
+    - T9
+    - T10

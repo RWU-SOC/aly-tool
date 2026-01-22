@@ -1,0 +1,24 @@
+name: rv64i_uart_tb
+type: testbench
+version: 1.0.0
+description: Testbenches for RV64I UART
+author: Mohamed Aly
+
+testbenches:
+  # =========================================================================
+  # UART unit tests (no firmware dependency)
+  # =========================================================================
+  - name: tb_uart
+    description: UART testbench
+    top: tb_uart
+    files:
+      - tb_uart.sv
+    dependencies:
+      - name: rv64i_uart
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, uart]
+
+  

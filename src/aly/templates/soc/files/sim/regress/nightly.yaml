@@ -1,0 +1,20 @@
+# Nightly regression - full test suite
+name: nightly
+description: Complete regression test suite
+
+# Run all tests defined in sources.yaml
+tests:
+  - tb_counter
+  - tb_fifo
+  - tb_mux
+  - tb_regfile
+  - tb_shift_reg
+  - tb_memory
+  - tb_gpio
+  - tb_uart_tx
+
+options:
+  parallel: 8
+  timeout: 3600
+  coverage: true
+  stop_on_fail: false

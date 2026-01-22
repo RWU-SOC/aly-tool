@@ -1,0 +1,16 @@
+name: counter_tb
+version: 1.0.0
+type: testbench
+description: Testbench for parameterized counter IP
+
+testbenches:
+  - name: tb_counter_ip
+    description: Simple testbench for counter IP
+    top: tb_counter
+    files:
+      - tb_counter.sv
+    dependencies:
+      - name: counter
+        type: rtl
+    default_timeout: 1000
+    tags: [unit, counter]

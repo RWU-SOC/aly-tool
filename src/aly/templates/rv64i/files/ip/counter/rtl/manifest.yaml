@@ -1,0 +1,9 @@
+name: counter_rtl
+type: rtl
+language: systemverilog
+
+modules:
+  - name: counter
+    top: counter
+    files:
+      - counter.sv

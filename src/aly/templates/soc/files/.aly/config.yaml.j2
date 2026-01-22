@@ -1,0 +1,44 @@
+# ALY Project Configuration
+# =============================================================================
+# Main configuration file for project settings and feature toggles
+# =============================================================================
+
+# Project Information
+project:
+  name: {{ project_name }}
+  version: "{{ project_version }}"
+  description: "{{ project_description | default('RTL project managed by ALY') }}"
+  author: "{{ author | default('') }}"
+  license: "Apache-2.0"
+  language: {{ language | default('systemverilog') }}  # HDL language: systemverilog, verilog, vhdl
+
+# =============================================================================
+# Feature Toggles
+# =============================================================================
+# Enable/disable optional features based on your project needs
+features:
+  firmware: {{ 'true' if toolchain != 'none' else 'false' }}
+  ip: true
+  constraints: true
+
+# =============================================================================
+# Default Tool Selection
+# =============================================================================
+defaults:
+  simulator: {{ simulator }}
+  synthesizer: {{ synth_tool }}
+  linter: verilator
+{% if toolchain != 'none' %}
+  toolchain: {{ toolchain }}  # Default firmware toolchain
+{% endif %}
+
+# =============================================================================
+# Path Configuration
+# =============================================================================
+paths:
+  build: build
+  rtl: rtl
+  tb: tb
+  ip: ip
+  firmware: fw
+  constraints: constraints

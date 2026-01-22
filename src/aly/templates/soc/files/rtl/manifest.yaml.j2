@@ -1,0 +1,95 @@
+# RTL Manifest
+# =============================================================================
+# Describes the main RTL design for {{ project_name }}.
+# Auto-discovered by the registry from rtl/manifest.yaml
+# =============================================================================
+
+name: {{ project_name }}
+type: rtl
+version: "1.0.0"
+description: "Main RTL design for {{ project_name }}"
+author: "{{ author }}"
+license: Apache-2.0
+
+# HDL language
+language: {{ language }}
+
+# Top module (optional - helps tools identify entry point)
+top:
+  module: counter
+{% if language == 'systemverilog' %}
+  file: top/counter.sv
+{% elif language == 'verilog' %}
+  file: top/counter.v
+{% elif language == 'vhdl' %}
+  file: top/counter.vhd
+{% endif %}
+
+# Packages to compile first (explicit order)
+packages:
+{% if language == 'systemverilog' %}
+  - pkg/soc_pkg.sv
+{% elif language == 'verilog' %}
+  - pkg/soc_pkg.v
+{% elif language == 'vhdl' %}
+  - pkg/soc_pkg.vhd
+{% endif %}
+
+# Source files (compiled after packages, before directory scan)
+files: []
+
+# Auto-discover files from these directories (Spec 003 feature)
+# Files are discovered recursively and compiled after explicit files
+scan_dirs:
+  - lib      # Library components (counters, fifos, muxes, etc.)
+  - periph   # Peripherals (GPIO, UART, etc.)
+  - mem      # Memory components
+  - top      # Top-level modules
+
+# Include directories
+{% if language != 'vhdl' %}
+includes:
+  - include
+  - pkg
+{% endif %}
+
+# Preprocessor defines
+{% if language != 'vhdl' %}
+defines:
+  SIMULATION: ""
+{% endif %}
+
+# Dependencies on IPs
+dependencies:
+  - name: sync_fifo
+    type: ip
+    
+  - name: rr_arbiter
+    type: ip
+    
+  - name: cdc_sync
+    type: ip
+    
+
+# Exclude patterns (glob)
+exclude:
+{% if language == 'systemverilog' %}
+  - "**/*_tb.sv"
+  - "**/*_sim.sv"
+{% elif language == 'verilog' %}
+  - "**/*_tb.v"
+  - "**/*_sim.v"
+{% elif language == 'vhdl' %}
+  - "**/*_tb.vhd"
+  - "**/*_sim.vhd"
+{% endif %}
+
+# Synthesis configuration (references only)
+synth:
+  constraints: []
+  # - constraints/timing.xdc
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: rtl

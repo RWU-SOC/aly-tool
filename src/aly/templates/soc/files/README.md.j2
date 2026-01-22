@@ -1,0 +1,100 @@
+# {{ project_name }}
+
+Created with [ALY](https://github.com/RWU-SOC/aly-tool) - Advanced Logic Yieldflow
+
+**HDL Language:** {{ language | default('systemverilog') | capitalize }}
+{% if toolchain != 'none' %}
+**Firmware Toolchain:** {{ toolchain }}
+{% endif %}
+
+## Project Structure
+
+```
+├── rtl/            # Synthesizable RTL source code
+├── tb/             # Testbenches (non-synthesizable)
+├── ip/             # IP blocks with manifest.yaml
+{% if toolchain != 'none' %}
+├── fw/             # Firmware (C/ASM, pure Python build)
+{% endif %}
+├── sim/            # Simulation configs and filelists
+├── synth/          # Synthesis scripts and constraints
+├── docs/           # Documentation
+└── scripts/        # Automation scripts
+```
+
+## IP Blocks
+
+The `ip/` directory contains reusable IP blocks. Each IP has:
+- `manifest.yaml` - IP manifest describing sources and tests
+- `rtl/` - RTL source files
+- `tb/` - Testbench files
+
+Included IP blocks:
+- **sync_fifo** - Synchronous FIFO with configurable depth/width
+- **rr_arbiter** - Round-robin arbiter for fair resource allocation
+- **cdc_sync** - Clock domain crossing synchronizers
+
+## Quick Start
+
+```bash
+# Show configuration and status
+aly info
+
+# Build firmware
+aly firmware
+
+# Run simulation
+aly sim <test> --waves
+
+# Run quick health checks
+aly check
+
+# Synthesize
+aly synth
+
+# Program FPGA
+aly program
+```
+
+## Workflow Commands
+
+| Command | Description |
+|---------|-------------|
+| `aly info` | Display configuration and toolchain status |
+| `aly init <project>` | Initialize a new ALY project |
+| `aly status` | Show project status and health |
+| `aly check` | Run quick health checks (lint + smoke tests) |
+| `aly firmware` | Build firmware (.mem files for simulation) |
+| `aly lint` | Run static analysis on RTL |
+| `aly sim <test>` | Run RTL simulation |
+| `aly sim <test> --waves` | Simulation with waveforms |
+| `aly sim <test> --gui` | Interactive GUI mode |
+| `aly synth` | Run RTL synthesis |
+| `aly formal` | Run formal verification |
+| `aly spec` | Manage design specifications and requirements |
+| `aly doc` | Generate design documentation |
+| `aly constraints` | Manage design constraints |
+| `aly ip` | Manage IP cores and blocks |
+| `aly metrics` | Track and analyze design metrics |
+| `aly review` | Manage design review checklists |
+| `aly program` | Program FPGA with bitstream |
+| `aly terminal` | Open UART serial terminal |
+| `aly release` | Manage releases and bitstreams |
+| `aly ci` | CI/CD pipeline management |
+| `aly watch` | Watch files and run commands on changes |
+| `aly clean` | Remove build artifacts |
+
+## Configuration
+
+Project configuration is stored in the `.aly/` directory:
+
+- `.aly/config.yaml` - Project info, feature flags, defaults
+- `.aly/rtl.yaml` - RTL source files and directories
+- `.aly/tb.yaml` - Testbench configuration
+- `.aly/sim.yaml` - Simulation tool settings
+- `.aly/synth.yaml` - Synthesis targets and settings
+- `.aly/firmware.yaml` - Firmware build configuration
+
+## Documentation
+
+See `docs/` for design specifications and register maps.

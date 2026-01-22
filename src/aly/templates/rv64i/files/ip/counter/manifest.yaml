@@ -1,0 +1,15 @@
+name: counter
+type: ip
+version: 1.0.0
+description: Simple parameterized counter IP
+vendor: local
+
+parameters:
+  WIDTH:
+    type: int
+    default: 32
+    description: Counter bit width
+  MAX_VALUE:
+    type: int
+    default: 0
+    description: Maximum count value (0 = no limit)

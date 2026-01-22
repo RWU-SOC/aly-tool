@@ -1,0 +1,30 @@
+# Toolchain Configurations
+# =============================================================================
+# Defines compiler toolchains for firmware builds.
+# Referenced by firmware manifests in fw/<build>/manifest.yaml
+# =============================================================================
+
+toolchains:
+  riscv64:
+    prefix: riscv64-unknown-elf-
+    march: rv64i
+    mabi: lp64
+    cflags:
+      - -O2
+      - -g
+      - -Wall
+      - -Wextra
+    ldflags:
+      - -nostdlib
+      - -Wl,--gc-sections
+
+  riscv32:
+    prefix: riscv32-unknown-elf-
+    march: rv32i
+    mabi: ilp32
+    cflags:
+      - -O2
+      - -g
+      - -Wall
+    ldflags:
+      - -nostdlib

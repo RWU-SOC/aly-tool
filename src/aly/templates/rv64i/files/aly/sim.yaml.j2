@@ -1,0 +1,97 @@
+# Simulation Configuration
+# =============================================================================
+# Simulator tools, options, and settings
+# =============================================================================
+
+# Default simulator (can be overridden with --tool)
+default_tool: {{ simulator }}
+
+# HDL language
+language: {{ language }}
+
+# Build directory for simulation artifacts
+build_dir: build/sim
+
+# Global simulation settings
+waves: false          # Enable waveform dump by default
+coverage: false       # Enable code coverage by default
+verbosity: normal     # Verbosity level: quiet, normal, verbose, debug
+
+# =============================================================================
+# Simulator Tool Configurations
+# =============================================================================
+tools:
+  # ---------------------------------------------------------------------------
+  # Xilinx XSim
+  # ---------------------------------------------------------------------------
+  xsim:
+    bin: xsim
+    vlog: xvlog
+    compile_opts:
+      - "--sv"
+      - "--relax"
+    xelab: xelab
+    elab_opts:
+      - "--debug"
+      - "typical"
+      - "--relax"
+    run_opts:
+      - "--runall"
+
+  # ---------------------------------------------------------------------------
+  # Mentor Questa/ModelSim
+  # ---------------------------------------------------------------------------
+  questa:
+    bin: vsim
+    vlog: vlog
+    vsim: vsim
+    compile_opts:
+      - "-sv"
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+    run_opts:
+      - "-do"
+      - "run -all; quit"
+    gui_opts:
+      - "-do"
+      - "add wave -r /*"
+
+  modelsim:
+    bin: vsim
+    vlog: vlog
+    vsim: vsim
+    compile_opts:
+      - "-sv"
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+    run_opts:
+      - "-do"
+      - "run -all; quit"
+    gui_opts:
+      - "-do"
+      - "add wave -r /*"
+
+  # ---------------------------------------------------------------------------
+  # Verilator (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+  verilator:
+    bin: verilator
+    args:
+      - "--sv"
+      - "--trace"
+      - "--trace-fst"
+      - "-Wall"
+      - "--timing"
+
+  # ---------------------------------------------------------------------------
+  # Icarus Verilog (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+  iverilog:
+    bin: iverilog
+    vvp: vvp
+    args:
+      - "-g2012"
+      - "-Wall"
+

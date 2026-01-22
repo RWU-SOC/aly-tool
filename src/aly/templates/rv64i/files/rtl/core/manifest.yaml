@@ -1,0 +1,42 @@
+name: rv64i_core
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+  - name: rv64i_core
+    language: systemverilog
+    files:
+      - CPU.sv
+      - PC.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+        
+      - name: MBpi
+        type: rtl
+        
+      - name: alu
+        type: rtl
+        
+      - name: adder
+        type: rtl
+        
+      - name: control
+        type: rtl
+        
+      - name: decoder
+        type: rtl
+        
+      - name: regfile
+        type: rtl
+        
+      - name: muxes
+        type: rtl
+
+      - name: rv64i_jtag
+        type: rtl
+        
+      
+

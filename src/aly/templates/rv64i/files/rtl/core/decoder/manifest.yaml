@@ -1,0 +1,14 @@
+
+name: rv64i_decoder
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+  - name: decoder
+    language: systemverilog
+    files:
+      - Decode.sv
+      - ImmGen.sv
+

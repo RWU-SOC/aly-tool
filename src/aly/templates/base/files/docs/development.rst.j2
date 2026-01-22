@@ -1,0 +1,78 @@
+Development Guide
+=================
+
+This guide covers development practices for {{ project_name }}.
+
+Coding Standards
+----------------
+
+RTL Coding Guidelines
+^^^^^^^^^^^^^^^^^^^^^
+
+- Use SystemVerilog
+- Follow consistent naming conventions
+- Document module interfaces
+- Add assertions for critical logic
+
+Testbench Guidelines
+^^^^^^^^^^^^^^^^^^^^
+
+- Use self-checking testbenches
+- Include TEST PASSED/FAILED messages
+- Test corner cases
+- Use randomization where appropriate
+
+Version Control
+---------------
+
+Git Workflow
+^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Create feature branch
+   git checkout -b feature/my-feature
+
+   # Make changes and commit
+   git add .
+   git commit -m "Add feature"
+
+   # Push and create pull request
+   git push origin feature/my-feature
+
+Testing
+-------
+
+Running Tests
+^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Run smoke tests
+   aly sim --regress --suite smoke
+
+   # Run full regression
+   aly sim --regress --suite nightly
+
+Continuous Integration
+----------------------
+
+CI/CD pipeline configuration and best practices.
+
+Documentation
+-------------
+
+Keep documentation up to date:
+
+- Update module descriptions when changing RTL
+- Document new features
+- Add examples for common use cases
+
+Building Documentation
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   cd docs
+   make html
+   # Open build/html/index.html

@@ -1,0 +1,51 @@
+# FPGA Programming Configuration
+# =============================================================================
+# FPGA programming, debugging, and communication settings
+# =============================================================================
+
+# Default FPGA target (from synth.yaml targets)
+default_target: arty_a7
+
+# =============================================================================
+# UART Configuration
+# =============================================================================
+uart:
+  port: auto             # Auto-detect or specify (COM3, /dev/ttyUSB0)
+  baud: 115200
+  parity: none
+  stop_bits: 1
+  flow_control: none
+
+# =============================================================================
+# JTAG Configuration
+# =============================================================================
+jtag:
+  adapter: auto          # Auto-detect or specify (digilent, ftdi, etc.)
+  speed: 10000           # kHz
+  # serial: ""           # Specific adapter serial number
+
+# =============================================================================
+# Flash Programming
+# =============================================================================
+flash:
+  enabled: false
+  type: spi              # spi, qspi, parallel
+  size: 16M              # Flash size
+  offset: 0x0            # Programming offset
+
+# =============================================================================
+# Programming Targets
+# =============================================================================
+# Override settings per target
+targets:
+  arty_a7:
+    uart:
+      port: auto
+    jtag:
+      adapter: digilent
+
+  # nexys_a7:
+  #   uart:
+  #     port: auto
+  #   jtag:
+  #     adapter: digilent

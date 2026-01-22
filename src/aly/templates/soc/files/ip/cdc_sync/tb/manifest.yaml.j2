@@ -1,0 +1,28 @@
+name: tb_cdc_sync
+type: testbench
+version: "1.0.0"
+description: "Testbench for CDC synchronizer IP"
+
+language: {{ language }}
+
+top:
+  module: tb_cdc_sync
+  file: tb_cdc_sync.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+files:
+  - tb_cdc_sync.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+dependencies:
+  - name: cdc_sync
+    type: ip
+    
+
+default_timeout: 50000
+
+tags:
+  - ip
+  - cdc
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

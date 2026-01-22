@@ -1,0 +1,153 @@
+# Simulation Configuration
+# =============================================================================
+# Simulator tools, options, and settings
+# =============================================================================
+
+# Default simulator (can be overridden with --tool)
+default_tool: {{ simulator }}
+
+# HDL language
+language: {{ language }}
+
+# Build directory for simulation artifacts
+build_dir: build/sim
+
+# Global simulation settings
+waves: false          # Enable waveform dump by default
+coverage: false       # Enable code coverage by default
+verbosity: normal     # Verbosity level: quiet, normal, verbose, debug
+
+# =============================================================================
+# Simulator Tool Configurations
+# =============================================================================
+tools:
+  # ---------------------------------------------------------------------------
+  # Xilinx XSim
+  # ---------------------------------------------------------------------------
+  xsim:
+    bin: xsim
+{% if language == 'systemverilog' %}
+    vlog: xvlog
+    compile_opts:
+      - "--sv"
+      - "--relax"
+{% elif language == 'verilog' %}
+    vlog: xvlog
+    compile_opts:
+      - "--relax"
+{% elif language == 'vhdl' %}
+    vcom: xvhdl
+    compile_opts:
+      - "-2008"
+{% endif %}
+    xelab: xelab
+    elab_opts:
+      - "--debug"
+      - "typical"
+      - "--relax"
+    run_opts:
+      - "--runall"
+
+  # ---------------------------------------------------------------------------
+  # Mentor Questa/ModelSim
+  # ---------------------------------------------------------------------------
+  questa:
+    bin: vsim
+{% if language == 'systemverilog' %}
+    vlog: vlog
+    compile_opts:
+      - "-sv"
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+{% elif language == 'verilog' %}
+    vlog: vlog
+    compile_opts:
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+{% elif language == 'vhdl' %}
+    vcom: vcom
+    compile_opts:
+      - "-2008"
+      - "+acc"
+{% endif %}
+    run_opts:
+      - "-do"
+      - "run -all; quit"
+    gui_opts:
+      - "-do"
+      - "add wave -r /*"
+
+  modelsim:
+    bin: vsim
+{% if language == 'systemverilog' %}
+    vlog: vlog
+    compile_opts:
+      - "-sv"
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+{% elif language == 'verilog' %}
+    vlog: vlog
+    compile_opts:
+      - "+acc"
+      - "-timescale"
+      - "1ns/1ps"
+{% elif language == 'vhdl' %}
+    vcom: vcom
+    compile_opts:
+      - "-2008"
+      - "+acc"
+{% endif %}
+    run_opts:
+      - "-do"
+      - "run -all; quit"
+    gui_opts:
+      - "-do"
+      - "add wave -r /*"
+
+  # ---------------------------------------------------------------------------
+  # Verilator (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+{% if language != 'vhdl' %}
+  verilator:
+    bin: verilator
+    args:
+{% if language == 'systemverilog' %}
+      - "--sv"
+{% endif %}
+      - "--trace"
+      - "--trace-fst"
+      - "-Wall"
+      - "--timing"
+{% endif %}
+
+  # ---------------------------------------------------------------------------
+  # Icarus Verilog (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+{% if language != 'vhdl' %}
+  iverilog:
+    bin: iverilog
+    vvp: vvp
+    args:
+{% if language == 'systemverilog' %}
+      - "-g2012"
+{% else %}
+      - "-g2005"
+{% endif %}
+      - "-Wall"
+{% endif %}
+
+  # ---------------------------------------------------------------------------
+  # GHDL (VHDL only)
+  # ---------------------------------------------------------------------------
+{% if language == 'vhdl' %}
+  ghdl:
+    bin: ghdl
+    args:
+      - "--std=08"
+      - "--workdir=build/sim"
+    run_opts:
+      - "--wave=waves.ghw"
+{% endif %}

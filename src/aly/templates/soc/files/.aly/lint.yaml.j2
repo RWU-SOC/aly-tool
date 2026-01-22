@@ -1,0 +1,108 @@
+# Lint Configuration
+# =============================================================================
+# Static analysis and linting settings
+# =============================================================================
+
+# Default linter tool
+{% if language == 'vhdl' %}
+default_tool: ghdl
+{% else %}
+default_tool: verilator
+{% endif %}
+
+# Severity level for reporting (error, warning, info)
+severity: warning
+
+# =============================================================================
+# Linter Tool Configurations
+# =============================================================================
+tools:
+{% if language == 'systemverilog' %}
+  verilator:
+    bin: verilator
+    args:
+      - "--lint-only"
+      - "-Wall"
+      - "--sv"
+
+  slang:
+    bin: slang
+    args:
+      - "--lint-only"
+{% elif language == 'verilog' %}
+  verilator:
+    bin: verilator
+    args:
+      - "--lint-only"
+      - "-Wall"
+
+  slang:
+    bin: slang
+    args:
+      - "--lint-only"
+{% elif language == 'vhdl' %}
+  ghdl:
+    bin: ghdl
+    args:
+      - "--std=08"
+      - "-frelaxed"
+      - "--warn-default-binding"
+      - "--warn-binding"
+      - "--warn-reserved"
+      - "--warn-library"
+      - "--warn-vital-generic"
+      - "--warn-delayed-checks"
+      - "--warn-body"
+      - "--warn-specs"
+      - "--warn-unused"
+
+  nvc:
+    bin: nvc
+    args:
+      - "--std=2008"
+      - "-a"
+{% endif %}
+
+  # Commercial tools (uncomment if available)
+  # spyglass:
+  #   bin: spyglass
+  #   args: []
+  #
+  # hal:
+  #   bin: hal
+  #   args: []
+
+# =============================================================================
+# Lint Rules Configuration
+# =============================================================================
+rules:
+  # Enable/disable specific rule categories
+  categories:
+    synthesis: true      # Synthesis compatibility checks
+    simulation: true     # Simulation issues
+    style: false         # Style/coding guidelines
+    performance: true    # Performance recommendations
+
+  # Specific rule overrides
+  enable: []
+    # - UNUSED
+    # - UNDRIVEN
+
+  disable: []
+    # - WIDTH           # Disable width mismatch warnings
+    # - DECLFILENAME    # Disable filename matching checks
+
+# =============================================================================
+# Waivers
+# =============================================================================
+# Files or patterns to exclude from linting
+waivers:
+  - "ip/vendor/**"      # Third-party IP
+{% if language == 'systemverilog' %}
+  - "**/*_sim.sv"       # Simulation-only files
+{% elif language == 'verilog' %}
+  - "**/*_sim.v"        # Simulation-only files
+{% elif language == 'vhdl' %}
+  - "**/*_sim.vhd"      # Simulation-only files
+{% endif %}
+  # - "rtl/legacy/**"   # Legacy code under cleanup

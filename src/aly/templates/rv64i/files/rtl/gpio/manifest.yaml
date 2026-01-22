@@ -1,0 +1,14 @@
+name: gpio
+version: 1.0.0
+type: rtl
+language: systemverilog
+modules:
+  - name: gpio
+    language: systemverilog
+    files:
+      - Gpio.sv
+      - GpioTop.sv
+    dependencies:
+      - name: SBpi
+        type: rtl
+        

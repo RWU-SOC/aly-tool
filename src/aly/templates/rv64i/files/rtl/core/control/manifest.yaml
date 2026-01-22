@@ -1,0 +1,12 @@
+name: rv64i_control
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+  - name: control
+    language: systemverilog
+    files:
+      - ControlAll.sv
+

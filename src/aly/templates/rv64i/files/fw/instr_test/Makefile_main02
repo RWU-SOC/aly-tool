@@ -1,0 +1,30 @@
+.SUFFIXES: .o .asm .c
+
+CC=/opt/riscv/bin/riscv64-unknown-linux-gnu-gcc
+AS=/opt/riscv/bin/riscv64-unknown-linux-gnu-as
+CP=/opt/riscv/bin/riscv64-unknown-linux-gnu-objcopy
+
+.asm.o:
+	$(AS) -march=rv64imac -g -o $*.o $*.asm -al=$*.lst
+	echo "Did: $(AS) -march=rv64imac -g -o $*.o $*.asm -al=$*.lst"
+
+.c.o:
+	$(CC) -c $*.c
+	echo "Did: $(CC) -c $*.c"
+
+all: main02
+
+main02: main02.o add_asm.o
+	$(CC) -o main02 main02.o add_asm.o
+	echo "Did: $(CC) -o main02 main02.o add_asm.o"
+
+add_asm.o : add_asm.asm
+
+main02.o: main02.c
+
+clean:
+	echo "Make clean"
+	rm *.o
+	rm *.s
+	rm *.lst
+	rm main02

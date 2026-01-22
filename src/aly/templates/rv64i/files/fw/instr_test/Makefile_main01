@@ -1,0 +1,21 @@
+.SUFFIXES: .o .asm .c
+
+CC=/opt/riscv/bin/riscv64-unknown-linux-gnu-gcc
+AS=/opt/riscv/bin/riscv64-unknown-linux-gnu-as
+
+.c.o:
+	$(CC) -c $*.c
+	echo "Did: $(CC) -c $*.c"
+
+all: main01
+
+main01: main01.o
+	$(CC) -o main01 main01.o
+	echo "Did: $(CC) -o main01 main01.o"
+
+main01.o: main01.c
+
+clean:
+	echo "Make clean"
+	rm *.o
+	rm main01

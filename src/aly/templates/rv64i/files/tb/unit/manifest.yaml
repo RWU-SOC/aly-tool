@@ -1,0 +1,74 @@
+name: rv64imac_tb
+type: testbench
+version: 1.0.0
+description: Testbenches for RV64IMAC processor
+author: Mohamed Aly
+
+testbenches:
+  # =========================================================================
+  # Unit tests (no firmware dependency)
+  # =========================================================================
+  - name: tb_alu
+    description: ALU unit test
+    top: tb_alu
+    files:
+      - tb_alu.sv
+    dependencies:
+      - name: alu
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, alu]
+
+  - name: tb_alurv
+    description: ALU RV operations test
+    top: tb_alurv
+    files:
+      - tb_alurv.sv
+    dependencies:
+      - name: alu
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, alu]
+
+  - name: tb_control
+    description: Control unit test
+    top: tb_control
+    files:
+      - tb_control.sv
+    dependencies:
+      - name: control
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, control]
+
+  - name: tb_regfile
+    description: Register file test
+    top: tb_regfile
+    files:
+      - tb_regfile.sv
+    dependencies:
+      - name: regfile
+        type: rtl
+      - name: rv64i_pkg
+        type: package
+    default_timeout: 10000
+    tags: [unit, regfile]
+
+ 
+
+testsuites:
+  - name: rv64i_unit_tests
+    description: All unit tests
+    testbenches:
+      - tb_alu
+      - tb_alurv
+      - tb_control
+      - tb_regfile
+    parallel: 4
+    timeout: 60

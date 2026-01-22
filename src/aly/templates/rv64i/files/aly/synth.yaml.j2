@@ -1,0 +1,106 @@
+# Synthesis configuration for {{ project_name }} project
+# See docs/synthesis.md for full documentation
+
+default_tool: {{ synth_tool }}
+build_dir: build/synth
+
+# =============================================================================
+# Cell Libraries for ASIC Synthesis
+# =============================================================================
+# To use cell libraries, download them and update the paths below.
+#
+# Sky130 PDK: https://github.com/google/skywater-pdk
+# ASAP7:      https://github.com/The-OpenROAD-Project/asap7
+# FreePDK45:  https://www.eda.ncsu.edu/wiki/FreePDK45
+
+libraries:
+  sky130_hd:
+    liberty: libs/sky130_fd_sc_hd__tt_025C_1v80.lib
+    verilog: libs/sky130_fd_sc_hd.v
+    lef: libs/sky130_fd_sc_hd.lef
+    description: Sky130 HD standard cells (typical corner, 25C, 1.8V)
+
+  sky130_hs:
+    liberty: libs/sky130_fd_sc_hs__tt_025C_1v80.lib
+    description: Sky130 HS (high speed) standard cells
+
+  # Uncomment if using ASAP7
+  # asap7:
+  #   liberty: libs/asap7sc7p5t_AO_RVT_TT_nldm_201020.lib
+  #   description: ASAP7 7nm predictive PDK
+
+# =============================================================================
+# Tool Configurations
+# =============================================================================
+
+tools:
+  yosys:
+    bin: yosys
+    tech: generic
+    # Uncomment to use cell library by default:
+    # liberty: libs/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+  vivado:
+    bin: vivado
+    threads: 8
+    batch_opts:
+      - "-mode"
+      - "batch"
+
+# =============================================================================
+# Synthesis Targets
+# =============================================================================
+
+targets:
+  # Generic RTL synthesis (no target technology)
+  # Use for: Verification, RTL quality checks
+  generic:
+    tool: yosys
+    tech: generic
+    top: {{ project_name }}
+
+  # Sky130 ASIC target
+  # Use for: ASIC prototyping with open-source PDK
+  sky130:
+    tool: yosys
+    tech: sky130
+    library: sky130_hd
+    top: {{ project_name }}
+    constraints:
+      - constraints/timing.sdc
+
+  # Arty A7-100T FPGA target
+  # Use for: FPGA prototyping on Digilent Arty A7
+  arty_a7:
+    tool: vivado
+    part: xc7a100tcsg324-1
+    top: fpga_top
+    constraints:
+      - constraints/arty_a7.xdc
+    options:
+      strategy: "Flow_PerfOptimized_high"
+
+  # Nexys A7 FPGA target
+  # Use for: FPGA prototyping on Digilent Nexys A7
+  nexys_a7:
+    tool: vivado
+    part: xc7a100tcsg324-1
+    top: fpga_top
+    constraints:
+      - constraints/nexys_a7.xdc
+
+  # iCE40 FPGA target (for smaller designs)
+  ice40:
+    tool: yosys
+    tech: ice40
+    top: ice40_top
+
+# =============================================================================
+# Global Options
+# =============================================================================
+
+options:
+  reports:
+    - utilization
+    - timing
+    - power

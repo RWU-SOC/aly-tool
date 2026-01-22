@@ -1,0 +1,13 @@
+# Include template files for source distributions
+recursive-include src/aly/templates *.yaml *.yml *.j2
+recursive-include src/aly/templates */files *
+
+# Include documentation
+include README.md
+include LICENSE
+
+# Exclude build artifacts
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .git*
+global-exclude .DS_Store

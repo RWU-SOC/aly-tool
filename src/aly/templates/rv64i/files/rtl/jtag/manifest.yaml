@@ -1,0 +1,26 @@
+name: rv64i_jtag
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+  - name: rv64i_jtag
+    language: systemverilog
+    top: jtag
+    files:
+      - by_cell.sv
+      - dr_cell.sv
+      - dr_reg.sv
+      - ir_cell.sv
+      - ir_decode.sv
+      - ir_reg.sv
+      - jtag.sv
+      - scan_cell.sv
+      - tap_fsm.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+        
+      
+

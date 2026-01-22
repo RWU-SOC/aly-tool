@@ -1,0 +1,38 @@
+name: rv64i_soc
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+modules:
+
+  - name: rv64i_soc
+    language: systemverilog
+    top: as_top_mem
+    files:
+      - TopMem.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+        
+      - name: rv64i_core
+        type: rtl
+        
+      - name: cgu
+        type: rtl
+        
+      - name: SBpi
+        type: rtl
+        
+      - name: MBpi
+        type: rtl
+        
+      - name: IMem
+        type: rtl
+        
+      - name: DMem
+        type: rtl
+        
+      - name: gpio
+        type: rtl
+        
+

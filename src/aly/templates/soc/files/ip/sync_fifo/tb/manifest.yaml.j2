@@ -1,0 +1,28 @@
+name: tb_sync_fifo
+type: testbench
+version: "1.0.0"
+description: "Testbench for synchronous FIFO IP"
+
+language: {{ language }}
+
+top:
+  module: tb_sync_fifo
+  file: tb_sync_fifo.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+files:
+  - tb_sync_fifo.{{ 'sv' if language == 'systemverilog' else ('v' if language == 'verilog' else 'vhd') }}
+
+dependencies:
+  - name: sync_fifo
+    type: ip
+    
+
+default_timeout: 10000
+
+tags:
+  - ip
+  - fifo
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

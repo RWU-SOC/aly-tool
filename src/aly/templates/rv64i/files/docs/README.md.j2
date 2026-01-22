@@ -1,0 +1,126 @@
+# {{ project_name }} Documentation
+
+This directory contains the Sphinx documentation for {{ project_name }}.
+
+Sphinx was automatically initialized using `sphinx-quickstart` during project creation.
+
+## Quick Start
+
+### Prerequisites
+
+Documentation dependencies are already installed. If needed:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Build HTML Documentation
+
+```bash
+cd docs
+
+# On Linux/macOS
+make html
+
+# On Windows
+make.bat html
+```
+
+Open `build/html/index.html` in your browser.
+
+### Auto-rebuild on Changes
+
+```bash
+pip install sphinx-autobuild
+cd docs
+sphinx-autobuild source build/html --open-browser
+```
+
+## Building Other Formats
+
+```bash
+cd docs
+make latexpdf  # PDF via LaTeX
+make epub      # EPUB
+make man       # Man pages
+make help      # See all available formats
+```
+
+## Directory Structure
+
+```
+docs/
+├── source/
+│   ├── conf.py              # Sphinx configuration
+│   ├── index.rst            # Documentation entry point
+│   ├── *.rst                # Custom documentation pages
+│   ├── _static/             # Static files (CSS, images)
+│   └── _templates/          # Custom templates
+├── build/                   # Build output (gitignored)
+├── Makefile                 # Build commands (Linux/macOS)
+├── make.bat                 # Build commands (Windows)
+├── requirements.txt         # Python dependencies
+└── README.md                # This file
+```
+
+## Writing Documentation
+
+Documentation uses reStructuredText (rST) format. See the [Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) for syntax reference.
+
+### Adding New Pages
+
+1. Create a new `.rst` file in `source/`
+2. Add it to the `toctree` in `source/index.rst`
+3. Rebuild the documentation
+
+### Customizing Sphinx Configuration
+
+Edit `source/conf.py` to:
+- Change theme and appearance
+- Add extensions
+- Configure autodoc behavior
+- Set project metadata
+
+### Code Examples
+
+Use code blocks with syntax highlighting:
+
+```rst
+.. code-block:: systemverilog
+
+   module counter #(
+       parameter WIDTH = 8
+   ) (
+       input  logic clk,
+       input  logic rst,
+       output logic [WIDTH-1:0] count
+   );
+       always_ff @(posedge clk or posedge rst) begin
+           if (rst)
+               count <= '0;
+           else
+               count <= count + 1'b1;
+       end
+   endmodule
+```
+
+## Auto-generation from RTL
+
+Generate documentation from RTL source:
+
+```bash
+cd ..
+aly doc generate --format html
+```
+
+## Continuous Integration
+
+Add to your CI pipeline:
+
+```yaml
+- name: Build documentation
+  run: |
+    cd docs
+    pip install -r requirements.txt
+    make html
+```

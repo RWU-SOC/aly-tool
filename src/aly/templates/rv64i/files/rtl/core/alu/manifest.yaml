@@ -1,0 +1,25 @@
+name: rv64i_alu
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+
+  - name: alu
+    top: as_alurv
+    language: systemverilog
+    files:
+      - AluRV.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+  - name: adder
+    top: as_adder
+    language: systemverilog
+    files:
+      - Add.sv
+    dependencies:
+      - name: rv64i_pkg
+        type: package
+

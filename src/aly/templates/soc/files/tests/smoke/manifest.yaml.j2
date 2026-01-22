@@ -1,0 +1,26 @@
+# Test Suite Manifest: smoke
+# =============================================================================
+# Quick smoke test suite for basic functionality
+# =============================================================================
+
+name: smoke
+type: test_suite
+version: "1.0.0"
+description: "Quick sanity tests for basic functionality"
+
+# Tests to run (testbench names)
+tests:
+  - tb_counter
+  - tb_fifo
+  - tb_mux
+
+# Execution options
+options:
+  parallel: 4
+  timeout: 60
+  stop_on_fail: true
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: test_suite

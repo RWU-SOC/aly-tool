@@ -1,0 +1,14 @@
+
+name: rv64i_muxes
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+
+modules:
+  - name: muxes
+    language: systemverilog
+    files:
+      - Mux2.sv
+      - Mux3.sv
+

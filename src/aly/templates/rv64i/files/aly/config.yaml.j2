@@ -1,0 +1,56 @@
+# ALY {{ project_name }} Project Configuration
+# =============================================================================
+# Configuration for RV64I RISC-V processor project
+# =============================================================================
+
+# Project Information
+project:
+  name: {{ project_name }}
+  version: "{{ project_version }}"
+  description: "RV64I RISC-V processor project"
+  author: "{{ author }}"
+  license: "Apache-2.0"
+  language: {{ language }}
+  type: rv64i
+
+# =============================================================================
+# Feature Toggles
+# =============================================================================
+features:
+  firmware: true      # RV64I requires firmware support
+  ip: true            # JTAG and UART IP blocks
+
+
+# =============================================================================
+# RV64I Processor Parameters
+# =============================================================================
+processor:
+  arch: rv64i
+  reg_width: {{ reg_width }}          # RV64I - 64-bit registers
+  instr_width: 32        # RISC-V instructions are 32-bit
+  imem_depth: {{ imem_depth }}       # Instruction memory depth
+  dmem_depth: {{ dmem_depth }}       # Data memory depth
+  num_gpios: {{ num_gpios }}           # Number of GPIO pins
+  num_regs: 32           # RISC-V has 32 general-purpose registers
+
+# =============================================================================
+# Default Tool Selection
+# =============================================================================
+defaults:
+  simulator: {{ simulator }}
+  synthesizer: {{ synth_tool }}
+  linter: verilator
+  toolchain: {{ toolchain }}
+  project_name: {{ project_name }}
+  firmware_bundle: rv64sim
+
+# =============================================================================
+# Path Configuration
+# =============================================================================
+paths:
+  build: build
+  rtl: rtl
+  tb: tb
+  ip: ip
+  firmware: fw
+  constraints: synth/constraints

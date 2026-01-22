@@ -1,0 +1,52 @@
+# Testbench Manifest: tb_counter
+# =============================================================================
+# Counter unit test
+# =============================================================================
+
+name: tb_counter
+type: testbench
+version: "1.0.0"
+description: "Counter unit test"
+
+# HDL language
+language: {{ language }}
+
+# Top module
+top:
+  module: tb_counter
+{% if language == 'systemverilog' %}
+  file: tb_counter.sv
+{% elif language == 'verilog' %}
+  file: tb_counter.v
+{% elif language == 'vhdl' %}
+  file: tb_counter.vhd
+{% endif %}
+
+# Testbench files
+files:
+{% if language == 'systemverilog' %}
+  - tb_counter.sv
+{% elif language == 'verilog' %}
+  - tb_counter.v
+{% elif language == 'vhdl' %}
+  - tb_counter.vhd
+{% endif %}
+
+# Dependencies on RTL
+dependencies:
+  - name: {{ project_name }}
+    type: rtl
+    
+
+# Simulation timeout (ns)
+default_timeout: 10000
+
+# Tags for test organization
+tags:
+  - unit
+  - smoke
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: testbench

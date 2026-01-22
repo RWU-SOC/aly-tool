@@ -1,0 +1,59 @@
+Getting Started
+===============
+
+This guide will help you get started with {{ project_name }}.
+
+Prerequisites
+-------------
+
+- Python 3.8+
+- ALY toolchain
+- Simulator (Vivado XSim, Questa, or Verilator)
+- Synthesis tool (for FPGA targets)
+
+Project Structure
+-----------------
+
+::
+
+   {{ project_name }}/
+   ├── rtl/              # RTL source files
+   ├── tb/               # Testbenches
+   ├── fw/               # Firmware (if applicable)
+   ├── sim/              # Simulation configuration
+   ├── synth/            # Synthesis scripts
+   ├── docs/             # Documentation
+   └── build/            # Build outputs
+
+Running Simulations
+-------------------
+
+Run a basic simulation:
+
+.. code-block:: bash
+
+   aly sim --tool xsim --top tb_example
+
+View waveforms:
+
+.. code-block:: bash
+
+   aly sim --tool xsim --top tb_example --gui --waves
+
+Synthesis
+---------
+
+Synthesize for your target FPGA:
+
+.. code-block:: bash
+
+   aly synth --target <your-target>
+
+Development Workflow
+--------------------
+
+1. Edit RTL sources in ``rtl/``
+2. Write testbenches in ``tb/``
+3. Run simulations with ``aly sim``
+4. Review results in ``build/sim/``
+5. Run synthesis with ``aly synth``

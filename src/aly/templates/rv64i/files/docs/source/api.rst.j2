@@ -1,0 +1,168 @@
+=============
+API Reference
+=============
+
+This section documents the RTL module interfaces.
+
+CPU Core
+--------
+
+{{ project_name }}_cpu
+~~~~~~~~~~~~~~~~~~~~~~
+
+Top-level CPU module.
+
+**Parameters**
+
+   None
+
+**Ports**
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 20 15 65
+
+      * - Port
+        - Direction
+        - Description
+      * - clk_i
+        - Input
+        - System clock
+      * - rst_i
+        - Input
+        - Active-high reset
+      * - instr_data_i
+        - Input [31:0]
+        - Instruction from memory
+      * - instr_addr_o
+        - Output [63:0]
+        - Instruction address (PC)
+      * - data_rd_i
+        - Input [63:0]
+        - Data read from memory
+      * - data_wr_o
+        - Output [63:0]
+        - Data to write to memory
+      * - data_addr_o
+        - Output [63:0]
+        - Data memory address
+      * - data_rd_en_o
+        - Output
+        - Data read enable
+      * - data_wr_en_o
+        - Output
+        - Data write enable
+
+ALU
+---
+
+{{ project_name }}_alu
+~~~~~~~~~~~~~~~~~~~~~~
+
+Arithmetic Logic Unit.
+
+**Parameters**
+
+   None (uses package parameters)
+
+**Ports**
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 20 15 65
+
+      * - Port
+        - Direction
+        - Description
+      * - a_i
+        - Input [63:0]
+        - First operand
+      * - b_i
+        - Input [63:0]
+        - Second operand
+      * - sel_i
+        - Input [4:0]
+        - Operation select
+      * - zero_o
+        - Output
+        - Result is zero flag
+      * - neg_o
+        - Output
+        - Result is negative flag
+      * - result_o
+        - Output [63:0]
+        - ALU result
+
+**Operations**
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 20 80
+
+      * - sel_i
+        - Operation
+      * - 5'b00000
+        - ADD (a + b)
+      * - 5'b00001
+        - SUB (a - b)
+      * - 5'b00010
+        - AND (a & b)
+      * - 5'b00011
+        - OR (a | b)
+      * - 5'b00100
+        - XOR (a ^ b)
+      * - 5'b00101
+        - SLT (signed a < b)
+      * - 5'b00110
+        - SLTU (unsigned a < b)
+      * - 5'b00111
+        - SLL (a << b)
+      * - 5'b01000
+        - SRL (a >> b)
+      * - 5'b01001
+        - SRA (a >>> b)
+
+Register File
+-------------
+
+{{ project_name }}_regfile
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+32 x 64-bit register file with x0 hardwired to zero.
+
+**Ports**
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 20 15 65
+
+      * - Port
+        - Direction
+        - Description
+      * - clk_i
+        - Input
+        - Clock
+      * - rst_i
+        - Input
+        - Reset
+      * - we_i
+        - Input
+        - Write enable
+      * - raddr1_i
+        - Input [4:0]
+        - Read address 1
+      * - raddr2_i
+        - Input [4:0]
+        - Read address 2
+      * - waddr_i
+        - Input [4:0]
+        - Write address
+      * - wdata_i
+        - Input [63:0]
+        - Write data
+      * - rdata1_o
+        - Output [63:0]
+        - Read data 1
+      * - rdata2_o
+        - Output [63:0]
+        - Read data 2

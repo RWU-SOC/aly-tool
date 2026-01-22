@@ -1,0 +1,56 @@
+# Firmware Manifest: gpio_test
+# =============================================================================
+# GPIO test firmware
+# =============================================================================
+
+name: gpio_test
+type: firmware
+version: "1.0.0"
+description: "GPIO test program"
+
+toolchain: {{ toolchain }}
+
+languages:
+  - c
+  - asm
+
+files:
+  - startup/crt0.S
+  - tests/c/gpio_test.c
+
+includes:
+  - hal/include
+
+linker_script: linker/sim.ld
+start_addr: 0x80000000
+
+flags:
+  common:
+    - -fno-builtin
+    - -nostdlib
+  c:
+    - -O2
+    - -Wall
+  asm:
+    - -x
+    - assembler-with-cpp
+  ld:
+    - -nostartfiles
+
+outputs:
+  - format: elf
+    
+  - format: mem
+    
+    plusarg: MEM_FILE
+
+mem:
+  - name: gpio_test.mem
+    format: mem
+    word_width: 32
+    byte_order: little
+    fill: 0x00000013
+
+discoverable: true
+manifest_name: manifest.yaml
+namespace: firmware

@@ -1,0 +1,8 @@
+name: rv64i_pkg
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+packages:
+  - name: rv64i_pkg
+    path: pack.sv

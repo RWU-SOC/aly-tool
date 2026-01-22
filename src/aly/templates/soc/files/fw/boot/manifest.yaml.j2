@@ -1,0 +1,69 @@
+# Firmware Manifest: boot
+# =============================================================================
+# Bootloader firmware for {{ project_name }}
+# =============================================================================
+
+name: boot
+type: firmware
+version: "1.0.0"
+description: "Bootloader for {{ project_name }}"
+
+# Toolchain reference (from .aly/toolchains.yaml)
+toolchain: {{ toolchain }}
+
+# Programming languages used
+languages:
+  - c
+  - asm
+
+# Source files
+files:
+  - startup/crt0.S
+  - tests/asm/boot.S
+
+# Include directories
+includes:
+  - hal/include
+
+# Linker script
+linker_script: linker/sim.ld
+
+# Start address
+start_addr: 0x80000000
+
+# Compiler/linker flags (override toolchain defaults)
+flags:
+  common:
+    - -fno-builtin
+    - -nostdlib
+  c:
+    - -O2
+    - -Wall
+  asm:
+    - -x
+    - assembler-with-cpp
+  ld:
+    - -nostartfiles
+
+# Output formats (NEW STRUCTURED FORMAT)
+outputs:
+  - format: elf
+    
+  - format: bin
+    
+  - format: mem
+    
+    plusarg: MEM_FILE
+
+# Memory file specifications
+mem:
+  - name: boot.mem
+    format: mem
+    word_width: 32
+    byte_order: little
+    fill: 0x00000013  # RISC-V NOP
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: firmware

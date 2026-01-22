@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aly-tool"
+version = "0.1.0"
+authors = [
+    {name = "Mohamed Aly", email = "mohamedmenazaa@outlook.com"}
+]
+maintainers = [
+  {name = "Mohamed Aly", email = "mohamedmenazaa@outlook.com"}
+]
+description = "ALY (Advanced Logic Yieldflow) is a Python-based RTL meta-tool that automates build, simulation, synthesis, and verification workflows across multiple EDA tools, providing a unified and efficient design flow for hardware projects. "
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Embedded Systems",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["risc-v", "soc", "rtl", "firmware", "build-tool"]
+dependencies = [
+    "pyyaml>=5.1",
+    "jinja2>=3.0",
+]
+
+[project.optional-dependencies]
+terminal = [
+    "pyserial>=3.5",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-timeout>=2.1",
+    "sphinx>=7.2",
+    "sphinx-rtd-theme>=2.0",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-autobuild>=2021.3.14",
+    "myst-parser>=2.0",
+    "pyserial>=3.5",
+]
+all = [
+    "pyserial>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/RWU-SOC/aly-tool"
+Documentation = "https://aly.readthedocs.io"
+Repository = "https://github.com/RWU-SOC/aly-tool"
+Issues = "https://github.com/RWU-SOC/aly-tool/issues"
+
+[project.scripts]
+aly = "aly.app.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"aly.templates" = [
+    "*/template.yaml",
+    "*/files/**/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--verbose",
+    "--cov=aly",
+    "--cov-report=html:build/test_results/htmlcov",
+    "--cov-report=term-missing",
+]
+cache_dir = "build/test_results/.pytest_cache"
+
+[tool.coverage.run]
+source = ["src/aly"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+data_file = "build/test_results/.coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]

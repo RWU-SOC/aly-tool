@@ -1,0 +1,22 @@
+name: uart
+version: 1.0.0
+type: rtl
+language: systemverilog
+
+packages:
+  - name: uart_pkg
+    path: uart_pack.sv
+
+
+modules:
+  - name: rv64i_uart
+    language: systemverilog
+    top: as_uart
+    files:
+      - br.sv
+      - rx.sv
+      - tx.sv
+      - uart.sv
+    dependencies:
+      - name: uart_pkg
+        type: package

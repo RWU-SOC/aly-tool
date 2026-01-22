@@ -1,0 +1,15 @@
+{# Custom layout.html for Sphinx to extend white space to fit the page #}
+{% extends "!layout.html" %}
+
+
+
+{% block extrahead %}
+  {{ super() }}
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+{% endblock %}

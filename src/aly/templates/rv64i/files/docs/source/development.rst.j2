@@ -1,0 +1,135 @@
+===========
+Development
+===========
+
+Development Workflow
+--------------------
+
+1. **Code Changes**
+
+   Make changes to RTL in ``rtl/`` or testbenches in ``tb/``.
+
+2. **Lint Check**
+
+   .. code-block:: bash
+
+      aly lint --all
+
+3. **Run Tests**
+
+   .. code-block:: bash
+
+      # Unit tests
+      aly sim --suite unit_tests
+
+      # Integration tests
+      aly sim --suite basic_tests
+
+4. **Synthesis Check**
+
+   .. code-block:: bash
+
+      aly synth --target generic
+
+Adding New Tests
+----------------
+
+1. Create a new testbench file in ``tb/unit/`` or ``tb/integration/``:
+
+   .. code-block:: systemverilog
+
+      `timescale 1ns/1ps
+      import {{ project_name }}_pack::*;
+
+      module tb_new_feature;
+          // Test implementation
+      endmodule
+
+2. Add the testbench to the manifest:
+
+   .. code-block:: yaml
+
+      testbenches:
+        - name: tb_new_feature
+          description: New feature test
+          top: tb_new_feature
+          files:
+            - tb_new_feature.sv
+          dependencies:
+            - name: {{ project_name }}_pkg
+              type: package
+
+3. Run the test:
+
+   .. code-block:: bash
+
+      aly sim tb_new_feature
+
+Adding New Firmware
+-------------------
+
+1. Create a new assembly or C file in ``fw/instr_test/``:
+
+   .. code-block:: asm
+
+      # my_test.asm
+      .section .text
+      .global _start
+
+      _start:
+          # Test code here
+          j _start
+
+2. Add the build to the manifest:
+
+   .. code-block:: yaml
+
+      builds:
+        - name: my_test
+          languages: [asm]
+          sources: [my_test.asm]
+          linker_script: linkers/memory.ld
+          flags:
+            common: [-fno-builtin, -nostdlib]
+
+3. Build and run:
+
+   .. code-block:: bash
+
+      aly firmware build my_test
+      aly sim tb_{{ project_name }} +MEM_FILE=fw/instr_test/build/my_test.mem
+
+Coding Guidelines
+-----------------
+
+**SystemVerilog Style**
+
+* Use ``always_ff`` for sequential logic
+* Use ``always_comb`` for combinational logic
+* Use explicit port directions (``input``, ``output``, ``inout``)
+* Use packages for shared parameters
+* Module names should be prefixed with ``{{ project_name }}_``
+
+**Example**
+
+.. code-block:: systemverilog
+
+   `timescale 1ns/1ps
+
+   import {{ project_name }}_pack::*;
+
+   module {{ project_name }}_example (
+       input  logic             clk_i,
+       input  logic             rst_i,
+       input  logic [WIDTH-1:0] data_i,
+       output logic [WIDTH-1:0] data_o
+   );
+
+       always_ff @(posedge clk_i or posedge rst_i) begin
+           if (rst_i)
+               data_o <= '0;
+           else
+               data_o <= data_i;
+       end
+
+   endmodule : {{ project_name }}_example

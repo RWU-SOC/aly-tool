@@ -1,0 +1,54 @@
+# IP Manifest: cdc_sync
+# =============================================================================
+# Clock domain crossing synchronizer IP core
+# =============================================================================
+
+name: cdc_sync
+type: ip
+version: "1.0.0"
+description: "Clock domain crossing synchronizers (multi-stage flip-flop chain)"
+vendor: "{{ author }}"
+license: Apache-2.0
+
+language: {{ language }}
+
+# Source files
+files:
+{% if language == 'systemverilog' %}
+  - rtl/cdc_sync_single.sv
+  - rtl/cdc_sync_bus.sv
+{% elif language == 'verilog' %}
+  - rtl/cdc_sync_single.v
+  - rtl/cdc_sync_bus.v
+{% elif language == 'vhdl' %}
+  - rtl/cdc_sync_single.vhd
+  - rtl/cdc_sync_bus.vhd
+{% endif %}
+
+# Parameters (for documentation)
+parameters:
+  STAGES: 2
+  WIDTH: 1
+
+# Interfaces (for documentation)
+interfaces:
+  - name: clk_src
+    direction: input
+    width: 1
+  - name: clk_dst
+    direction: input
+    width: 1
+  - name: rst
+    direction: input
+    width: 1
+  - name: data_in
+    direction: input
+    width: WIDTH
+  - name: data_out
+    direction: output
+    width: WIDTH
+
+# Discovery metadata
+discoverable: true
+manifest_name: manifest.yaml
+namespace: ip

@@ -1,0 +1,14 @@
+# Smoke test suite - quick sanity check
+name: smoke
+description: Quick sanity tests for basic functionality
+
+# Tests to run (must be defined in .aly/sources.yaml)
+tests:
+  - tb_counter
+  - tb_fifo
+  - tb_mux
+
+options:
+  parallel: 4
+  timeout: 60
+  stop_on_fail: true
