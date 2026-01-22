@@ -2,14 +2,14 @@ name: Build and Deploy Documentation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'docs/**'
       - 'src/**'
       - 'README.md'
       - '.github/workflows/docs.yml'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'docs/**'
       - 'src/**'
