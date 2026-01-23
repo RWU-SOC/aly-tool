@@ -281,12 +281,12 @@ Access in testbench:
 Timeouts
 --------
 
-Set simulation timeout:
+Set simulation timeout (in seconds):
 
 .. code-block:: bash
 
-   # Command line
-   aly sim --top tb_cpu --timeout 10ms
+   # Command line (timeout in seconds)
+   aly sim --top tb_cpu --timeout 300
 
 In manifest:
 
@@ -294,7 +294,7 @@ In manifest:
 
    testbenches:
      - name: tb_cpu
-       timeout: 10ms
+       timeout: 300  # seconds
 
 
 Show Logs
@@ -385,8 +385,8 @@ Check the simulation log for details:
 
 .. code-block:: bash
 
-   # Increase timeout
-   aly sim --top tb_cpu --timeout 1h
+   # Increase timeout (in seconds)
+   aly sim --top tb_cpu --timeout 3600
 
 **Missing dependencies:**
 

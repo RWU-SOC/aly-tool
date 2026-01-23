@@ -81,13 +81,17 @@ Initialize a new ALY project.
    :widths: 30 70
 
    * - ``-t, --template``
-     - Template to use
+     - Template to use (default: rv64i)
    * - ``--toolchain``
-     - Default firmware toolchain
+     - Default firmware toolchain (default: riscv64)
    * - ``--list-templates``
      - List available templates
    * - ``--no-git``
      - Skip git initialization
+   * - ``--var KEY=VALUE``
+     - Set template variable (can be used multiple times)
+   * - ``--template-dir PATH``
+     - Custom templates directory (default: built-in templates)
 
 **Examples:**
 
@@ -104,6 +108,12 @@ Initialize a new ALY project.
 
    # List available templates
    aly init --list-templates
+
+   # Pass template variables
+   aly init my_cpu --var language=verilog --var toolchain=riscv32
+
+   # Use custom templates directory
+   aly init my_project --template-dir /path/to/templates --template custom
 
 
 sim
@@ -133,7 +143,7 @@ Run RTL simulation.
    * - ``--plusargs``
      - Pass plusarg to simulator (KEY=VALUE format)
    * - ``--timeout``
-     - Simulation timeout
+     - Simulation timeout in seconds
    * - ``--show-log``
      - Display simulation log output
    * - ``--gtkwave``
@@ -275,29 +285,33 @@ Run linting and static analysis.
    :widths: 30 70
 
    * - ``--tool``
-     - Linter to use (verilator, slang)
+     - Linter to use (verilator, slang). Default: verilator
    * - ``-m, --module``
-     - Lint specific module only
+     - Lint specific module (required when no files given)
    * - ``--top``
-     - Top-level module name
+     - Top-level module name for linting context
    * - ``--no-warnings``
      - Suppress warnings (errors only)
+
+.. note::
+
+   Either ``--module`` or specific files must be provided.
 
 **Examples:**
 
 .. code-block:: bash
 
-   # Lint all RTL
-   aly lint
-
    # Lint specific module
-   aly lint -m alu
+   aly lint --module alu
+
+   # Lint with slang linter
+   aly lint --module cpu_core --tool slang
 
    # Lint specific files
    aly lint rtl/cpu.sv rtl/alu.sv
 
    # Errors only (no warnings)
-   aly lint --no-warnings
+   aly lint --module alu --no-warnings
 
 
 firmware

@@ -145,13 +145,13 @@ Simulate using the default tool:
 .. code-block:: bash
 
    # Run simulation
-   aly simulate --top tb_counter
+   aly sim --top tb_counter
 
    # Run with waves enabled
-   aly simulate --top tb_counter --waves
+   aly sim --top tb_counter --waves
 
    # Use a specific simulator
-   aly simulate --top tb_counter --tool verilator
+   aly sim --top tb_counter --tool verilator
 
 Expected output:
 
@@ -172,11 +172,11 @@ Check for common issues:
 
 .. code-block:: bash
 
-   # Lint all RTL
-   aly lint
-
    # Lint specific module
    aly lint --module counter
+
+   # Lint with slang linter
+   aly lint --module counter --tool slang
 
 
 Synthesize
@@ -187,10 +187,10 @@ Synthesize for an FPGA target:
 .. code-block:: bash
 
    # Synthesize with Vivado
-   aly synth --target arty_a7 --top counter
+   aly synth --module counter --part xc7a35ticsg324-1L
 
    # Synthesize with Yosys
-   aly synth --tool yosys --top counter
+   aly synth --module counter --tool yosys
 
 
 Workflow Diagram
@@ -219,7 +219,7 @@ Workflow Diagram
 
    if (Lint OK?) then (yes)
      :Simulate;
-     note right: aly simulate
+     note right: aly sim
    else (no)
      :Fix Issues;
      :Lint Check;

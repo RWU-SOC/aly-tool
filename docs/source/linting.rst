@@ -37,14 +37,17 @@ Basic Usage
 
 .. code-block:: bash
 
-   # Lint all RTL
-   aly lint
-
-   # Lint specific module
+   # Lint specific module (--module is required when no files given)
    aly lint --module cpu_core
 
    # Use specific linter
-   aly lint --tool verilator
+   aly lint --module cpu_core --tool slang
+
+   # Lint specific files
+   aly lint rtl/cpu.sv rtl/alu.sv
+
+   # Errors only (suppress warnings)
+   aly lint --module cpu_core --no-warnings
 
 
 Lint Flow
@@ -229,27 +232,10 @@ Disable warnings in code:
    /* verilator lint_on WIDTH */
 
 
-Output Formats
---------------
+Output
+------
 
-Choose output format:
-
-.. code-block:: bash
-
-   # Default text format
-   aly lint
-
-   # JSON for CI integration
-   aly lint --format json > lint.json
-
-   # SARIF for IDE integration
-   aly lint --format sarif > lint.sarif
-
-
-Example Outputs
-~~~~~~~~~~~~~~~
-
-Text format:
+The lint output shows errors and warnings in a unified format:
 
 .. code-block:: text
 
@@ -257,50 +243,29 @@ Text format:
    rtl/alu.sv:15: warning: Width mismatch: 8 bits vs 16 bits [-WWIDTH]
    rtl/decoder.sv:88: error: Case statement not fully covered [-WCASEINCOMPLETE]
 
-   Summary: 0 errors, 3 warnings
-
-JSON format:
-
-.. code-block:: json
-
-   {
-     "results": [
-       {
-         "file": "rtl/cpu_core.sv",
-         "line": 42,
-         "severity": "warning",
-         "rule": "UNUSED",
-         "message": "Signal 'debug_out' is not used"
-       }
-     ],
-     "summary": {
-       "errors": 0,
-       "warnings": 3
-     }
-   }
+   === Summary ===
+   Duration: 1.23s
+   Errors: 1
+   Warnings: 2
 
 
 Severity Levels
 ---------------
 
-Filter by severity:
+Control warning display:
 
 .. code-block:: bash
 
-   # Show only errors
-   aly lint --severity error
+   # Show errors and warnings (default)
+   aly lint --module cpu_core
 
-   # Show warnings and above
-   aly lint --severity warning
-
-   # Show everything including info
-   aly lint --severity info
+   # Show only errors (suppress warnings)
+   aly lint --module cpu_core --no-warnings
 
 Severity hierarchy:
 
-1. ``error`` - Must be fixed
-2. ``warning`` - Should be fixed
-3. ``info`` - Style suggestions
+1. ``error`` - Must be fixed (always shown)
+2. ``warning`` - Should be fixed (hidden with --no-warnings)
 
 
 CI Integration
@@ -320,21 +285,16 @@ GitHub Actions
      lint:
        runs-on: ubuntu-latest
        steps:
-         - uses: actions/checkout@v3
+         - uses: actions/checkout@v4
 
          - name: Install Verilator
-           run: apt-get install -y verilator
+           run: sudo apt-get install -y verilator
 
          - name: Install ALY
-           run: pip install aly
+           run: pip install aly-tool
 
          - name: Run lint
-           run: aly lint --format sarif > lint.sarif
-
-         - name: Upload SARIF
-           uses: github/codeql-action/upload-sarif@v2
-           with:
-             sarif_file: lint.sarif
+           run: aly lint --module cpu_core
 
 
 Pre-commit Hook
@@ -348,7 +308,7 @@ Pre-commit Hook
        hooks:
          - id: aly-lint
            name: ALY Lint
-           entry: aly lint --severity error
+           entry: aly lint --module cpu_core --no-warnings
            language: system
            files: \.(sv|v)$
            pass_filenames: false
@@ -413,11 +373,17 @@ Troubleshooting
 Common Issues
 ~~~~~~~~~~~~~
 
-**Missing include paths:**
+**Linter not found:**
+
+Ensure verilator or slang is installed and in your PATH:
 
 .. code-block:: bash
 
-   aly lint -I path/to/includes
+   # Check if verilator is available
+   verilator --version
+
+   # Install verilator (Ubuntu)
+   sudo apt-get install verilator
 
 **Syntax errors:**
 
@@ -425,11 +391,11 @@ Check if the code compiles with the simulator first:
 
 .. code-block:: bash
 
-   aly simulate --top tb_design
+   aly sim --top tb_design
 
 **False positives:**
 
-Use waivers or inline comments to suppress.
+Use inline comments to suppress specific warnings in code.
 
 
 Next Steps

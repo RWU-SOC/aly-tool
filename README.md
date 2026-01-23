@@ -2,11 +2,11 @@
 
 **Professional Python build and verification tool for RTL/SoC development**
 
-[![Tests](https://github.com/moha-abdi/aly-tool/workflows/Tests/badge.svg)](https://github.com/moha-abdi/aly-tool/actions)
-[![Documentation](https://github.com/moha-abdi/aly-tool/workflows/Build%20and%20Deploy%20Documentation/badge.svg)](https://moha-abdi.github.io/aly-tool/)
+[![Tests](https://github.com/RWU-SOC/aly-tool/workflows/Tests/badge.svg)](https://github.com/RWU-SOC/aly-tool/actions)
+[![Documentation](https://github.com/RWU-SOC/aly-tool/workflows/Build%20and%20Deploy%20Documentation/badge.svg)](https://RWU-SOC.github.io/aly-tool/)
 [![PyPI](https://img.shields.io/pypi/v/aly-tool.svg)](https://pypi.org/project/aly-tool/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org)
 
 ## Features
 
@@ -37,7 +37,7 @@ pip install aly-tool
 Or install from source:
 
 ```bash
-git clone https://github.com/moha-abdi/aly-tool.git
+git clone https://github.com/RWU-SOC/aly-tool.git
 cd aly-tool
 pip install -e .
 ```
@@ -71,41 +71,42 @@ aly sim --top soc_tb --tool questa --gui
 # Run with Verilator (fast)
 aly sim --top core_tb --tool verilator
 
-# Run with Icarus Verilog
-aly sim --top tb_alu --tool iverilog
 ```
 
 ### Synthesis
 
 ```bash
 # Vivado synthesis for FPGA
-aly synth --target arty_a7
+aly synth --module alu --part xc7a100tcsg324-1
 
 # Yosys synthesis (generic/ASIC)
-aly synth --tool yosys --target sky130
+aly synth --module alu --part xc7a100tcsg324-1 --tool yosys
 ```
 
 ### Linting
 
 ```bash
-# Lint all RTL
-aly lint --all
-
 # Lint specific module
 aly lint --module cpu_core
+
+# Lint with specific tool
+aly lint --module cpu_core --tool slang
+
+# Lint specific files
+aly lint rtl/cpu.sv rtl/alu.sv
 ```
 
 ### Build Firmware
 
 ```bash
 # Build all firmware
-aly firmware build --all
+aly firmware
 
 # Build specific firmware
-aly firmware build instr_test
+aly firmware instr_test
 
 # List available builds
-aly firmware list
+aly firmware --list
 ```
 
 ### Other Commands
@@ -118,7 +119,7 @@ aly info
 aly clean
 
 # Manage constraints
-aly constraints --list
+aly constraints list
 
 # Show version
 aly version
@@ -272,20 +273,20 @@ endmodule
 
 ## Documentation
 
-Full documentation available at [moha-abdi.github.io/aly-tool](https://moha-abdi.github.io/aly-tool/)
+Full documentation available at [RWU-SOC.github.io/aly-tool](https://RWU-SOC.github.io/aly-tool/)
 
-- [Getting Started](https://moha-abdi.github.io/aly-tool/quickstart.html)
-- [Configuration](https://moha-abdi.github.io/aly-tool/configuration.html)
-- [Template System](https://moha-abdi.github.io/aly-tool/templates.html)
-- [Command Reference](https://moha-abdi.github.io/aly-tool/commands/index.html)
-- [API Documentation](https://moha-abdi.github.io/aly-tool/api/index.html)
+- [Getting Started](https://RWU-SOC.github.io/aly-tool/quickstart.html)
+- [Configuration](https://RWU-SOC.github.io/aly-tool/configuration.html)
+- [Template System](https://RWU-SOC.github.io/aly-tool/templates.html)
+- [Command Reference](https://RWU-SOC.github.io/aly-tool/commands/index.html)
+- [API Documentation](https://RWU-SOC.github.io/aly-tool/api/index.html)
 
 ## Development
 
 ### Setup Development Environment
 
 ```bash
-git clone https://github.com/moha-abdi/aly-tool.git
+git clone https://github.com/RWU-SOC/aly-tool.git
 cd aly-tool
 pip install -e ".[dev]"
 ```
@@ -314,7 +315,7 @@ make html
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.8+
 - Optional: RISC-V toolchain (`riscv64-unknown-elf-gcc`) for firmware builds
 - Optional: Vivado for XSIM simulation and FPGA synthesis
 - Optional: Verilator for fast simulation

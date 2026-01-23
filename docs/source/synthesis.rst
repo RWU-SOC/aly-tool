@@ -47,14 +47,17 @@ Basic Usage
 
 .. code-block:: bash
 
-   # Synthesize for configured target
-   aly synth --target arty_a7
+   # Synthesize specific module with Vivado (default)
+   aly synth --module cpu_core --part xc7a100tcsg324-1
 
    # Specify tool explicitly
-   aly synth --tool vivado --top fpga_top
+   aly synth --module cpu_core --tool vivado --part xc7a100tcsg324-1
 
-   # Use Yosys for iCE40
-   aly synth --tool yosys --tech ice40 --top my_design
+   # Use Yosys
+   aly synth --module cpu_core --tool yosys
+
+   # Use constraint set
+   aly synth --module cpu_core --part xc7a100tcsg324-1 --constraints arty_a7
 
 
 Synthesis Flow
@@ -279,11 +282,11 @@ Apply design constraints:
 
 .. code-block:: bash
 
-   # Use configured constraints
-   aly synth --target arty_a7
+   # Use constraint set by name
+   aly synth --module cpu_core --part xc7a100tcsg324-1 --constraints arty_a7
 
-   # Override constraints
-   aly synth --target arty_a7 \
+   # Use constraint file directly
+   aly synth --module cpu_core --part xc7a100tcsg324-1 \
        --constraints constraints/custom.xdc
 
 XDC (Vivado)
@@ -313,23 +316,6 @@ PCF (Yosys/nextpnr)
    set_io btn A1
 
 
-Implementation
---------------
-
-Run full implementation (place & route):
-
-.. code-block:: bash
-
-   aly synth --target arty_a7 --impl
-
-Implementation generates:
-
-- Placement results
-- Routing results
-- Timing analysis
-- Bitstream file
-
-
 Reports
 -------
 
@@ -337,7 +323,7 @@ Generate synthesis reports:
 
 .. code-block:: bash
 
-   aly synth --target arty_a7 --report
+   aly synth --module cpu_core --part xc7a100tcsg324-1 --report
 
 Available reports:
 
@@ -364,20 +350,6 @@ Reports are saved to:
    +-- utilization.rpt
    +-- timing_summary.rpt
    +-- power.rpt
-
-
-Incremental Synthesis
----------------------
-
-For faster iteration:
-
-.. code-block:: bash
-
-   # First run - full synthesis
-   aly synth --target arty_a7
-
-   # Subsequent runs - incremental
-   aly synth --target arty_a7 --incremental
 
 
 Build Artifacts
@@ -456,13 +428,7 @@ Common Issues
 
 **Timing violations:**
 
-.. code-block:: bash
-
-   # Check timing report
-   cat build/synth/vivado/reports/timing_summary.rpt
-
-   # Try different strategy
-   aly synth --target arty_a7 --option strategy=Flow_PerfOptimized_high
+Check the timing report in the build output directory.
 
 **High utilization:**
 
@@ -472,13 +438,15 @@ Common Issues
 
 **Synthesis errors:**
 
+Check logs in the build directory:
+
 .. code-block:: bash
 
-   # Verbose output
-   aly synth --target arty_a7 -v
+   # Check Vivado logs
+   cat build/synth/vivado/cpu_core/vivado.log
 
-   # Check logs
-   cat build/synth/vivado/synth.log
+   # Check Yosys logs
+   cat build/synth/yosys/cpu_core/yosys.log
 
 
 Next Steps
