@@ -55,7 +55,7 @@ all = [
 
 [project.urls]
 Homepage = "https://github.com/RWU-SOC/aly-tool"
-Documentation = "https://aly.readthedocs.io"
+Documentation = "https://rwu-soc.github.io/aly-tool"
 Repository = "https://github.com/RWU-SOC/aly-tool"
 Issues = "https://github.com/RWU-SOC/aly-tool/issues"
 
