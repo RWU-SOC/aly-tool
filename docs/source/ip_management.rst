@@ -1,6 +1,6 @@
-=============
-IP Management
-=============
+==========================================================
+IP Management (Under Development for Enhanced Features)
+==========================================================
 
 This guide covers managing IP blocks in ALY projects.
 
@@ -45,20 +45,24 @@ IP Directory Structure
    +-- uart/
    |   +-- manifest.yaml
    |   +-- rtl/
+   |   |   +-- manifest.yaml
    |   |   +-- uart_tx.sv
    |   |   +-- uart_rx.sv
    |   +-- tb/
+   |   |   +-- manifest.yaml
    |   |   +-- tb_uart.sv
    |   +-- doc/
    |       +-- uart_spec.pdf
    +-- spi/
    |   +-- manifest.yaml
    |   +-- rtl/
+   |   |   +-- manifest.yaml
    |   +-- tb/
+   |   |   +-- manifest.yaml
    +-- vendor_fifo/
        +-- manifest.yaml
        +-- models/
-           +-- fifo_sim.o
+           +-- fifo_sim.o # Precompiled simulation model (still under development)
 
 
 Creating IP
@@ -227,9 +231,12 @@ Reference in RTL Manifest
        top: soc_top
        files:
          - soc_top.sv
-       deps:
-         - cpu_core
-         - uart           # Reference IP
+       dependencies:
+        - name: ip_counter
+          type: rtl
+        - name: ip_uart
+          type: rtl
+
 
 
 Reference in Testbench
@@ -243,8 +250,9 @@ Reference in Testbench
        top: tb_uart
        files:
          - tb_uart.sv
-       rtl_deps:
-         - uart          # Include IP in simulation
+       dependencies:
+        - name: ip_uart
+          type: rtl
 
 
 IP Discovery

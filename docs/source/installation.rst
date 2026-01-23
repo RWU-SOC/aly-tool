@@ -27,7 +27,10 @@ Requirements
      - ``apt install yosys`` or `YosysHQ <https://github.com/YosysHQ/yosys>`_
    * - Verilator
      - Fast RTL simulation/linting
-     - ``apt install verilator``
+     - ``apt install verilator`` or `Verilator <https://verilator.org/>`_
+   * - ModelSim
+     - RTL simulation
+     - `ModelSim <https://www.altera.com/downloads/simulation-tools/modelsim-fpgas-standard-edition-software-version-20-1-1/>`_
    * - QuestaSim
      - Commercial simulation
      - Siemens EDA
@@ -43,7 +46,7 @@ From PyPI (Recommended)
 
 .. code-block:: bash
 
-   pip install aly
+   pip install aly-tool
 
 From Source
 ~~~~~~~~~~~
@@ -51,7 +54,7 @@ From Source
 .. code-block:: bash
 
    # Clone the repository
-   git clone https://github.com/your-org/aly-tool.git
+   git clone https://github.com/RWU-SOC/aly-tool.git
    cd aly-tool
 
    # Install in development mode
@@ -95,23 +98,6 @@ ALY automatically detects tools in your ``PATH``. You can also configure explici
          bin: /opt/Xilinx/Vivado/2024.1/bin/vivado
        yosys:
          bin: /usr/bin/yosys
-
-
-Shell Completion
-~~~~~~~~~~~~~~~~
-
-Enable shell completion for better CLI experience:
-
-.. code-block:: bash
-
-   # Bash
-   aly --install-completion bash
-
-   # Zsh
-   aly --install-completion zsh
-
-   # Fish
-   aly --install-completion fish
 
 
 Project Structure

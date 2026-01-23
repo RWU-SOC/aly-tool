@@ -100,7 +100,6 @@ ALY - Advanced Logic Yieldflow
    :caption: Project
 
    contributing
-   changelog
    license
 
 

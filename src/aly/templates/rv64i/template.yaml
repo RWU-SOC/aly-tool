@@ -111,8 +111,7 @@ structure:
             - linkers
 
     # IP blocks (for external IP)
-    - ip:
-        - vendor
+    - ip
 
     # Synthesis
     - synth:

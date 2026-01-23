@@ -36,11 +36,7 @@ Development Setup
 
       pip install -e ".[dev]"
 
-5. Install pre-commit hooks:
 
-   .. code-block:: bash
-
-      pre-commit install
 
 
 Project Structure
@@ -55,7 +51,6 @@ Project Structure
    |   +-- templates/        # Project templates
    +-- tests/                # Test suite
    +-- docs/                 # Documentation
-   +-- examples/             # Example projects
 
 
 Development Workflow

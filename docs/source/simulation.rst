@@ -174,13 +174,13 @@ Each simulator produces different formats:
      - Format
      - Viewer
    * - XSim
-     - .wdb
+     - .wdb / .vcd
      - Vivado waveform viewer
    * - Verilator
      - .vcd / .fst
      - GTKWave
    * - QuestaSim
-     - .wlf
+     - .wlf / .vcd
      - QuestaSim GUI
 
 Open waveforms in GUI:
@@ -190,7 +190,7 @@ Open waveforms in GUI:
    # Open with simulator GUI
    aly sim --top tb_cpu --waves --gui
 
-   # Use GTKWave for Verilator waveforms
+   # Use GTKWave for .vcd waveforms
    aly sim --top tb_cpu --waves --gtkwave
 
 
@@ -208,21 +208,21 @@ Group related testbenches into suites:
          - tb_alu
          - tb_regfile
          - tb_decoder
-       parallel: true
+       parallel: 2
 
      - name: integration
        testbenches:
          - tb_cpu
          - tb_memory
-       parallel: false
+       parallel: 8
 
      - name: regression
        testbenches:
          - tb_alu
          - tb_cpu
          - tb_soc
-       parallel: true
-       timeout: 30m
+       parallel: 8
+       timeout: 300
 
 Run suites:
 
@@ -351,9 +351,9 @@ Backend Comparison
      - Full
      - Limited
    * - Waveforms
-     - .wdb
+     - .wdb/.vcd
      - .vcd/.fst
-     - .wlf
+     - .wlf/.vcd
      - .vcd
    * - UVM
      - Yes
@@ -396,9 +396,12 @@ Check manifest dependencies:
 
    testbenches:
      - name: tb_cpu
-       rtl_deps:
-         - cpu_core    # Ensure this module exists
-         - alu
+       dependencies:
+        - name: cpu_core # Ensure this module exists
+          type: rtl
+        - name: alu
+          type: rtl 
+
 
 
 Next Steps

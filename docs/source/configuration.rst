@@ -132,9 +132,9 @@ Enable or disable project features:
    features:
      firmware: true      # Enable firmware builds
      ip: true           # Enable IP management
-     constraints: true  # Enable constraint management
-     formal: false      # Enable formal verification
-     coverage: false    # Enable coverage collection
+     constraints: true  # Enable constraint management  (still under development)
+     formal: false      # Enable formal verification    (still under development)
+     coverage: false    # Enable coverage collection    (still under development)
 
 Features affect which commands and configurations are available.
 
@@ -151,7 +151,7 @@ Customize project directory structure:
      testbench: tb         # Testbench directory
      firmware: fw          # Firmware directory
      ip: ip                # IP blocks directory
-     constraints: constraints  # Constraints directory
+     constraints: constraints  # Constraints directory (still under development)
      build: build          # Build output directory
 
 All paths are relative to the project root.
@@ -185,39 +185,79 @@ Configure simulation tools and options in ``.aly/sim.yaml``:
    verbosity: normal
 
    tools:
-     xsim:
-       bin: xsim
-       vlog: xvlog
-       xelab: xelab
-       compile_opts:
-         - -sv
-         - -d SIMULATION
-       elab_opts:
-         - -debug typical
-       run_opts:
-         - -runall
-       gui_opts:
-         - -gui
+    # ---------------------------------------------------------------------------
+    # Xilinx XSim
+    # ---------------------------------------------------------------------------
+    xsim:
+      bin: xsim
+      vlog: xvlog
+      compile_opts:
+        - "--sv"
+        - "--relax"
+      xelab: xelab
+      elab_opts:
+        - "--debug"
+        - "typical"
+        - "--relax"
+      run_opts:
+        - "--runall"
 
-     verilator:
-       bin: verilator
-       args:
-         - --binary
-         - --trace
-         - -Wall
-         - -Wno-fatal
-         - --timing
+    # ---------------------------------------------------------------------------
+    # Mentor Questa/ModelSim
+    # ---------------------------------------------------------------------------
+    questa:
+      bin: vsim
+      vlog: vlog
+      vsim: vsim
+      compile_opts:
+        - "-sv"
+        - "+acc"
+        - "-timescale"
+        - "1ns/1ps"
+      run_opts:
+        - "-do"
+        - "run -all; quit"
+      gui_opts:
+        - "-do"
+        - "add wave -r /*"
 
-     questa:
-       bin: vsim
-       vlog: vlog
-       vsim: vsim
-       compile_opts:
-         - -sv
-         - +define+SIMULATION
-       run_opts:
-         - -c
-         - -do "run -all; quit"
+    modelsim:
+      bin: vsim
+      vlog: vlog
+      vsim: vsim
+      compile_opts:
+        - "-sv"
+        - "+acc"
+        - "-timescale"
+        - "1ns/1ps"
+      run_opts:
+        - "-do"
+        - "run -all; quit"
+      gui_opts:
+        - "-do"
+        - "add wave -r /*"
+
+  # ---------------------------------------------------------------------------
+  # Verilator (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+  verilator:
+    bin: verilator
+    args:
+      - "--sv"
+      - "--trace"
+      - "--trace-fst"
+      - "-Wall"
+      - "--timing"
+
+  # ---------------------------------------------------------------------------
+  # Icarus Verilog (SystemVerilog/Verilog only)
+  # ---------------------------------------------------------------------------
+  iverilog:
+    bin: iverilog
+    vvp: vvp
+    args:
+      - "-g2012"
+      - "-Wall"
 
 
 Tool Options Reference
@@ -230,7 +270,7 @@ Tool Options Reference
    * - Option
      - Description
    * - ``bin``
-     - Path to main tool binary
+     - Path to main tool binary (if not in path "some tools like xsim use this to find xsim path")
    * - ``vlog``
      - Verilog/SV compiler (XSim, Questa)
    * - ``xelab``
@@ -251,8 +291,8 @@ Tool Options Reference
      - General arguments
 
 
-Synthesis Configuration
------------------------
+Synthesis Configuration (still under development to be used for synth commands)
+---------------------------------------------------------------------------------
 
 Configure synthesis tools and targets in ``.aly/synth.yaml``:
 
@@ -362,13 +402,13 @@ Configure linting tools and rules in ``.aly/lint.yaml``:
      disable:
        - DECLFILENAME
 
-   waivers:
+   waivers: # Under development: will be used later for waivers
      - "ip/**/*.v"           # Waive vendor IP
      - "**/deprecated/**"    # Waive deprecated code
 
 
-Constraints Configuration
--------------------------
+Constraints Configuration (Under development)
+--------------------------------------------------
 
 Configure design constraints in ``.aly/constraints.yaml``:
 
@@ -401,8 +441,8 @@ Configure design constraints in ``.aly/constraints.yaml``:
      slew: SLOW
 
 
-FPGA Configuration
-------------------
+FPGA Configuration (Under development to be used with the program/synth command)
+----------------------------------------------------------------------------
 
 Configure FPGA programming in ``.aly/fpga.yaml``:
 
@@ -429,42 +469,51 @@ Configure firmware toolchains in ``.aly/toolchains.yaml``:
 
 .. code-block:: yaml
 
-   # .aly/toolchains.yaml
-   default: riscv64
+  # .aly/toolchains.yaml
+  default: riscv64
 
-   toolchains:
-     riscv64:
-       prefix: riscv64-unknown-elf-
-       cc: gcc
-       ld: ld
-       as: as
-       objcopy: objcopy
-       objdump: objdump
-       size: size
+  toolchains:
+    riscv64:
+      prefix: riscv64-unknown-elf-
+      cc: gcc
+      ld: ld
+      as: as
+      objcopy: objcopy
+      objdump: objdump
+      size: size
 
-       # Default flags
-       cflags:
-         - -march=rv64imac
-         - -mabi=lp64
-         - -Wall
-       asflags:
-         - -march=rv64imac
-       ldflags:
-         - -nostartfiles
+      # Default flags
+      cflags:
+        - -march=rv64imac
+        - -mabi=lp64
+        - -Wall
+      asflags:
+        - -march=rv64imac
+      ldflags:
+        - -nostartfiles
+    riscv32:
+      prefix: riscv32-unknown-elf-
+      march: rv32i
+      mabi: ilp32
+      cflags:
+        - -O2
+        - -g
+        - -Wall
+      ldflags:
+        - -nostdlib
+    arm:
+      prefix: arm-none-eabi-
+      cc: gcc
+      ld: ld
+      as: as
+      objcopy: objcopy
+      objdump: objdump
+      size: size
 
-     arm:
-       prefix: arm-none-eabi-
-       cc: gcc
-       ld: ld
-       as: as
-       objcopy: objcopy
-       objdump: objdump
-       size: size
-
-       cflags:
-         - -mcpu=cortex-m4
-         - -mthumb
-         - -Wall
+      cflags:
+        - -mcpu=cortex-m4
+        - -mthumb
+        - -Wall
 
 
 Complete Example
@@ -525,28 +574,6 @@ And a companion simulation configuration:
        bin: verilator
        args: [--binary, --trace, -Wall, --timing]
 
-
-Environment Variables
----------------------
-
-Override configuration with environment variables:
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Variable
-     - Description
-   * - ``ALY_PROJECT_ROOT``
-     - Override project root detection
-   * - ``ALY_CONFIG_FILE``
-     - Custom config file path
-   * - ``ALY_BUILD_DIR``
-     - Override build directory
-   * - ``VIVADO_HOME``
-     - Vivado installation path
-   * - ``VERILATOR_ROOT``
-     - Verilator installation path
 
 
 Next Steps

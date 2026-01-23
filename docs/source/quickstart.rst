@@ -133,8 +133,9 @@ Update ``tb/manifest.yaml``:
        top: tb_counter
        files:
          - tb_counter.sv
-       rtl_deps:
-         - counter
+       dependencies:
+         -  name: counter
+            type: rtl
 
 
 Run Simulation

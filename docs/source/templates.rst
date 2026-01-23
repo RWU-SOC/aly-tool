@@ -6,6 +6,7 @@ ALY uses a powerful template system to generate new projects with the ``aly init
 
 .. contents:: Contents
    :local:
+   :class: toc-hidden
    :depth: 3
 
 Overview

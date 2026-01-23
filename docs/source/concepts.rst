@@ -144,13 +144,21 @@ Module Definition
          - alu.sv
          - adder.sv
          - shifter.sv
-
+     - name: register_file
+       top: register_file
+       files:
+         - register_file.sv
      - name: cpu_core
        top: cpu_core
        files:
          - cpu_core.sv
-       deps:
-         - alu    # Depends on ALU module
+       dependencies:
+        - name: rv64i_pkg
+          type: package
+        - name: alu
+          type: rtl
+        - name: register_file
+          type: rtl
 
 Module Hierarchy
 ~~~~~~~~~~~~~~~~
@@ -195,10 +203,6 @@ ALY supports multiple ways to specify source files:
          - "*.sv"
          - "subdir/**/*.v"
 
-       # Exclusions
-       excludes:
-         - "*_tb.sv"
-         - "deprecated/**"
 
 
 Testbenches
@@ -215,19 +219,38 @@ Testbenches define simulation environments and test cases.
 
    testbenches:
      - name: tb_alu
-       top: tb_alu
-       files:
-         - tb_alu.sv
-       rtl_deps:
-         - alu
-       timeout: 1000us
+      description: ALU unit test
+      top: tb_alu
+      files:
+        - tb_alu.sv
+      dependencies:
+        - name: alu
+          type: rtl
+        - name: rv64i_pkg
+          type: package
+      default_timeout: 10000
+      tags: [unit, alu]
+      - name: tb_cpu
+        description: CPU core integration test
+        top: tb_cpu
+        files:
+          - tb_cpu.sv
+        dependencies:
+          - name: cpu_core
+            type: rtl
+          - name: boot
+            type: firmware
+          - name: core_pkg
+            type: package
+        default_timeout: 50000
+        tags: [integration, cpu]
 
    test_suites:
      - name: regression
        testbenches:
          - tb_alu
          - tb_cpu
-       parallel: true
+       parallel: 4 # Number of parallel jobs
 
 
 Dependency Types
@@ -255,7 +278,7 @@ Dependency Types
    }
 
    rectangle "Packages" as PKG {
-      component "uvm_pkg" as uvm
+      component "core_pkg" as uvm
    }
 
    tb --> cpu : rtl_deps
@@ -273,27 +296,77 @@ Firmware manifests define embedded software builds for processor cores.
 .. code-block:: yaml
 
    # fw/manifest.yaml
-   name: firmware
-   type: firmware
+    name: instr_test
+    type: firmware
+    author: Mohamed Aly
+    version: 1.0.0
 
-   toolchain:
-     prefix: riscv64-unknown-elf-
-     march: rv32i
-     mabi: ilp32
-     cflags:
-       - -O2
-       - -Wall
+    toolchain: riscv64
 
-   builds:
-     - name: bootloader
-       sources:
-         - boot.c
-         - startup.S
-       linker_script: linker.ld
-       outputs:
-         - format: elf
-         - format: hex
-           base_address: 0x80000000
+    builds:
+      # ASM builds
+      - name: allinstructions
+        languages: [asm]
+        sources: [allinstructions.asm]
+        includes: [include/]
+        linker_script: linkers/memory.ld
+        flags:
+          common: [-fno-builtin, -nostdlib]
+          asm: [-x]
+          ld: [-nostartfiles]
+        outputs:
+          - format: elf
+            
+          - format: mem
+            
+            plusarg: MEM_FILE
+        mem:
+          - name: memory_le.mem
+            format: mem
+            word_width: 64
+            byte_order: little
+      - name: instr01loadbyte
+    languages: [asm]
+    sources: [instr01loadbyte.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
+        
+
+  - name: instr02loadhalf
+    languages: [asm]
+    sources: [instr02loadhalf.asm]
+    includes: [include/]
+    linker_script: linkers/memory.ld
+    flags:
+      common: [-fno-builtin, -nostdlib]
+      asm: [-x]
+      ld: [-nostartfiles]
+    outputs:
+      - format: elf
+        
+      - format: mem
+        
+        plusarg: MEM_FILE
+    mem:
+      - name: memory_le.mem
+        format: mem
+        word_width: 64
+        byte_order: little
 
 
 Build Pipeline
@@ -340,16 +413,8 @@ IP blocks represent reusable or vendor-provided components.
    name: uart_ip
    type: ip
    vendor: xilinx
+   description: Parameterized UART IP Core
    version: 1.0.0
-
-   # Option 1: Direct files
-   files:
-     - rtl/uart_tx.sv
-     - rtl/uart_rx.sv
-
-   # Option 2: Precompiled models
-   binaries:
-     simulation: models/uart_sim.o
 
    parameters:
      BAUD_RATE: 115200
@@ -370,39 +435,13 @@ IP Types
       ip [label="IP Block", fillcolor="#e3f2fd"];
 
       src [label="Source IP\n(RTL files)", fillcolor="#e8f5e9"];
-      bin [label="Binary IP\n(simulation models)", fillcolor="#fff3e0"];
-      hybrid [label="Hybrid IP\n(both)", fillcolor="#f3e5f5"];
+      tb [label="IP Testbenches\n(simulation)", fillcolor="#fff3e0"];
+      fw [label="Firmware for intructions testing\n(optional)", fillcolor="#f3e5f5"];
 
       ip -> src;
-      ip -> bin;
-      ip -> hybrid;
+      ip -> tb;
+      ip -> fw;
    }
-
-
-Configuration Hierarchy
------------------------
-
-ALY uses a hierarchical configuration system that allows global defaults with per-component overrides.
-
-.. uml::
-   :align: center
-   :caption: Configuration Resolution
-
-   @startuml
-   skinparam backgroundColor transparent
-   skinparam defaultFontName sans-serif
-
-   rectangle "Project Config\n(.aly/config.yaml)" as proj #e3f2fd
-   rectangle "Component Manifest\n(rtl/manifest.yaml)" as comp #e8f5e9
-   rectangle "Module Override\n(module entry)" as mod #fff3e0
-   rectangle "CLI Override\n(--option)" as cli #fce4ec
-   rectangle "Effective Config" as eff #c8e6c9
-
-   proj --> comp : inherits
-   comp --> mod : overrides
-   mod --> cli : overrides
-   cli --> eff : produces
-   @enduml
 
 
 Build System

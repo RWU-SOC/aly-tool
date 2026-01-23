@@ -1,6 +1,6 @@
-=========
-Synthesis
-=========
+======================================================
+Synthesis (Under Development for Enhanced Features)
+======================================================
 
 This guide covers synthesis workflows for FPGA and ASIC targets.
 

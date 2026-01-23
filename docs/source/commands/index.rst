@@ -241,7 +241,7 @@ Synthesize design for FPGA or ASIC.
    * - ``-j, --jobs``
      - Number of parallel jobs
    * - ``--report``
-     - Generate synthesis reports
+     - Show synthesis reports
 
 **Examples:**
 
@@ -256,7 +256,7 @@ Synthesize design for FPGA or ASIC.
    # Use Yosys for ASIC
    aly synth --tool yosys --top my_design
 
-   # Generate reports
+   # Show reports
    aly synth --module cpu_core --report
 
 
@@ -373,8 +373,8 @@ Build embedded firmware.
    aly firmware bootloader --mem-format hex --word-width 32
 
 
-program
--------
+program (still under development)
+-----------------------------------
 
 Program FPGA device.
 

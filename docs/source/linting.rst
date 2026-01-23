@@ -130,8 +130,8 @@ Configure linting in ``.aly/config.yaml``:
        - "**/deprecated/**"
 
 
-Lint Rules
-----------
+Lint Rules (Under Development)
+--------------------------------
 
 Verilator Rules
 ~~~~~~~~~~~~~~~
@@ -268,8 +268,8 @@ Severity hierarchy:
 2. ``warning`` - Should be fixed (hidden with --no-warnings)
 
 
-CI Integration
---------------
+CI Integration (Under Development)
+-----------------------------------
 
 GitHub Actions
 ~~~~~~~~~~~~~~
