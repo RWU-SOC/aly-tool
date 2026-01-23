@@ -1,0 +1,1036 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/static.css?v=f91f3a36" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=92734c54"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Synthesis (Under Development for Enhanced Features)" href="synthesis.html" />
+    <link rel="prev" title="Constraints (Under Development)" href="constraints.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Simulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/simulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading"></a></h1>
+<p>This guide covers simulation workflows and supported tools.</p>
+<nav class="contents toc-hidden local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#basic-usage" id="id4">Basic Usage</a></p></li>
+<li><p><a class="reference internal" href="#simulation-flow" id="id5">Simulation Flow</a></p></li>
+<li><p><a class="reference internal" href="#tool-configuration" id="id6">Tool Configuration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#xsim-xilinx" id="id7">XSim (Xilinx)</a></p></li>
+<li><p><a class="reference internal" href="#verilator" id="id8">Verilator</a></p></li>
+<li><p><a class="reference internal" href="#questasim" id="id9">QuestaSim</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#waveform-viewing" id="id10">Waveform Viewing</a></p></li>
+<li><p><a class="reference internal" href="#test-suites" id="id11">Test Suites</a></p></li>
+<li><p><a class="reference internal" href="#plusargs" id="id12">Plusargs</a></p></li>
+<li><p><a class="reference internal" href="#timeouts" id="id13">Timeouts</a></p></li>
+<li><p><a class="reference internal" href="#show-logs" id="id14">Show Logs</a></p></li>
+<li><p><a class="reference internal" href="#build-directory" id="id15">Build Directory</a></p></li>
+<li><p><a class="reference internal" href="#backend-comparison" id="id16">Backend Comparison</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id17">Troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#common-issues" id="id18">Common Issues</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#next-steps" id="id19">Next Steps</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>ALY supports multiple simulation backends with a unified interface.</p>
+<figure class="align-center" id="id1">
+<div class="graphviz"><object data="_images/graphviz-8a36dbac40e3baa7ac17b229b96a9e6f0f3c6767.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph simulators {
+   rankdir=LR;
+   node [shape=box, style=&quot;rounded,filled&quot;, fontname=&quot;sans-serif&quot;];
+
+   aly [label=&quot;aly sim&quot;, fillcolor=&quot;#e3f2fd&quot;];
+
+   xsim [label=&quot;Xilinx XSim&quot;, fillcolor=&quot;#fff3e0&quot;];
+   verilator [label=&quot;Verilator&quot;, fillcolor=&quot;#e8f5e9&quot;];
+   questa [label=&quot;QuestaSim&quot;, fillcolor=&quot;#f3e5f5&quot;];
+
+   aly -&gt; xsim;
+   aly -&gt; verilator;
+   aly -&gt; questa;
+}</p></object></div>
+<figcaption>
+<p><span class="caption-number">Figure 16 </span><span class="caption-text">Supported Simulators</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="basic-usage">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>Run simulation with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate with default tool</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_counter
+
+<span class="c1"># Specify simulator</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_counter<span class="w"> </span>--tool<span class="w"> </span>verilator
+
+<span class="c1"># Enable waveforms</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_counter<span class="w"> </span>--waves
+</pre></div>
+</div>
+</section>
+<section id="simulation-flow">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Simulation Flow</a><a class="headerlink" href="#simulation-flow" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id2">
+<p class="plantuml">
+<object data="_images/plantuml-8da960d6e1bada28343950463a38eb2c5a608426.svg" type="image/svg+xml" style="width:234px;height:928px;">
+<img src="_images/plantuml-8da960d6e1bada28343950463a38eb2c5a608426.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+start
+:Load testbench manifest;
+:Resolve RTL dependencies;
+:Resolve firmware dependencies;
+:Compile all sources;
+
+if (Compilation OK?) then (no)
+   :Report errors;
+   stop
+endif
+
+:Elaborate design;
+:Run simulation;
+
+if (Waveforms enabled?) then (yes)
+   :Dump waveform file;
+endif
+
+if (GUI enabled?) then (yes)
+   :Open waveform viewer;
+endif
+
+:Report results;
+stop
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 17 </span><span class="caption-text">Simulation Execution Flow</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="tool-configuration">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Tool Configuration</a><a class="headerlink" href="#tool-configuration" title="Link to this heading"></a></h2>
+<p>Configure simulators in <code class="docutils literal notranslate"><span class="pre">.aly/config.yaml</span></code>:</p>
+<section id="xsim-xilinx">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">XSim (Xilinx)</a><a class="headerlink" href="#xsim-xilinx" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">xsim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">bin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xsim</span>
+<span class="w">      </span><span class="nt">vlog</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xvlog</span>
+<span class="w">      </span><span class="nt">xelab</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xelab</span>
+<span class="w">      </span><span class="nt">compile_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-sv</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-d SIMULATION</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-i include</span>
+<span class="w">      </span><span class="nt">elab_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-debug typical</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-relax</span>
+<span class="w">      </span><span class="nt">run_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-runall</span>
+<span class="w">      </span><span class="nt">gui_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-gui</span>
+</pre></div>
+</div>
+</section>
+<section id="verilator">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Verilator</a><a class="headerlink" href="#verilator" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">verilator</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">bin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verilator</span>
+<span class="w">      </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--binary</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--trace</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Wall</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-Wno-fatal</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--timing</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-j 4</span>
+</pre></div>
+</div>
+</section>
+<section id="questasim">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">QuestaSim</a><a class="headerlink" href="#questasim" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">questa</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">bin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vsim</span>
+<span class="w">      </span><span class="nt">vlog</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vlog</span>
+<span class="w">      </span><span class="nt">vsim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vsim</span>
+<span class="w">      </span><span class="nt">compile_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-sv</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+define+SIMULATION</span>
+<span class="w">      </span><span class="nt">run_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-do &quot;run -all; quit&quot;</span>
+<span class="w">      </span><span class="nt">gui_opts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-do &quot;add wave -r /*; run -all&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="waveform-viewing">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Waveform Viewing</a><a class="headerlink" href="#waveform-viewing" title="Link to this heading"></a></h2>
+<p>Enable waveforms with <code class="docutils literal notranslate"><span class="pre">--waves</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--waves
+</pre></div>
+</div>
+<p>Each simulator produces different formats:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Simulator</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Viewer</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>XSim</p></td>
+<td><p>.wdb / .vcd</p></td>
+<td><p>Vivado waveform viewer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Verilator</p></td>
+<td><p>.vcd / .fst</p></td>
+<td><p>GTKWave</p></td>
+</tr>
+<tr class="row-even"><td><p>QuestaSim</p></td>
+<td><p>.wlf / .vcd</p></td>
+<td><p>QuestaSim GUI</p></td>
+</tr>
+</tbody>
+</table>
+<p>Open waveforms in GUI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open with simulator GUI</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--waves<span class="w"> </span>--gui
+
+<span class="c1"># Use GTKWave for .vcd waveforms</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--waves<span class="w"> </span>--gtkwave
+</pre></div>
+</div>
+</section>
+<section id="test-suites">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Test Suites</a><a class="headerlink" href="#test-suites" title="Link to this heading"></a></h2>
+<p>Group related testbenches into suites:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># tb/manifest.yaml</span>
+<span class="nt">test_suites</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_tests</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_alu</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_regfile</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_decoder</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integration</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_cpu</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_memory</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regression</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_alu</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_cpu</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_soc</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+</pre></div>
+</div>
+<p>Run suites:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run specific suite</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--suite<span class="w"> </span>unit_tests
+
+<span class="c1"># Run all tests (regression mode)</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--regress
+
+<span class="c1"># Run specific test by name</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--test<span class="w"> </span>tb_alu
+
+<span class="c1"># Run tests in parallel</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--suite<span class="w"> </span>regression<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
+
+<span class="c1"># Stop on first failure</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--regress<span class="w"> </span>--stop-on-fail
+
+<span class="c1"># List available tests</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--list
+
+<span class="c1"># List test suites</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--list-suites
+
+<span class="c1"># List tests by tag</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--list-tags
+</pre></div>
+</div>
+</section>
+<section id="plusargs">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Plusargs</a><a class="headerlink" href="#plusargs" title="Link to this heading"></a></h2>
+<p>Pass runtime arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--plusargs<span class="w"> </span><span class="nv">FIRMWARE</span><span class="o">=</span>boot.hex<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--plusargs<span class="w"> </span><span class="nv">TIMEOUT</span><span class="o">=</span><span class="m">1000000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--plusargs<span class="w"> </span><span class="nv">VERBOSE</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Access in testbench:</p>
+<div class="highlight-systemverilog notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span><span class="w"> </span><span class="n">firmware_file</span><span class="p">;</span>
+<span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">($</span><span class="n">value</span><span class="p">$</span><span class="n">plusargs</span><span class="p">(</span><span class="s">&quot;FIRMWARE=%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">firmware_file</span><span class="p">))</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">        </span><span class="p">$</span><span class="n">display</span><span class="p">(</span><span class="s">&quot;Loading firmware: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">firmware_file</span><span class="p">);</span>
+<span class="w">        </span><span class="p">$</span><span class="n">readmemh</span><span class="p">(</span><span class="n">firmware_file</span><span class="p">,</span><span class="w"> </span><span class="n">memory</span><span class="p">.</span><span class="n">mem</span><span class="p">);</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="timeouts">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Timeouts</a><a class="headerlink" href="#timeouts" title="Link to this heading"></a></h2>
+<p>Set simulation timeout (in seconds):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Command line (timeout in seconds)</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--timeout<span class="w"> </span><span class="m">300</span>
+</pre></div>
+</div>
+<p>In manifest:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_cpu</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w">  </span><span class="c1"># seconds</span>
+</pre></div>
+</div>
+</section>
+<section id="show-logs">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Show Logs</a><a class="headerlink" href="#show-logs" title="Link to this heading"></a></h2>
+<p>Display simulation logs in real-time:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--show-log
+</pre></div>
+</div>
+</section>
+<section id="build-directory">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Build Directory</a><a class="headerlink" href="#build-directory" title="Link to this heading"></a></h2>
+<p>Simulation artifacts are stored in the build directory:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>build/
++-- sim/
+    +-- xsim/
+    |   +-- work/              # Compiled library
+    |   +-- tb_cpu.wdb         # Waveforms
+    +-- verilator/
+    |   +-- obj_dir/           # Object files
+    |   +-- Vtb_cpu            # Executable
+    |   +-- trace.vcd          # Waveforms
+    +-- questa/
+        +-- work/              # Library
+        +-- vsim.wlf           # Waveforms
+</pre></div>
+</div>
+</section>
+<section id="backend-comparison">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Backend Comparison</a><a class="headerlink" href="#backend-comparison" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>XSim</p></th>
+<th class="head"><p>Verilator</p></th>
+<th class="head"><p>QuestaSim</p></th>
+<th class="head"><p>Icarus</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Speed</p></td>
+<td><p>Medium</p></td>
+<td><p>Fast</p></td>
+<td><p>Medium</p></td>
+<td><p>Slow</p></td>
+</tr>
+<tr class="row-odd"><td><p>SV Support</p></td>
+<td><p>Full</p></td>
+<td><p>Partial</p></td>
+<td><p>Full</p></td>
+<td><p>Limited</p></td>
+</tr>
+<tr class="row-even"><td><p>Waveforms</p></td>
+<td><p>.wdb/.vcd</p></td>
+<td><p>.vcd/.fst</p></td>
+<td><p>.wlf/.vcd</p></td>
+<td><p>.vcd</p></td>
+</tr>
+<tr class="row-odd"><td><p>UVM</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>License</p></td>
+<td><p>Xilinx</p></td>
+<td><p>Open Source</p></td>
+<td><p>Commercial</p></td>
+<td><p>Open Source</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="troubleshooting">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Common Issues</a><a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<p><strong>Compilation errors:</strong></p>
+<p>Check the simulation log for details:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--show-log
+</pre></div>
+</div>
+<p><strong>Timeout:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Increase timeout (in seconds)</span>
+aly<span class="w"> </span>sim<span class="w"> </span>--top<span class="w"> </span>tb_cpu<span class="w"> </span>--timeout<span class="w"> </span><span class="m">3600</span>
+</pre></div>
+</div>
+<p><strong>Missing dependencies:</strong></p>
+<p>Check manifest dependencies:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_cpu</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu_core</span><span class="w"> </span><span class="c1"># Ensure this module exists</span>
+<span class="w">       </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu</span>
+<span class="w">       </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="synthesis.html"><span class="doc">Synthesis (Under Development for Enhanced Features)</span></a> - Synthesis workflows</p></li>
+<li><p><a class="reference internal" href="commands/index.html"><span class="doc">Command Reference</span></a> - Full CLI reference</p></li>
+<li><p><a class="reference internal" href="manifest_system.html"><span class="doc">Manifest System</span></a> - Testbench manifest details</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="constraints.html" class="btn btn-neutral float-left" title="Constraints (Under Development)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="synthesis.html" class="btn btn-neutral float-right" title="Synthesis (Under Development for Enhanced Features)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

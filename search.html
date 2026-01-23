@@ -1,0 +1,636 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/static.css?v=f91f3a36" />
+
+  
+    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=92734c54"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
+
+
+</body>
+</html>

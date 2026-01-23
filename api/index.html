@@ -1,0 +1,1969 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/static.css?v=f91f3a36" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=92734c54"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecture" href="../architecture.html" />
+    <link rel="prev" title="Command Reference" href="../commands/index.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>This section documents ALY’s Python API for programmatic access.</p>
+<nav class="contents toc-hidden local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#configuration-api" id="id4">Configuration API</a></p>
+<ul>
+<li><p><a class="reference internal" href="#projectconfig" id="id5">ProjectConfig</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#model-classes" id="id6">Model Classes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#rtlmanifest" id="id7">RTLManifest</a></p></li>
+<li><p><a class="reference internal" href="#rtlmodule" id="id8">RTLModule</a></p></li>
+<li><p><a class="reference internal" href="#testbenchmanifest" id="id9">TestbenchManifest</a></p></li>
+<li><p><a class="reference internal" href="#testbench" id="id10">Testbench</a></p></li>
+<li><p><a class="reference internal" href="#firmwaremanifest" id="id11">FirmwareManifest</a></p></li>
+<li><p><a class="reference internal" href="#ipmanifest" id="id12">IPManifest</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#backend-api" id="id13">Backend API</a></p>
+<ul>
+<li><p><a class="reference internal" href="#simulatorbackend" id="id14">SimulatorBackend</a></p></li>
+<li><p><a class="reference internal" href="#synthbackend" id="id15">SynthBackend</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#utility-functions" id="id16">Utility Functions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-aly.log" id="id17">Logging</a></p></li>
+<li><p><a class="reference internal" href="#module-aly.configuration" id="id18">Configuration Utilities</a></p></li>
+<li><p><a class="reference internal" href="#module-aly.templates" id="id19">Template System</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage-examples" id="id20">Usage Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-a-project" id="id21">Loading a Project</a></p></li>
+<li><p><a class="reference internal" href="#running-simulation" id="id22">Running Simulation</a></p></li>
+<li><p><a class="reference internal" href="#programmatic-synthesis" id="id23">Programmatic Synthesis</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#next-steps" id="id24">Next Steps</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>ALY’s API is organized into modules:</p>
+<figure class="align-center" id="id1">
+<div class="graphviz"><object data="../_images/graphviz-57a4b5b7127946fe41f1ffd6910124bc0e9bb2ac.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph api {
+   rankdir=TB;
+   node [shape=box, style=&quot;rounded,filled&quot;, fontname=&quot;sans-serif&quot;];
+
+   aly [label=&quot;aly&quot;, fillcolor=&quot;#e3f2fd&quot;];
+
+   config [label=&quot;aly.config&quot;, fillcolor=&quot;#e8f5e9&quot;];
+   models [label=&quot;aly.config.models&quot;, fillcolor=&quot;#c8e6c9&quot;];
+   backends [label=&quot;aly.backends&quot;, fillcolor=&quot;#fff3e0&quot;];
+   app [label=&quot;aly.app&quot;, fillcolor=&quot;#f3e5f5&quot;];
+
+   aly -&gt; config;
+   aly -&gt; backends;
+   aly -&gt; app;
+   config -&gt; models;
+}</p></object></div>
+<figcaption>
+<p><span class="caption-number">Figure 26 </span><span class="caption-text">API Module Structure</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="configuration-api">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Configuration API</a><a class="headerlink" href="#configuration-api" title="Link to this heading"></a></h2>
+<section id="projectconfig">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">ProjectConfig</a><a class="headerlink" href="#projectconfig" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.</span></span><span class="sig-name descname"><span class="pre">ProjectConfig</span></span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Unified configuration manager and component registry for ALY projects.</p>
+<p>Loads configuration from .aly/ directory and discovers components through
+manifest.yaml files in configured paths. Provides unified access to all
+project settings and components.</p>
+<p class="rubric">Example</p>
+<p>config = ProjectConfig.load(“.”)</p>
+<p># Access project info
+print(config.info.name)</p>
+<p># Get RTL block
+cpu = config.get_rtl_block(“cpu”)</p>
+<p># Get testbench
+tb = config.get_testbench(“tb_alu”)</p>
+<p># List all components
+rtl_blocks = config.list_rtl_blocks()</p>
+<p># Resolve dependencies
+deps = config.resolve_rtl_deps(tb)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize configuration manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>project_root</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.load" title="Link to this definition"></a></dt>
+<dd><p>Load configuration from project root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>project_root</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Path to project root directory</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded ProjectConfig instance</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#SystemExit" title="(in Python v3.14)"><strong>SystemExit</strong></a> – If configuration is missing or invalid</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#aly.config.ProjectConfig" title="aly.config.project_config.ProjectConfig"><em>ProjectConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.discover_all">
+<span class="sig-name descname"><span class="pre">discover_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.discover_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.discover_all" title="Link to this definition"></a></dt>
+<dd><p>Scan all configured paths for manifest.yaml files.</p>
+<p>This is the main discovery method that populates the component registry.
+It’s called lazily on first access to any get/list method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get" title="Link to this definition"></a></dt>
+<dd><p>Get a manifest by type and name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manifest_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Component type (rtl, ip, testbench, firmware, test_suite)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Manifest name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Manifest object or None if not found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list" title="Link to this definition"></a></dt>
+<dd><p>List all manifest names of a specific type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>manifest_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Component type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of manifest names.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_all">
+<span class="sig-name descname"><span class="pre">get_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_all" title="Link to this definition"></a></dt>
+<dd><p>Get all manifests of a specific type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>manifest_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Component type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict mapping name to manifest object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_unit">
+<span class="sig-name descname"><span class="pre">get_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_unit" title="Link to this definition"></a></dt>
+<dd><p>Get a unit (rtl_module, testbench, firmware_build, …) by kind and name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>UnitRef</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_units">
+<span class="sig-name descname"><span class="pre">list_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_units" title="Link to this definition"></a></dt>
+<dd><p>List all unit names of a given kind.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_rtl_module">
+<span class="sig-name descname"><span class="pre">get_rtl_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_rtl_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_rtl_module" title="Link to this definition"></a></dt>
+<dd><p>Get a single RTL module unit by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>UnitRef</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_rtl_modules">
+<span class="sig-name descname"><span class="pre">list_rtl_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_rtl_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_rtl_modules" title="Link to this definition"></a></dt>
+<dd><p>List all RTL module unit names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.iter_rtl_modules">
+<span class="sig-name descname"><span class="pre">iter_rtl_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.iter_rtl_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.iter_rtl_modules" title="Link to this definition"></a></dt>
+<dd><p>Iterate over all RTL module units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UnitRef objects for each RTL module.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_rtl_module_objects">
+<span class="sig-name descname"><span class="pre">get_rtl_module_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_rtl_module_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_rtl_module_objects" title="Link to this definition"></a></dt>
+<dd><p>Get all RTL modules with their parent manifests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>module_name -&gt; (module_obj, parent_manifest)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_rtl_module_files">
+<span class="sig-name descname"><span class="pre">get_rtl_module_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_rtl_module_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_rtl_module_files" title="Link to this definition"></a></dt>
+<dd><p>Get compilation files (packages + module files) for a given RTL module.</p>
+<p>Module is looked up project-wide, by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_rtl_module_package_files">
+<span class="sig-name descname"><span class="pre">get_rtl_module_package_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_rtl_module_package_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_rtl_module_package_files" title="Link to this definition"></a></dt>
+<dd><p>Get package files that apply to a given RTL module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_testbench_unit">
+<span class="sig-name descname"><span class="pre">get_testbench_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_testbench_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_testbench_unit" title="Link to this definition"></a></dt>
+<dd><p>Get a single testbench unit by name.</p>
+<p>Requires that TestbenchManifest exposes a <cite>testbenches</cite> list and that
+<cite>_register()</cite> populates <cite>_units[“testbench”]</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>UnitRef</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_testbench_units">
+<span class="sig-name descname"><span class="pre">list_testbench_units</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_testbench_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_testbench_units" title="Link to this definition"></a></dt>
+<dd><p>List all testbench unit names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_testbench">
+<span class="sig-name descname"><span class="pre">get_testbench</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_testbench"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_testbench" title="Link to this definition"></a></dt>
+<dd><p>Get a testbench by name (returns Testbench object).</p>
+<p>This is a convenience method that returns the testbench object directly,
+rather than the UnitRef wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_testbenches">
+<span class="sig-name descname"><span class="pre">list_testbenches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_testbenches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_testbenches" title="Link to this definition"></a></dt>
+<dd><p>List all testbench names.</p>
+<p>Convenience alias for list_testbench_units().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.iter_testbenches">
+<span class="sig-name descname"><span class="pre">iter_testbenches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.iter_testbenches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.iter_testbenches" title="Link to this definition"></a></dt>
+<dd><p>Iterate over all testbench units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UnitRef objects for each testbench.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_testsuite">
+<span class="sig-name descname"><span class="pre">get_testsuite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_testsuite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_testsuite" title="Link to this definition"></a></dt>
+<dd><p>Get a test suite by name (searches all testbench manifests).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TestSuite object or None if not found.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_testsuites">
+<span class="sig-name descname"><span class="pre">list_testsuites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_testsuites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_testsuites" title="Link to this definition"></a></dt>
+<dd><p>List all test suite names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.resolve_rtl_deps">
+<span class="sig-name descname"><span class="pre">resolve_rtl_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_visited</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.resolve_rtl_deps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.resolve_rtl_deps" title="Link to this definition"></a></dt>
+<dd><p>Recursively resolve RTL dependencies for a unit (testbench or RTL module).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>) – Testbench or RTLModule object with dependencies list</p></li>
+<li><p><strong>_visited</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><em>set</em></a><em> | </em><em>None</em>) – Internal set to track visited modules and prevent cycles</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of UnitRef objects (containing both RTLModule obj and RTLManifest manifest)
+in dependency order (dependencies before dependents)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<em>UnitRef</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.resolve_package_deps">
+<span class="sig-name descname"><span class="pre">resolve_package_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testbench</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.resolve_package_deps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.resolve_package_deps" title="Link to this definition"></a></dt>
+<dd><p>Resolve package dependencies for a testbench.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>testbench</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>) – Testbench object with dependencies list</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of UnitRef objects (containing RTLPackage obj and parent RTLManifest)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<em>UnitRef</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.resolve_package_dep_files">
+<span class="sig-name descname"><span class="pre">resolve_package_dep_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testbench</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.resolve_package_dep_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.resolve_package_dep_files" title="Link to this definition"></a></dt>
+<dd><p>Resolve package dependencies for a testbench and return file paths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>testbench</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>) – Testbench object with dependencies list</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of resolved Paths for package files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_package_unit">
+<span class="sig-name descname"><span class="pre">get_package_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_package_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_package_unit" title="Link to this definition"></a></dt>
+<dd><p>Get a package unit by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The package name to look up.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>UnitRef containing the RTLPackage obj and parent RTLManifest.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>UnitRef</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_package">
+<span class="sig-name descname"><span class="pre">get_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_package"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_package" title="Link to this definition"></a></dt>
+<dd><p>Get a package by name (returns RTLPackage object).</p>
+<p>This is a convenience method that returns the package object directly,
+rather than the UnitRef wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>RTLPackage</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_packages">
+<span class="sig-name descname"><span class="pre">list_packages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_packages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_packages" title="Link to this definition"></a></dt>
+<dd><p>List all named package names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.iter_packages">
+<span class="sig-name descname"><span class="pre">iter_packages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.iter_packages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.iter_packages" title="Link to this definition"></a></dt>
+<dd><p>Iterate over all package units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UnitRef objects for each named package.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_package_file">
+<span class="sig-name descname"><span class="pre">get_package_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_package_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_package_file" title="Link to this definition"></a></dt>
+<dd><p>Get the resolved file path for a package by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The package name to look up.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resolved Path if found and exists, None otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_package_files_by_names">
+<span class="sig-name descname"><span class="pre">get_package_files_by_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_package_files_by_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_package_files_by_names" title="Link to this definition"></a></dt>
+<dd><p>Get package files by their names (for dependency resolution).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>names</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – List of package names to include.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of resolved paths for the named packages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_firmware_build">
+<span class="sig-name descname"><span class="pre">get_firmware_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_firmware_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_firmware_build" title="Link to this definition"></a></dt>
+<dd><p>Get a single firmware build unit by name.</p>
+<p>Requires that FirmwareManifest exposes a <cite>builds</cite> list and that
+<cite>_register()</cite> populates <cite>_units[“firmware_build”]</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>UnitRef</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_firmware_builds">
+<span class="sig-name descname"><span class="pre">list_firmware_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_firmware_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_firmware_builds" title="Link to this definition"></a></dt>
+<dd><p>List all firmware build unit names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_firmware">
+<span class="sig-name descname"><span class="pre">get_firmware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_firmware"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_firmware" title="Link to this definition"></a></dt>
+<dd><p>Get a firmware build by name (returns FirmwareBuild object).</p>
+<p>This is a convenience method that returns the build object directly,
+rather than the UnitRef wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>FirmwareBuild</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_firmware">
+<span class="sig-name descname"><span class="pre">list_firmware</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_firmware"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_firmware" title="Link to this definition"></a></dt>
+<dd><p>List all firmware build names.</p>
+<p>Convenience alias for list_firmware_builds().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.iter_firmware_builds">
+<span class="sig-name descname"><span class="pre">iter_firmware_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.iter_firmware_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.iter_firmware_builds" title="Link to this definition"></a></dt>
+<dd><p>Iterate over all firmware build units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>UnitRef objects for each firmware build.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_toolchain">
+<span class="sig-name descname"><span class="pre">get_toolchain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_toolchain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_toolchain" title="Link to this definition"></a></dt>
+<dd><p>Get a toolchain by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Toolchain</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_toolchains">
+<span class="sig-name descname"><span class="pre">list_toolchains</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_toolchains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_toolchains" title="Link to this definition"></a></dt>
+<dd><p>List all loaded toolchain names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_ip">
+<span class="sig-name descname"><span class="pre">get_ip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_ip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_ip" title="Link to this definition"></a></dt>
+<dd><p>Get an IP manifest by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>IPManifest</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.list_ips">
+<span class="sig-name descname"><span class="pre">list_ips</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.list_ips"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.list_ips" title="Link to this definition"></a></dt>
+<dd><p>List all discovered IP manifest names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.sim">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sim</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SimConfig</span></span><a class="headerlink" href="#aly.config.ProjectConfig.sim" title="Link to this definition"></a></dt>
+<dd><p>Simulation configuration.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.synth">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">synth</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SynthConfig</span></span><a class="headerlink" href="#aly.config.ProjectConfig.synth" title="Link to this definition"></a></dt>
+<dd><p>Synthesis configuration.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.lint">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">lint</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LintConfig</span></span><a class="headerlink" href="#aly.config.ProjectConfig.lint" title="Link to this definition"></a></dt>
+<dd><p>Lint configuration.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.constraints">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">constraints</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ConstraintsConfig</span></span><a class="headerlink" href="#aly.config.ProjectConfig.constraints" title="Link to this definition"></a></dt>
+<dd><p>Constraints configuration.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.fpga">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fpga</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FPGAConfig</span></span><a class="headerlink" href="#aly.config.ProjectConfig.fpga" title="Link to this definition"></a></dt>
+<dd><p>FPGA configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.is_enabled">
+<span class="sig-name descname"><span class="pre">is_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.is_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.is_enabled" title="Link to this definition"></a></dt>
+<dd><p>Check if a feature is enabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>feature</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.resolve_path">
+<span class="sig-name descname"><span class="pre">resolve_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.resolve_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.resolve_path" title="Link to this definition"></a></dt>
+<dd><p>Resolve path relative to project root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.get_sim_tool">
+<span class="sig-name descname"><span class="pre">get_sim_tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.get_sim_tool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.get_sim_tool" title="Link to this definition"></a></dt>
+<dd><p>Get simulator tool configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>SimToolConfig</em> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.refresh" title="Link to this definition"></a></dt>
+<dd><p>Force re-discovery of all manifests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.summary" title="Link to this definition"></a></dt>
+<dd><p>Get a summary of discovered components by type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict mapping component type to count</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.ProjectConfig.validate_all">
+<span class="sig-name descname"><span class="pre">validate_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aly/config/project_config.html#ProjectConfig.validate_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.config.ProjectConfig.validate_all" title="Link to this definition"></a></dt>
+<dd><p>Validate all discovered components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict mapping component type to list of validation messages</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>The main configuration class for loading and accessing project settings.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aly.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProjectConfig</span>
+
+<span class="c1"># Load project configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ProjectConfig</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="c1"># Access project info</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Project: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Version: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get simulation config</span>
+<span class="n">sim_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">simulation</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Default simulator: </span><span class="si">{</span><span class="n">sim_config</span><span class="o">.</span><span class="n">default_tool</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-classes">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Model Classes</a><a class="headerlink" href="#model-classes" title="Link to this heading"></a></h2>
+<section id="rtlmanifest">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">RTLManifest</a><a class="headerlink" href="#rtlmanifest" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">RTLManifest</span></span><a class="headerlink" href="#aly.config.models.RTLManifest" title="Link to this definition"></a></dt>
+<dd><p>RTL component manifest.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.RTLManifest.name" title="Link to this definition"></a></dt>
+<dd><p>Manifest name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.RTLManifest.type" title="Link to this definition"></a></dt>
+<dd><p>Must be “rtl”</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.modules">
+<span class="sig-name descname"><span class="pre">modules</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#aly.config.models.RTLModule" title="aly.config.models.RTLModule"><span class="pre">RTLModule</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.RTLManifest.modules" title="Link to this definition"></a></dt>
+<dd><p>List of RTL modules</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.packages">
+<span class="sig-name descname"><span class="pre">packages</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">RTLPackage</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.RTLManifest.packages" title="Link to this definition"></a></dt>
+<dd><p>SystemVerilog packages</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.RTLManifest" title="aly.config.models.RTLManifest"><span class="pre">RTLManifest</span></a></span></span><a class="headerlink" href="#aly.config.models.RTLManifest.load" title="Link to this definition"></a></dt>
+<dd><p>Load manifest from YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.get_module">
+<span class="sig-name descname"><span class="pre">get_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.RTLModule" title="aly.config.models.RTLModule"><span class="pre">RTLModule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#aly.config.models.RTLManifest.get_module" title="Link to this definition"></a></dt>
+<dd><p>Get module by name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.RTLManifest.get_all_files">
+<span class="sig-name descname"><span class="pre">get_all_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aly.config.models.RTLManifest.get_all_files" title="Link to this definition"></a></dt>
+<dd><p>Get all RTL source files.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">RTLManifest</span>
+
+<span class="c1"># Load RTL manifest</span>
+<span class="n">manifest</span> <span class="o">=</span> <span class="n">RTLManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;rtl/manifest.yaml&quot;</span><span class="p">))</span>
+
+<span class="c1"># Iterate modules</span>
+<span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Module: </span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">module</span><span class="o">.</span><span class="n">get_files</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="rtlmodule">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">RTLModule</a><a class="headerlink" href="#rtlmodule" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">RTLModule</span></span><a class="headerlink" href="#aly.config.models.RTLModule" title="Link to this definition"></a></dt>
+<dd><p>Single RTL module definition.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.RTLModule.name" title="Link to this definition"></a></dt>
+<dd><p>Module identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.top">
+<span class="sig-name descname"><span class="pre">top</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.RTLModule.top" title="Link to this definition"></a></dt>
+<dd><p>Top-level module name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.files">
+<span class="sig-name descname"><span class="pre">files</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.RTLModule.files" title="Link to this definition"></a></dt>
+<dd><p>Source file paths/patterns</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.deps">
+<span class="sig-name descname"><span class="pre">deps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.RTLModule.deps" title="Link to this definition"></a></dt>
+<dd><p>Dependencies on other modules</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.get_files">
+<span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aly.config.models.RTLModule.get_files" title="Link to this definition"></a></dt>
+<dd><p>Resolve and return all source files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.RTLModule.resolve_files">
+<span class="sig-name descname"><span class="pre">resolve_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aly.config.models.RTLModule.resolve_files" title="Link to this definition"></a></dt>
+<dd><p>Resolve files relative to manifest directory.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="testbenchmanifest">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">TestbenchManifest</a><a class="headerlink" href="#testbenchmanifest" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">TestbenchManifest</span></span><a class="headerlink" href="#aly.config.models.TestbenchManifest" title="Link to this definition"></a></dt>
+<dd><p>Testbench manifest for simulation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.TestbenchManifest.name" title="Link to this definition"></a></dt>
+<dd><p>Manifest name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest.testbenches">
+<span class="sig-name descname"><span class="pre">testbenches</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#aly.config.models.Testbench" title="aly.config.models.Testbench"><span class="pre">Testbench</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.TestbenchManifest.testbenches" title="Link to this definition"></a></dt>
+<dd><p>Testbench definitions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest.test_suites">
+<span class="sig-name descname"><span class="pre">test_suites</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">TestSuite</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.TestbenchManifest.test_suites" title="Link to this definition"></a></dt>
+<dd><p>Test suite groupings</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.TestbenchManifest" title="aly.config.models.TestbenchManifest"><span class="pre">TestbenchManifest</span></a></span></span><a class="headerlink" href="#aly.config.models.TestbenchManifest.load" title="Link to this definition"></a></dt>
+<dd><p>Load from YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.TestbenchManifest.get_testbench">
+<span class="sig-name descname"><span class="pre">get_testbench</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.Testbench" title="aly.config.models.Testbench"><span class="pre">Testbench</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#aly.config.models.TestbenchManifest.get_testbench" title="Link to this definition"></a></dt>
+<dd><p>Get testbench by name.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="testbench">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Testbench</a><a class="headerlink" href="#testbench" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.Testbench">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">Testbench</span></span><a class="headerlink" href="#aly.config.models.Testbench" title="Link to this definition"></a></dt>
+<dd><p>Single testbench definition.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.Testbench.name" title="Link to this definition"></a></dt>
+<dd><p>Testbench identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.top">
+<span class="sig-name descname"><span class="pre">top</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.Testbench.top" title="Link to this definition"></a></dt>
+<dd><p>Top module name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.files">
+<span class="sig-name descname"><span class="pre">files</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.Testbench.files" title="Link to this definition"></a></dt>
+<dd><p>Testbench source files</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.rtl_deps">
+<span class="sig-name descname"><span class="pre">rtl_deps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.Testbench.rtl_deps" title="Link to this definition"></a></dt>
+<dd><p>RTL module dependencies</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.fw_deps">
+<span class="sig-name descname"><span class="pre">fw_deps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.Testbench.fw_deps" title="Link to this definition"></a></dt>
+<dd><p>Firmware dependencies</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.Testbench.timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#aly.config.models.Testbench.timeout" title="Link to this definition"></a></dt>
+<dd><p>Simulation timeout</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="firmwaremanifest">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">FirmwareManifest</a><a class="headerlink" href="#firmwaremanifest" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">FirmwareManifest</span></span><a class="headerlink" href="#aly.config.models.FirmwareManifest" title="Link to this definition"></a></dt>
+<dd><p>Firmware build manifest.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.FirmwareManifest.name" title="Link to this definition"></a></dt>
+<dd><p>Manifest name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest.toolchain">
+<span class="sig-name descname"><span class="pre">toolchain</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Toolchain</span></span><a class="headerlink" href="#aly.config.models.FirmwareManifest.toolchain" title="Link to this definition"></a></dt>
+<dd><p>Compiler toolchain config</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest.builds">
+<span class="sig-name descname"><span class="pre">builds</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">FirmwareBuild</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.FirmwareManifest.builds" title="Link to this definition"></a></dt>
+<dd><p>Build definitions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.FirmwareManifest" title="aly.config.models.FirmwareManifest"><span class="pre">FirmwareManifest</span></a></span></span><a class="headerlink" href="#aly.config.models.FirmwareManifest.load" title="Link to this definition"></a></dt>
+<dd><p>Load from YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.FirmwareManifest.get_build">
+<span class="sig-name descname"><span class="pre">get_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FirmwareBuild</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#aly.config.models.FirmwareManifest.get_build" title="Link to this definition"></a></dt>
+<dd><p>Get build by name.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="ipmanifest">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">IPManifest</a><a class="headerlink" href="#ipmanifest" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.config.models.</span></span><span class="sig-name descname"><span class="pre">IPManifest</span></span><a class="headerlink" href="#aly.config.models.IPManifest" title="Link to this definition"></a></dt>
+<dd><p>Vendor IP block manifest.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.IPManifest.name" title="Link to this definition"></a></dt>
+<dd><p>IP name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.vendor">
+<span class="sig-name descname"><span class="pre">vendor</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.IPManifest.vendor" title="Link to this definition"></a></dt>
+<dd><p>Vendor name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.version">
+<span class="sig-name descname"><span class="pre">version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#aly.config.models.IPManifest.version" title="Link to this definition"></a></dt>
+<dd><p>IP version</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.files">
+<span class="sig-name descname"><span class="pre">files</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.IPManifest.files" title="Link to this definition"></a></dt>
+<dd><p>RTL source files</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.binaries">
+<span class="sig-name descname"><span class="pre">binaries</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.IPManifest.binaries" title="Link to this definition"></a></dt>
+<dd><p>Precompiled models</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aly.config.models.IPManifest.parameters" title="Link to this definition"></a></dt>
+<dd><p>Configurable parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.config.models.IPManifest" title="aly.config.models.IPManifest"><span class="pre">IPManifest</span></a></span></span><a class="headerlink" href="#aly.config.models.IPManifest.load" title="Link to this definition"></a></dt>
+<dd><p>Load from YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.get_rtl_files">
+<span class="sig-name descname"><span class="pre">get_rtl_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aly.config.models.IPManifest.get_rtl_files" title="Link to this definition"></a></dt>
+<dd><p>Get RTL source files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.config.models.IPManifest.has_simulation_model">
+<span class="sig-name descname"><span class="pre">has_simulation_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#aly.config.models.IPManifest.has_simulation_model" title="Link to this definition"></a></dt>
+<dd><p>Check for precompiled simulation model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="backend-api">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Backend API</a><a class="headerlink" href="#backend-api" title="Link to this heading"></a></h2>
+<p>Backends provide tool abstraction for simulation and synthesis.</p>
+<figure class="align-center" id="id2">
+<p class="plantuml">
+<object data="../_images/plantuml-0b17e22ac35b9cc47ed64430cc0d1707c5477cc1.svg" type="image/svg+xml" style="width:848px;height:219px;">
+<img src="../_images/plantuml-0b17e22ac35b9cc47ed64430cc0d1707c5477cc1.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+interface SimulatorBackend {
+   +compile(sources, options)
+   +elaborate(top, options)
+   +simulate(options)
+}
+
+interface SynthBackend {
+   +synthesize(sources, top, options)
+   +implement(options)
+   +generate_bitstream()
+}
+
+class XSimBackend
+class QuestaBackend
+class VerilatorBackend
+
+class VivadoBackend
+class YosysBackend
+
+SimulatorBackend &lt;|.. XSimBackend
+SimulatorBackend &lt;|.. QuestaBackend
+SimulatorBackend &lt;|.. VerilatorBackend
+
+SynthBackend &lt;|.. VivadoBackend
+SynthBackend &lt;|.. YosysBackend
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 27 </span><span class="caption-text">Backend Class Hierarchy</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="simulatorbackend">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">SimulatorBackend</a><a class="headerlink" href="#simulatorbackend" title="Link to this heading"></a></h3>
+<p>Base interface for simulation backends.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.backends.SimulatorBackend">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.backends.</span></span><span class="sig-name descname"><span class="pre">SimulatorBackend</span></span><a class="headerlink" href="#aly.backends.SimulatorBackend" title="Link to this definition"></a></dt>
+<dd><p>Abstract base for simulator backends.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SimulatorBackend.compile">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#aly.backends.SimulatorBackend.compile" title="Link to this definition"></a></dt>
+<dd><p>Compile HDL sources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SimulatorBackend.elaborate">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">elaborate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#aly.backends.SimulatorBackend.elaborate" title="Link to this definition"></a></dt>
+<dd><p>Elaborate design hierarchy.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SimulatorBackend.simulate">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SimResult</span></span></span><a class="headerlink" href="#aly.backends.SimulatorBackend.simulate" title="Link to this definition"></a></dt>
+<dd><p>Run simulation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="synthbackend">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">SynthBackend</a><a class="headerlink" href="#synthbackend" title="Link to this heading"></a></h3>
+<p>Base interface for synthesis backends.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.backends.SynthBackend">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.backends.</span></span><span class="sig-name descname"><span class="pre">SynthBackend</span></span><a class="headerlink" href="#aly.backends.SynthBackend" title="Link to this definition"></a></dt>
+<dd><p>Abstract base for synthesis backends.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SynthBackend.synthesize">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">synthesize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#aly.backends.SynthBackend.synthesize" title="Link to this definition"></a></dt>
+<dd><p>Run synthesis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SynthBackend.implement">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">implement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#aly.backends.SynthBackend.implement" title="Link to this definition"></a></dt>
+<dd><p>Run implementation (place &amp; route).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.backends.SynthBackend.generate_bitstream">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">generate_bitstream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#aly.backends.SynthBackend.generate_bitstream" title="Link to this definition"></a></dt>
+<dd><p>Generate programming file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="utility-functions">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Utility Functions</a><a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<section id="module-aly.log">
+<span id="logging"></span><h3><a class="toc-backref" href="#id17" role="doc-backlink">Logging</a><a class="headerlink" href="#module-aly.log" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="aly.log.get_logger">
+<span class="sig-prename descclassname"><span class="pre">aly.log.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Logger</span></span></span><a class="headerlink" href="#aly.log.get_logger" title="Link to this definition"></a></dt>
+<dd><p>Get a configured logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Logger name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Configured logger instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aly.log.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">aly.log.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INFO'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aly.log.setup_logging" title="Link to this definition"></a></dt>
+<dd><p>Configure logging for CLI usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> – Log level (DEBUG, INFO, WARNING, ERROR)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-aly.configuration">
+<span id="configuration-utilities"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">Configuration Utilities</a><a class="headerlink" href="#module-aly.configuration" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="aly.configuration.find_project_root">
+<span class="sig-prename descclassname"><span class="pre">aly.configuration.</span></span><span class="sig-name descname"><span class="pre">find_project_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#aly.configuration.find_project_root" title="Link to this definition"></a></dt>
+<dd><p>Find project root by looking for .aly directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>start</strong> – Starting directory (default: current directory)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Project root path or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-aly.templates">
+<span id="template-system"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">Template System</a><a class="headerlink" href="#module-aly.templates" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="aly.templates.TemplateLoader">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aly.templates.</span></span><span class="sig-name descname"><span class="pre">TemplateLoader</span></span><a class="reference internal" href="../_modules/aly/templates/loader.html#TemplateLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.templates.TemplateLoader" title="Link to this definition"></a></dt>
+<dd><p>Load and render project templates.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.templates.TemplateLoader.list_templates">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_templates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">TemplateInfo</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/aly/templates/loader.html#TemplateLoader.list_templates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aly.templates.TemplateLoader.list_templates" title="Link to this definition"></a></dt>
+<dd><p>List available templates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.templates.TemplateLoader.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#aly.templates.TemplateLoader" title="aly.templates.TemplateLoader"><span class="pre">TemplateLoader</span></a></span></span><a class="headerlink" href="#aly.templates.TemplateLoader.load" title="Link to this definition"></a></dt>
+<dd><p>Load template by name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aly.templates.TemplateLoader.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aly.templates.TemplateLoader.render" title="Link to this definition"></a></dt>
+<dd><p>Render template to output directory.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="usage-examples">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Usage Examples</a><a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="loading-a-project">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Loading a Project</a><a class="headerlink" href="#loading-a-project" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aly.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProjectConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.configuration</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_project_root</span>
+
+<span class="c1"># Find and load project</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">find_project_root</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">root</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ProjectConfig</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded project: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="running-simulation">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Running Simulation</a><a class="headerlink" href="#running-simulation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProjectConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">RTLManifest</span><span class="p">,</span> <span class="n">TestbenchManifest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.sim_xsim</span><span class="w"> </span><span class="kn">import</span> <span class="n">XSimBackend</span>
+
+<span class="c1"># Load configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ProjectConfig</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="c1"># Load manifests</span>
+<span class="n">rtl</span> <span class="o">=</span> <span class="n">RTLManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;rtl/manifest.yaml&quot;</span><span class="p">))</span>
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TestbenchManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;tb/manifest.yaml&quot;</span><span class="p">))</span>
+
+<span class="c1"># Get testbench</span>
+<span class="n">testbench</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">get_testbench</span><span class="p">(</span><span class="s2">&quot;tb_counter&quot;</span><span class="p">)</span>
+
+<span class="c1"># Collect sources</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">testbench</span><span class="o">.</span><span class="n">rtl_deps</span><span class="p">:</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">rtl</span><span class="o">.</span><span class="n">get_module</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
+    <span class="n">sources</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">get_files</span><span class="p">())</span>
+<span class="n">sources</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">testbench</span><span class="o">.</span><span class="n">get_files</span><span class="p">())</span>
+
+<span class="c1"># Run simulation</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">XSimBackend</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">simulation</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;waves&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">elaborate</span><span class="p">(</span><span class="n">testbench</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="p">{})</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">simulate</span><span class="p">({</span><span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;1ms&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simulation </span><span class="si">{</span><span class="s1">&#39;passed&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="o">.</span><span class="n">passed</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="programmatic-synthesis">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Programmatic Synthesis</a><a class="headerlink" href="#programmatic-synthesis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProjectConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">RTLManifest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.synth_vivado</span><span class="w"> </span><span class="kn">import</span> <span class="n">VivadoBackend</span>
+
+<span class="c1"># Load configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ProjectConfig</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">rtl</span> <span class="o">=</span> <span class="n">RTLManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;rtl/manifest.yaml&quot;</span><span class="p">))</span>
+
+<span class="c1"># Get target configuration</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">synthesis</span><span class="o">.</span><span class="n">get_target</span><span class="p">(</span><span class="s2">&quot;arty_a7&quot;</span><span class="p">)</span>
+
+<span class="c1"># Collect all RTL files</span>
+<span class="n">sources</span> <span class="o">=</span> <span class="n">rtl</span><span class="o">.</span><span class="n">get_all_files</span><span class="p">()</span>
+
+<span class="c1"># Run synthesis</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">VivadoBackend</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">synthesis</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">synthesize</span><span class="p">(</span>
+    <span class="n">sources</span><span class="o">=</span><span class="n">sources</span><span class="p">,</span>
+    <span class="n">top</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="n">part</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">part</span><span class="p">,</span>
+    <span class="n">constraints</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">constraints</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../commands/index.html"><span class="doc">Command Reference</span></a> - CLI reference</p></li>
+<li><p><a class="reference internal" href="../architecture.html"><span class="doc">Architecture</span></a> - Internal architecture</p></li>
+<li><p><a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> - More examples</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../commands/index.html" class="btn btn-neutral float-left" title="Command Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

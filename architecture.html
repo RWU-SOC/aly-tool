@@ -1,0 +1,1526 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/static.css?v=f91f3a36" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=92734c54"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="API Reference" href="api/index.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Architecture</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/architecture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
+<p>This document describes ALY’s internal architecture and design principles.</p>
+<nav class="contents toc-hidden local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#system-overview" id="id15">System Overview</a></p></li>
+<li><p><a class="reference internal" href="#module-structure" id="id16">Module Structure</a></p></li>
+<li><p><a class="reference internal" href="#configuration-system" id="id17">Configuration System</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configuration-class-hierarchy" id="id18">Configuration Class Hierarchy</a></p></li>
+<li><p><a class="reference internal" href="#unit-registry-system" id="id19">Unit Registry System</a></p></li>
+<li><p><a class="reference internal" href="#manifest-validation" id="id20">Manifest Validation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#backend-system" id="id21">Backend System</a></p>
+<ul>
+<li><p><a class="reference internal" href="#synthesis-backend-architecture" id="id22">Synthesis Backend Architecture</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#command-processing" id="id23">Command Processing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#error-handling" id="id24">Error Handling</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dependency-resolution" id="id25">Dependency Resolution</a></p>
+<ul>
+<li><p><a class="reference internal" href="#resolution-algorithm" id="id26">Resolution Algorithm</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#file-organization" id="id27">File Organization</a></p></li>
+<li><p><a class="reference internal" href="#design-principles" id="id28">Design Principles</a></p></li>
+<li><p><a class="reference internal" href="#extension-points" id="id29">Extension Points</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id30">Next Steps</a></p></li>
+</ul>
+</nav>
+<section id="system-overview">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">System Overview</a><a class="headerlink" href="#system-overview" title="Link to this heading"></a></h2>
+<p>ALY is designed as a modular, extensible tool for HDL development workflows.</p>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<object data="_images/plantuml-04ea8086328232701456ac66dfbef7206af10780.svg" type="image/svg+xml" style="width:1198px;height:418px;">
+<img src="_images/plantuml-04ea8086328232701456ac66dfbef7206af10780.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+skinparam componentStyle rectangle
+
+package &quot;CLI Layer&quot; {
+   [Typer CLI] as cli
+   [Command Handlers] as handlers
+}
+
+package &quot;Core&quot; {
+   [Configuration] as config
+   [Manifest System] as manifest
+   [Template Engine] as templates
+}
+
+package &quot;Backends&quot; {
+   [Simulator Backends] as sim
+   [Synthesis Backends] as synth
+   [Firmware Backend] as fw
+}
+
+package &quot;External Tools&quot; {
+   [Vivado] as vivado
+   [Yosys] as yosys
+   [Verilator] as verilator
+   [XSim] as xsim
+   [QuestaSim] as questa
+   [GCC] as gcc
+}
+
+cli --&gt; handlers
+handlers --&gt; config
+handlers --&gt; manifest
+handlers --&gt; templates
+
+handlers --&gt; sim
+handlers --&gt; synth
+handlers --&gt; fw
+
+sim --&gt; xsim
+sim --&gt; verilator
+sim --&gt; questa
+synth --&gt; vivado
+synth --&gt; yosys
+fw --&gt; gcc
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 28 </span><span class="caption-text">High-Level Architecture</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="module-structure">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Module Structure</a><a class="headerlink" href="#module-structure" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id2">
+<div class="graphviz"><object data="_images/graphviz-bbd37ce72aba2f0cc6d2ce4a857e20b796521822.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph modules {
+   rankdir=TB;
+   node [shape=box, style=&quot;rounded,filled&quot;, fontname=&quot;sans-serif&quot;];
+   edge [fontname=&quot;sans-serif&quot;];
+
+   subgraph cluster_aly {
+      label=&quot;aly&quot;;
+      style=filled;
+      fillcolor=&quot;#f5f5f5&quot;;
+
+      main [label=&quot;__main__.py\n(Entry point)&quot;, fillcolor=&quot;#e3f2fd&quot;];
+      commands [label=&quot;commands.py\n(CLI registration)&quot;, fillcolor=&quot;#e3f2fd&quot;];
+      util [label=&quot;util.py\n(Utilities)&quot;, fillcolor=&quot;#eceff1&quot;];
+      log [label=&quot;log.py\n(Logging)&quot;, fillcolor=&quot;#eceff1&quot;];
+      backends [label=&quot;backends.py\n(Backend registry)&quot;, fillcolor=&quot;#fff3e0&quot;];
+      configuration [label=&quot;configuration.py\n(Config loading)&quot;, fillcolor=&quot;#e8f5e9&quot;];
+   }
+
+   subgraph cluster_app {
+      label=&quot;aly.app&quot;;
+      style=filled;
+      fillcolor=&quot;#fafafa&quot;;
+
+      app_main [label=&quot;main.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+      init [label=&quot;init.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+      simulate [label=&quot;simulate.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+      synthesize [label=&quot;synthesize.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+      lint [label=&quot;lint.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+      firmware [label=&quot;firmware.py&quot;, fillcolor=&quot;#f3e5f5&quot;];
+   }
+
+   subgraph cluster_config {
+      label=&quot;aly.config&quot;;
+      style=filled;
+      fillcolor=&quot;#fafafa&quot;;
+
+      project_config [label=&quot;project_config.py&quot;, fillcolor=&quot;#e8f5e9&quot;];
+      models_init [label=&quot;models/__init__.py&quot;, fillcolor=&quot;#e8f5e9&quot;];
+   }
+
+   main -&gt; commands;
+   commands -&gt; app_main;
+   app_main -&gt; init;
+   app_main -&gt; simulate;
+   app_main -&gt; synthesize;
+   app_main -&gt; lint;
+   app_main -&gt; firmware;
+
+   simulate -&gt; backends;
+   synthesize -&gt; backends;
+   lint -&gt; backends;
+
+   app_main -&gt; configuration;
+   configuration -&gt; project_config;
+   project_config -&gt; models_init;
+}</p></object></div>
+<figcaption>
+<p><span class="caption-number">Figure 29 </span><span class="caption-text">Python Module Organization</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="configuration-system">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Configuration System</a><a class="headerlink" href="#configuration-system" title="Link to this heading"></a></h2>
+<p>The configuration system uses a hierarchical loading mechanism.</p>
+<figure class="align-center" id="id3">
+<p class="plantuml">
+<object data="_images/plantuml-e48a05de8f07aecadc61f55dd6df8dbb53edb52f.svg" type="image/svg+xml" style="width:613px;height:470px;">
+<img src="_images/plantuml-e48a05de8f07aecadc61f55dd6df8dbb53edb52f.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+actor User
+participant CLI
+participant &quot;ProjectConfig&quot; as PC
+participant &quot;YAML Parser&quot; as YAML
+participant &quot;Model Classes&quot; as Models
+
+User -&gt; CLI: aly &lt;command&gt;
+CLI -&gt; PC: load()
+PC -&gt; PC: find_project_root()
+PC -&gt; YAML: parse config.yaml
+YAML --&gt; PC: raw dict
+PC -&gt; Models: from_dict()
+Models --&gt; PC: typed config
+PC --&gt; CLI: ProjectConfig
+CLI -&gt; CLI: execute command
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 30 </span><span class="caption-text">Configuration Loading Sequence</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="configuration-class-hierarchy">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Configuration Class Hierarchy</a><a class="headerlink" href="#configuration-class-hierarchy" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id4">
+<p class="plantuml">
+<object data="_images/plantuml-bfbc4eebfd47a9a600dc043f158d7b373840abd3.svg" type="image/svg+xml" style="width:1067px;height:446px;">
+<img src="_images/plantuml-bfbc4eebfd47a9a600dc043f158d7b373840abd3.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class ProjectConfig {
+   +project: ProjectInfo
+   +features: FeatureFlags
+   +paths: PathsConfig
+   +defaults: DefaultsConfig
+   +simulation: SimConfig
+   +synthesis: SynthConfig
+   +lint: LintConfig
+   +constraints: ConstraintsConfig
+   +fpga: FPGAConfig
+   --
+   +load(path): ProjectConfig
+   +validate(): List[ValidationMessage]
+}
+
+class ProjectInfo {
+   +name: str
+   +version: str
+   +author: str
+   +license: str
+   +language: str
+}
+
+class FeatureFlags {
+   +firmware: bool
+   +ip: bool
+   +constraints: bool
+   +formal: bool
+   +coverage: bool
+}
+
+class PathsConfig {
+   +rtl: str
+   +testbench: str
+   +firmware: str
+   +ip: str
+   +constraints: str
+   +build: str
+}
+
+class SimConfig {
+   +default_tool: str
+   +build_dir: str
+   +tools: Dict[str, SimToolConfig]
+   +waves: bool
+   +coverage: bool
+}
+
+class SynthConfig {
+   +default_tool: str
+   +build_dir: str
+   +tools: Dict[str, Dict]
+   +targets: Dict[str, SynthTargetConfig]
+   +libraries: Dict[str, CellLibrary]
+}
+
+ProjectConfig *-- ProjectInfo
+ProjectConfig *-- FeatureFlags
+ProjectConfig *-- PathsConfig
+ProjectConfig *-- SimConfig
+ProjectConfig *-- SynthConfig
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 31 </span><span class="caption-text">Configuration Classes</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="unit-registry-system">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Unit Registry System</a><a class="headerlink" href="#unit-registry-system" title="Link to this heading"></a></h3>
+<p>ALY uses a unified unit registry that tracks individual components (modules, testbenches, builds) separately from their parent manifests. This enables efficient lookup and dependency resolution without requiring knowledge of the parent manifest.</p>
+<figure class="align-center" id="id5">
+<p class="plantuml">
+<object data="_images/plantuml-688d78d89694ef21d861f97bb9798829ae0a20eb.svg" type="image/svg+xml" style="width:602px;height:762px;">
+<img src="_images/plantuml-688d78d89694ef21d861f97bb9798829ae0a20eb.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class ProjectConfig {
+   -_units: Dict[str, Dict[str, UnitRef]]
+   -_components: Dict[str, Dict[str, Manifest]]
+   --
+   +get_rtl_module(name): UnitRef
+   +get_testbench(name): UnitRef
+   +get_firmware_build(name): UnitRef
+   +get_package_unit(name): UnitRef
+   +resolve_rtl_deps(unit): List[UnitRef]
+   +resolve_package_deps(tb): List[UnitRef]
+}
+
+class UnitRef {
+   +kind: str
+   +name: str
+   +manifest_type: str
+   +manifest_name: str
+   +manifest: Any
+   +obj: Any
+}
+
+class RTLManifest {
+   +modules: List[RTLModule]
+   +packages: List[RTLPackage]
+}
+
+class RTLModule {
+   +name: str
+   +files: List[str]
+   +dependencies: List[Dict]
+}
+
+class Testbench {
+   +name: str
+   +files: List[str]
+   +dependencies: List[Dict]
+}
+
+ProjectConfig &quot;1&quot; *-- &quot;*&quot; UnitRef : contains
+ProjectConfig &quot;1&quot; *-- &quot;*&quot; RTLManifest : discovers
+RTLManifest &quot;1&quot; *-- &quot;*&quot; RTLModule : defines
+UnitRef --&gt; RTLModule : obj
+UnitRef --&gt; RTLManifest : manifest
+UnitRef --&gt; Testbench : obj (for testbench units)
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 32 </span><span class="caption-text">Unit Reference Architecture</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The unit registry provides several key capabilities:</p>
+<dl>
+<dt><strong>Direct Lookup</strong></dt><dd><p>Components can be retrieved by name without knowing which manifest contains them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get RTL module from anywhere in the project</span>
+<span class="n">ref</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_rtl_module</span><span class="p">(</span><span class="s2">&quot;cpu_core&quot;</span><span class="p">)</span>
+<span class="n">module</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>          <span class="c1"># RTLModule object</span>
+<span class="n">manifest</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span>   <span class="c1"># Parent RTLManifest</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Dependency Resolution</strong></dt><dd><p>Dependencies are resolved recursively with automatic cycle detection:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resolve all RTL dependencies for a testbench</span>
+<span class="n">deps</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">resolve_rtl_deps</span><span class="p">(</span><span class="n">testbench</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">dep_ref</span> <span class="ow">in</span> <span class="n">deps</span><span class="p">:</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">dep_ref</span><span class="o">.</span><span class="n">obj</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">dep_ref</span><span class="o">.</span><span class="n">manifest</span><span class="o">.</span><span class="n">get_files_for_module</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Type Safety</strong></dt><dd><p>Each unit type has dedicated accessor methods with proper typing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type-safe accessors</span>
+<span class="n">rtl_modules</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">list_rtl_modules</span><span class="p">()</span>      <span class="c1"># List[str]</span>
+<span class="n">testbenches</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">list_testbenches</span><span class="p">()</span>      <span class="c1"># List[str]</span>
+<span class="n">fw_builds</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">list_firmware_builds</span><span class="p">()</span>    <span class="c1"># List[str]</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">list_packages</span><span class="p">()</span>            <span class="c1"># List[str]</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Manifest Context</strong></dt><dd><p>Units maintain bidirectional references to their parent manifests for path resolution and file access:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_rtl_module</span><span class="p">(</span><span class="s2">&quot;alu&quot;</span><span class="p">)</span>
+
+<span class="c1"># Access module object</span>
+<span class="n">module_name</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+<span class="n">module_files</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">files</span>
+
+<span class="c1"># Access parent manifest for path resolution</span>
+<span class="n">resolved_files</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span><span class="o">.</span><span class="n">get_files_for_module</span><span class="p">(</span><span class="n">ref</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<section id="unit-types">
+<h4>Unit Types<a class="headerlink" href="#unit-types" title="Link to this heading"></a></h4>
+<p>The registry tracks four unit types:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Unit Kind</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rtl_module</span></code></p></td>
+<td><p>RTL manifests</p></td>
+<td><p>Individual synthesizable modules</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">testbench</span></code></p></td>
+<td><p>Testbench manifests</p></td>
+<td><p>Individual simulation testbenches</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">firmware_build</span></code></p></td>
+<td><p>Firmware manifests</p></td>
+<td><p>Individual firmware build configurations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">package</span></code></p></td>
+<td><p>RTL manifests</p></td>
+<td><p>Named SystemVerilog packages</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="discovery-process">
+<h4>Discovery Process<a class="headerlink" href="#discovery-process" title="Link to this heading"></a></h4>
+<p>Units are registered during manifest discovery:</p>
+<figure class="align-center" id="id6">
+<figcaption>
+<p><span class="caption-number">Figure 33 </span><span class="caption-text">Unit Registration Flow</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="manifest-validation">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Manifest Validation</a><a class="headerlink" href="#manifest-validation" title="Link to this heading"></a></h3>
+<p>ALY validates manifests at load time to catch configuration errors early.</p>
+<figure class="align-center" id="id7">
+<p class="plantuml">
+<object data="_images/plantuml-6d2f8ab46af04884ee6377900d789ab6f7d624e3.svg" type="image/svg+xml" style="width:398px;height:1171px;">
+<img src="_images/plantuml-6d2f8ab46af04884ee6377900d789ab6f7d624e3.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+start
+:Load YAML file;
+
+:Parse YAML structure;
+
+if (Valid YAML?) then (no)
+   :Return syntax error;
+   stop
+endif
+
+:Validate required fields;
+
+if (All required fields present?) then (no)
+   :Return missing field error;
+   stop
+endif
+
+:Validate field types;
+
+if (All types correct?) then (no)
+   :Return type error;
+   stop
+endif
+
+:Validate cross-references;
+note right
+   - Dependencies exist
+   - File paths are valid
+   - Module names unique
+end note
+
+if (References valid?) then (no)
+   :Return reference error;
+   stop
+endif
+
+:Create manifest object;
+:Return success;
+stop
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 34 </span><span class="caption-text">Manifest Validation Process</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Validation checks include:</p>
+<ul class="simple">
+<li><p><strong>Syntax validation</strong>: YAML structure is well-formed</p></li>
+<li><p><strong>Schema validation</strong>: Required fields are present with correct types</p></li>
+<li><p><strong>Reference validation</strong>: Dependencies reference existing components</p></li>
+<li><p><strong>Path validation</strong>: File paths exist relative to manifest location</p></li>
+<li><p><strong>Uniqueness validation</strong>: Module/build names are unique within manifest</p></li>
+<li><p><strong>Type compatibility</strong>: Dependency types match referenced component types</p></li>
+</ul>
+<p>Validation errors are reported with the manifest file path, line number (when available), and a descriptive error message to help users quickly locate and fix issues.</p>
+</section>
+</section>
+<section id="backend-system">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Backend System</a><a class="headerlink" href="#backend-system" title="Link to this heading"></a></h2>
+<p>Backends abstract tool-specific implementations.</p>
+<figure class="align-center" id="id8">
+<p class="plantuml">
+<object data="_images/plantuml-491802828053d2c689121857d75cc319575cbbe1.svg" type="image/svg+xml" style="width:821px;height:365px;">
+<img src="_images/plantuml-491802828053d2c689121857d75cc319575cbbe1.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+interface SimulatorBackend {
+   +compile(sources, options): bool
+   +elaborate(top, options): bool
+   +simulate(options): SimResult
+   +cleanup(): void
+}
+
+class XSimBackend {
+   -config: SimConfig
+   -build_dir: Path
+   --
+   +compile(sources, options): bool
+   +elaborate(top, options): bool
+   +simulate(options): SimResult
+   -run_xvlog(files): bool
+   -run_xelab(top): bool
+   -run_xsim(snapshot): SimResult
+}
+
+class VerilatorBackend {
+   -config: SimConfig
+   -build_dir: Path
+   --
+   +compile(sources, options): bool
+   +elaborate(top, options): bool
+   +simulate(options): SimResult
+   -generate_makefile(): void
+   -build_executable(): bool
+}
+
+class QuestaBackend {
+   -config: SimConfig
+   -build_dir: Path
+   --
+   +compile(sources, options): bool
+   +elaborate(top, options): bool
+   +simulate(options): SimResult
+   -run_vlog(files): bool
+   -run_vsim(top): SimResult
+}
+
+SimulatorBackend &lt;|.. XSimBackend
+SimulatorBackend &lt;|.. VerilatorBackend
+SimulatorBackend &lt;|.. QuestaBackend
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 35 </span><span class="caption-text">Simulator Backend Architecture</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="synthesis-backend-architecture">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Synthesis Backend Architecture</a><a class="headerlink" href="#synthesis-backend-architecture" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id9">
+<p class="plantuml">
+<object data="_images/plantuml-3c86b4494dc1a796894437b7d37732a88b9d61b3.svg" type="image/svg+xml" style="width:642px;height:381px;">
+<img src="_images/plantuml-3c86b4494dc1a796894437b7d37732a88b9d61b3.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+interface SynthBackend {
+   +synthesize(sources, top, options): bool
+   +implement(options): bool
+   +generate_bitstream(): Path
+   +get_reports(): Dict[str, Path]
+}
+
+class VivadoBackend {
+   -config: SynthConfig
+   -target: SynthTargetConfig
+   -build_dir: Path
+   --
+   +synthesize(sources, top, options): bool
+   +implement(options): bool
+   +generate_bitstream(): Path
+   -generate_tcl_script(): Path
+   -run_vivado(script): bool
+}
+
+class YosysBackend {
+   -config: SynthConfig
+   -target: SynthTargetConfig
+   -build_dir: Path
+   --
+   +synthesize(sources, top, options): bool
+   +implement(options): bool
+   +generate_bitstream(): Path
+   -generate_ys_script(): Path
+   -run_yosys(script): bool
+   -run_nextpnr(): bool
+}
+
+SynthBackend &lt;|.. VivadoBackend
+SynthBackend &lt;|.. YosysBackend
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 36 </span><span class="caption-text">Synthesis Backend Architecture</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="command-processing">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Command Processing</a><a class="headerlink" href="#command-processing" title="Link to this heading"></a></h2>
+<p>Commands are processed through the Typer CLI framework.</p>
+<figure class="align-center" id="id10">
+<p class="plantuml">
+<object data="_images/plantuml-4a29659a28b69f852318a60d5c323dd430c45ca8.svg" type="image/svg+xml" style="width:683px;height:837px;">
+<img src="_images/plantuml-4a29659a28b69f852318a60d5c323dd430c45ca8.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+start
+:Parse CLI arguments;
+:Load project config;
+
+if (Config valid?) then (no)
+   :Show error;
+   stop
+endif
+
+:Load manifests;
+
+switch (Command)
+case (simulate)
+   :Resolve RTL dependencies;
+   :Select simulator backend;
+   :Compile sources;
+   :Elaborate design;
+   :Run simulation;
+case (synth)
+   :Select synthesis target;
+   :Select synth backend;
+   :Generate TCL/YS script;
+   :Run synthesis;
+   :Generate reports;
+case (lint)
+   :Collect source files;
+   :Run linter;
+   :Parse output;
+   :Format results;
+case (firmware)
+   :Load toolchain config;
+   :Compile sources;
+   :Link objects;
+   :Generate outputs;
+endswitch
+
+:Display results;
+stop
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 37 </span><span class="caption-text">Command Processing Flow</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="error-handling">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Error Handling</a><a class="headerlink" href="#error-handling" title="Link to this heading"></a></h3>
+<p>ALY uses a structured error handling approach to provide clear, actionable feedback.</p>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Error Categories</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Configuration Error</p></td>
+<td><p>Invalid or missing configuration files</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">config.yaml</span> <span class="pre">not</span> <span class="pre">found</span> <span class="pre">in</span> <span class="pre">project</span> <span class="pre">root</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Manifest Error</p></td>
+<td><p>Invalid manifest structure or references</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Module</span> <span class="pre">'alu'</span> <span class="pre">referenced</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">found</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Dependency Error</p></td>
+<td><p>Missing or circular dependencies</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Circular</span> <span class="pre">dependency</span> <span class="pre">detected:</span> <span class="pre">cpu</span> <span class="pre">→</span> <span class="pre">alu</span> <span class="pre">→</span> <span class="pre">cpu</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tool Error</p></td>
+<td><p>External tool execution failure</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XSim</span> <span class="pre">compilation</span> <span class="pre">failed:</span> <span class="pre">syntax</span> <span class="pre">error</span> <span class="pre">in</span> <span class="pre">counter.sv</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>File Error</p></td>
+<td><p>Missing or inaccessible files</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">not</span> <span class="pre">found:</span> <span class="pre">rtl/counter.sv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Backend Error</p></td>
+<td><p>Backend-specific errors</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Vivado</span> <span class="pre">backend</span> <span class="pre">requires</span> <span class="pre">--part</span> <span class="pre">argument</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Error messages include:</p>
+<ul class="simple">
+<li><p><strong>Context</strong>: Which file or component caused the error</p></li>
+<li><p><strong>Location</strong>: Line number or path when available</p></li>
+<li><p><strong>Description</strong>: Clear explanation of what went wrong</p></li>
+<li><p><strong>Suggestion</strong>: Recommended fix or next steps</p></li>
+</ul>
+<p>Example error output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Error: Manifest validation failed
+File: testbench/tb_cpu/manifest.yaml
+Line: 12
+Issue: Dependency &#39;cpu_core&#39; not found
+
+The testbench references RTL module &#39;cpu_core&#39; but this module
+does not exist in rtl/manifest.yaml.
+
+Suggestion: Add cpu_core to rtl/manifest.yaml or check the spelling.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dependency-resolution">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Dependency Resolution</a><a class="headerlink" href="#dependency-resolution" title="Link to this heading"></a></h2>
+<p>ALY resolves module dependencies through a graph-based approach.</p>
+<figure class="align-center" id="id12">
+<div class="graphviz"><object data="_images/graphviz-b20932569c861b432965967b7a2a7bd9ba2feaec.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph deps {
+   rankdir=BT;
+   node [shape=component, style=filled, fillcolor=&quot;#e8f5e9&quot;, fontname=&quot;sans-serif&quot;];
+   edge [fontname=&quot;sans-serif&quot;];
+
+   tb [label=&quot;tb_cpu\n(testbench)&quot;, fillcolor=&quot;#fce4ec&quot;];
+   cpu [label=&quot;cpu_core&quot;];
+   alu [label=&quot;alu&quot;];
+   regfile [label=&quot;regfile&quot;];
+   decoder [label=&quot;decoder&quot;];
+   fw [label=&quot;boot.hex\n(firmware)&quot;, fillcolor=&quot;#f3e5f5&quot;];
+   pkg [label=&quot;cpu_pkg\n(package)&quot;, fillcolor=&quot;#e0f7fa&quot;];
+
+   tb -&gt; cpu [label=&quot;deps (type: rtl)&quot;];
+   tb -&gt; fw [label=&quot;deps (type: firmware)&quot;];
+   cpu -&gt; alu [label=&quot;deps (type: rtl)&quot;];
+   cpu -&gt; regfile [label=&quot;deps (type: rtl)&quot;];
+   cpu -&gt; decoder [label=&quot;deps (type: rtl)&quot;];
+   decoder -&gt; alu [label=&quot;deps (type: rtl)&quot;];
+   cpu -&gt; pkg [style=dashed, label=&quot;uses&quot;];
+   alu -&gt; pkg [style=dashed, label=&quot;uses&quot;];
+}</p></object></div>
+<figcaption>
+<p><span class="caption-number">Figure 38 </span><span class="caption-text">Dependency Resolution Example</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="resolution-algorithm">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Resolution Algorithm</a><a class="headerlink" href="#resolution-algorithm" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id13">
+<p class="plantuml">
+<object data="_images/plantuml-ff2b0387064c2f470451af74347e59547a115e2b.svg" type="image/svg+xml" style="width:459px;height:666px;">
+<img src="_images/plantuml-ff2b0387064c2f470451af74347e59547a115e2b.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+start
+:Get target module/testbench;
+:Initialize visited set;
+:Initialize ordered list;
+
+while (Unvisited dependencies?) is (yes)
+   :Get next dependency;
+
+   if (Already visited?) then (yes)
+      :Skip (cycle check);
+   else (no)
+      :Mark as visited;
+      :Recursively resolve its deps;
+      :Add to ordered list;
+   endif
+endwhile (no)
+
+:Return ordered list;
+note right: Files are ordered\nfor correct compilation
+
+stop
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 39 </span><span class="caption-text">Dependency Resolution Algorithm</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="file-organization">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">File Organization</a><a class="headerlink" href="#file-organization" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aly-tool/
++-- src/
+|   +-- aly/
+|       +-- __init__.py          # Package init
+|       +-- __main__.py          # Entry point
+|       +-- commands.py          # CLI command registration
+|       +-- configuration.py     # Config loading utilities
+|       +-- backends.py          # Backend registry
+|       +-- util.py              # Utility functions
+|       +-- log.py               # Logging setup
+|       |
+|       +-- app/                 # CLI command implementations
+|       |   +-- main.py          # Main app
+|       |   +-- init.py          # Project init
+|       |   +-- simulate.py      # Simulation commands
+|       |   +-- synthesize.py    # Synthesis commands
+|       |   +-- lint.py          # Linting commands
+|       |   +-- firmware.py      # Firmware commands
+|       |   +-- program.py       # FPGA programming
+|       |   +-- config.py        # Config commands
+|       |   +-- rtl.py           # RTL management
+|       |   +-- ip.py            # IP management
+|       |   +-- constraints.py   # Constraint management
+|       |
+|       +-- config/              # Configuration system
+|       |   +-- __init__.py
+|       |   +-- project_config.py
+|       |   +-- models/          # Data model classes
+|       |       +-- __init__.py
+|       |       +-- core.py      # Core config models
+|       |       +-- rtl.py       # RTL manifest
+|       |       +-- testbench.py # Testbench manifest
+|       |       +-- firmware.py  # Firmware manifest
+|       |       +-- ip.py        # IP manifest
+|       |       +-- tools.py     # Tool configs
+|       |       +-- helpers.py   # Helper classes
+|       |
+|       +-- sim_xsim.py          # XSim backend
+|       +-- sim_verilator.py     # Verilator backend
+|       +-- sim_questa.py        # QuestaSim backend
+|       +-- synth_vivado.py      # Vivado backend
+|       +-- synth_yosys.py       # Yosys backend
+|       +-- fw_gcc.py            # GCC firmware backend
+|       |
+|       +-- templates/           # Project templates
+|           +-- loader.py        # Template loader
+|           +-- basic/           # Basic template
+|           +-- soc/             # SoC template
+|
++-- docs/                        # Documentation
++-- tests/                       # Test suite
+</pre></div>
+</div>
+</section>
+<section id="design-principles">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Design Principles</a><a class="headerlink" href="#design-principles" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Modularity</strong>: Each component is self-contained and testable</p></li>
+<li><p><strong>Extensibility</strong>: New backends can be added without modifying core</p></li>
+<li><p><strong>Configuration-Driven</strong>: Behavior controlled through YAML configuration</p></li>
+<li><p><strong>Tool Abstraction</strong>: Unified interface regardless of underlying tool</p></li>
+<li><p><strong>Manifest-Based</strong>: Components described declaratively</p></li>
+</ol>
+</section>
+<section id="extension-points">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">Extension Points</a><a class="headerlink" href="#extension-points" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id14">
+<p class="plantuml">
+<object data="_images/plantuml-3868898607b32db1e095cb95bb7d111d4a401dae.svg" type="image/svg+xml" style="width:762px;height:386px;">
+<img src="_images/plantuml-3868898607b32db1e095cb95bb7d111d4a401dae.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+package &quot;Core (Fixed)&quot; {
+   [CLI Framework]
+   [Configuration System]
+   [Manifest Parser]
+}
+
+package &quot;Extensible&quot; {
+   [Simulator Backends]
+   [Synthesis Backends]
+   [Lint Backends]
+   [Templates]
+}
+
+package &quot;External&quot; {
+   [Custom Scripts]
+   [Hooks]
+   [Plugins]
+}
+
+[CLI Framework] --&gt; [Simulator Backends]
+[CLI Framework] --&gt; [Synthesis Backends]
+[Configuration System] --&gt; [Simulator Backends]
+[Configuration System] --&gt; [Synthesis Backends]
+
+[Simulator Backends] ..&gt; [Custom Scripts] : invoke
+[Synthesis Backends] ..&gt; [Custom Scripts] : invoke
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 40 </span><span class="caption-text">Extension Points</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="api/index.html"><span class="doc">API Reference</span></a> - Python API reference</p></li>
+<li><p><a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a> - Contributing guidelines</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api/index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

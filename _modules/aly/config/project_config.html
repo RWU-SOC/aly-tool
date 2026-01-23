@@ -1,0 +1,1751 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aly.config.project_config &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/static.css?v=f91f3a36" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=92734c54"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">aly.config.project_config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for aly.config.project_config</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2025 Mohamed Aly</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+
+<span class="sd">&quot;&quot;&quot;Unified configuration and component registry for ALY projects.</span>
+
+<span class="sd">This module provides the main ProjectConfig class that loads and manages</span>
+<span class="sd">all configuration from the .aly/ directory and discovers project components</span>
+<span class="sd">through manifest.yaml files.</span>
+
+<span class="sd">Configuration structure:</span>
+<span class="sd">- config.yaml: Project info, features, defaults, paths</span>
+<span class="sd">- toolchains.yaml: Firmware toolchain definitions</span>
+<span class="sd">- sim.yaml: Simulation tool settings</span>
+<span class="sd">- synth.yaml: Synthesis settings</span>
+<span class="sd">- lint.yaml: Lint settings</span>
+<span class="sd">- constraints.yaml: Design constraints</span>
+<span class="sd">- fpga.yaml: FPGA programming settings</span>
+
+<span class="sd">Components (RTL, testbenches, firmware, IP) are discovered via manifest.yaml</span>
+<span class="sd">files in their respective directories.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">NoReturn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ProjectInfo</span><span class="p">,</span>
+    <span class="n">FeatureFlags</span><span class="p">,</span>
+    <span class="n">DefaultsConfig</span><span class="p">,</span>
+    <span class="n">PathsConfig</span><span class="p">,</span>
+    <span class="n">SimConfig</span><span class="p">,</span>
+    <span class="n">SynthConfig</span><span class="p">,</span>
+    <span class="n">LintConfig</span><span class="p">,</span>
+    <span class="n">ConstraintsConfig</span><span class="p">,</span>
+    <span class="n">FPGAConfig</span><span class="p">,</span>
+    <span class="n">SimToolConfig</span><span class="p">,</span>
+    <span class="n">Toolchain</span><span class="p">,</span>
+    <span class="n">RTLManifest</span><span class="p">,</span>
+    <span class="n">RTLModule</span><span class="p">,</span>
+    <span class="n">TestbenchManifest</span><span class="p">,</span>
+    <span class="n">Testbench</span><span class="p">,</span>
+    <span class="n">TestSuite</span><span class="p">,</span>
+    <span class="n">FirmwareManifest</span><span class="p">,</span>
+    <span class="n">FirmwareBuild</span><span class="p">,</span>
+    <span class="n">IPManifest</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">RTLPackage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.log</span><span class="w"> </span><span class="kn">import</span> <span class="n">dbg</span><span class="p">,</span> <span class="n">wrn</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">die</span>
+
+<span class="c1"># Manifest filename constant</span>
+<span class="n">MANIFEST_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;manifest.yaml&quot;</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnitRef</span><span class="p">:</span>
+    <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># &quot;rtl_module&quot;, &quot;testbench&quot;, &quot;firmware_build&quot;, ...</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># module/testbench/build name</span>
+    <span class="n">manifest_type</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># &quot;rtl&quot;, &quot;testbench&quot;, &quot;firmware&quot;, ...</span>
+    <span class="n">manifest_name</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># parent manifest name</span>
+    <span class="n">manifest</span><span class="p">:</span> <span class="n">Any</span>          <span class="c1"># parent manifest object</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>               <span class="c1"># the module/testbench/build object</span>
+
+<div class="viewcode-block" id="ProjectConfig">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProjectConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unified configuration manager and component registry for ALY projects.</span>
+
+<span class="sd">    Loads configuration from .aly/ directory and discovers components through</span>
+<span class="sd">    manifest.yaml files in configured paths. Provides unified access to all</span>
+<span class="sd">    project settings and components.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        config = ProjectConfig.load(&quot;.&quot;)</span>
+
+<span class="sd">        # Access project info</span>
+<span class="sd">        print(config.info.name)</span>
+
+<span class="sd">        # Get RTL block</span>
+<span class="sd">        cpu = config.get_rtl_block(&quot;cpu&quot;)</span>
+
+<span class="sd">        # Get testbench</span>
+<span class="sd">        tb = config.get_testbench(&quot;tb_alu&quot;)</span>
+
+<span class="sd">        # List all components</span>
+<span class="sd">        rtl_blocks = config.list_rtl_blocks()</span>
+<span class="sd">        </span>
+<span class="sd">        # Resolve dependencies</span>
+<span class="sd">        deps = config.resolve_rtl_deps(tb)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_DIR</span> <span class="o">=</span> <span class="s2">&quot;.aly&quot;</span>
+
+    <span class="c1"># Config file list</span>
+    <span class="n">CONFIG_FILES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;toolchains&quot;</span><span class="p">:</span> <span class="s2">&quot;toolchains.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sim&quot;</span><span class="p">:</span> <span class="s2">&quot;sim.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;synth&quot;</span><span class="p">:</span> <span class="s2">&quot;synth.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lint&quot;</span><span class="p">:</span> <span class="s2">&quot;lint.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="s2">&quot;constraints.yaml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fpga&quot;</span><span class="p">:</span> <span class="s2">&quot;fpga.yaml&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="ProjectConfig.__init__">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_root</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize configuration manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">=</span> <span class="n">project_root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">=</span> <span class="n">project_root</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONFIG_DIR</span>
+
+        <span class="c1"># Core configuration (always loaded)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProjectInfo</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FeatureFlags</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DefaultsConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PathsConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Tool configurations (lazy loaded)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SimConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SynthConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LintConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ConstraintsConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fpga</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FPGAConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Component registry (lazy loaded)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolchains</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Toolchain</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Raw data cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># New: registry of units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">UnitRef</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;rtl_module&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;testbench&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;firmware_build&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;package&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Initialize component type buckets</span>
+        <span class="k">for</span> <span class="n">component_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="s2">&quot;firmware&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">component_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Loading and Initialization</span>
+    <span class="c1"># =========================================================================</span>
+
+<div class="viewcode-block" id="ProjectConfig.load">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.load">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">project_root</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ProjectConfig&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load configuration from project root.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            project_root: Path to project root directory</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Loaded ProjectConfig instance</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            SystemExit: If configuration is missing or invalid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">project_root</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">project_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span>
+
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">config_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">die</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Configuration directory not found: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">config_dir</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Run &#39;aly init&#39; to initialize a project.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">main_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="s2">&quot;config.yaml&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">main_config</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">die</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Main configuration file not found: </span><span class="si">{</span><span class="n">main_config</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">config</span><span class="o">.</span><span class="n">_load_main_config</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">_load_tool_configs</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">_load_toolchains</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">config</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load YAML file safely.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">data</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">except</span> <span class="n">yaml</span><span class="o">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">die</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid YAML in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_main_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load main config.yaml file.&quot;&quot;&quot;</span>
+        <span class="n">config_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="s2">&quot;config.yaml&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_yaml</span><span class="p">(</span><span class="n">config_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">ProjectInfo</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">FeatureFlags</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span> <span class="o">=</span> <span class="n">DefaultsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;defaults&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="n">PathsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_tool_configs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load tool configuration files.&quot;&quot;&quot;</span>
+        <span class="n">tool_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;sim&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;_sim&quot;</span><span class="p">,</span> <span class="n">SimConfig</span><span class="p">),</span>
+            <span class="s2">&quot;synth&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;_synth&quot;</span><span class="p">,</span> <span class="n">SynthConfig</span><span class="p">),</span>
+            <span class="s2">&quot;lint&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;_lint&quot;</span><span class="p">,</span> <span class="n">LintConfig</span><span class="p">),</span>
+            <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;_constraints&quot;</span><span class="p">,</span> <span class="n">ConstraintsConfig</span><span class="p">),</span>
+            <span class="s2">&quot;fpga&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;_fpga&quot;</span><span class="p">,</span> <span class="n">FPGAConfig</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">config_cls</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tool_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONFIG_FILES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="n">filename</span>
+                <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">config_cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_toolchains</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load toolchain configurations from .aly/toolchains.yaml.&quot;&quot;&quot;</span>
+        <span class="n">toolchains_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="s2">&quot;toolchains.yaml&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">toolchains_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">dbg</span><span class="p">(</span><span class="s2">&quot;No toolchains.yaml found&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_yaml</span><span class="p">(</span><span class="n">toolchains_path</span><span class="p">)</span>
+            <span class="n">toolchains_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;toolchains&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tc_data</span> <span class="ow">in</span> <span class="n">toolchains_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tc_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_toolchains</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Toolchain</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tc_data</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to parse toolchain </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load toolchains.yaml: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Component Discovery</span>
+    <span class="c1"># =========================================================================</span>
+
+<div class="viewcode-block" id="ProjectConfig.discover_all">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.discover_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">discover_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Scan all configured paths for manifest.yaml files.</span>
+
+<span class="sd">        This is the main discovery method that populates the component registry.</span>
+<span class="sd">        It&#39;s called lazily on first access to any get/list method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">dbg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting component discovery in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Map path types to expected manifest types</span>
+        <span class="n">path_type_mapping</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;rtl&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rtl&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;tb&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;testbench&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ip&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;firmware&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;firmware&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">path_type</span><span class="p">,</span> <span class="n">expected_types</span> <span class="ow">in</span> <span class="n">path_type_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path_type</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">paths</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scan_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">expected_types</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">dbg</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Discovery complete: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2"> components&quot;</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_scan_directory</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expected_types</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recursively scan a directory for manifest.yaml files.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: Relative path from project root to scan</span>
+<span class="sd">            expected_types: Optional list of expected manifest types</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">/</span> <span class="n">path</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">dbg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path does not exist: </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        
+        <span class="c1"># Find all manifest.yaml files recursively</span>
+        <span class="k">for</span> <span class="n">manifest_path</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">MANIFEST_FILENAME</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">manifest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_manifest</span><span class="p">(</span><span class="n">manifest_path</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">manifest</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_register</span><span class="p">(</span><span class="n">manifest</span><span class="p">)</span>
+
+                    <span class="c1"># For IPs, also scan nested directories</span>
+                    <span class="n">manifest_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;ip&quot;</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_scan_ip_subdirs</span><span class="p">(</span><span class="n">manifest_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load manifest </span><span class="si">{</span><span class="n">manifest_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_scan_ip_subdirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip_root</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Scan IP subdirectories for nested manifests.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ip_root: Path to the IP directory (parent of manifest.yaml)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">subdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span> <span class="s2">&quot;tb&quot;</span><span class="p">,</span> <span class="s2">&quot;fw&quot;</span><span class="p">,</span> <span class="s2">&quot;firmware&quot;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
+            <span class="n">subdir_path</span> <span class="o">=</span> <span class="n">ip_root</span> <span class="o">/</span> <span class="n">subdir</span>
+            <span class="k">if</span> <span class="n">subdir_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">manifest_path</span> <span class="ow">in</span> <span class="n">subdir_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">MANIFEST_FILENAME</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">manifest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_manifest</span><span class="p">(</span><span class="n">manifest_path</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">manifest</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_register</span><span class="p">(</span><span class="n">manifest</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load IP sub-manifest </span><span class="si">{</span><span class="n">manifest_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_manifest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load and parse a manifest.yaml file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: Path to the manifest.yaml file</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Typed manifest object or None if type is unknown</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to parse YAML in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">manifest_type</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">manifest_type</span><span class="p">:</span>
+            <span class="n">dbg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Manifest has no type field: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">loaders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;rtl&quot;</span><span class="p">:</span> <span class="n">RTLManifest</span><span class="p">,</span>
+            <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">IPManifest</span><span class="p">,</span>
+            <span class="s2">&quot;testbench&quot;</span><span class="p">:</span> <span class="n">TestbenchManifest</span><span class="p">,</span>
+            <span class="s2">&quot;firmware&quot;</span><span class="p">:</span> <span class="n">FirmwareManifest</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">loader_class</span> <span class="o">=</span> <span class="n">loaders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">manifest_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loader_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dbg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown manifest type &#39;</span><span class="si">{</span><span class="n">manifest_type</span><span class="si">}</span><span class="s2">&#39; in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;rtl&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">loader_class</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">loader_class</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to create </span><span class="si">{</span><span class="n">manifest_type</span><span class="si">}</span><span class="s2"> manifest from </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manifest</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a manifest in the appropriate type bucket.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            manifest: Manifest object with `type` and `name` attributes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">manifest_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">manifest_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">manifest_type</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">manifest_name</span><span class="p">:</span>
+            <span class="n">wrn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot register manifest without type or name: </span><span class="si">{</span><span class="n">manifest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">manifest_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">manifest_type</span><span class="p">,</span> <span class="p">{}):</span>
+            <span class="n">dbg</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Duplicate </span><span class="si">{</span><span class="n">manifest_type</span><span class="si">}</span><span class="s2"> manifest: </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2"> (keeping first)&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">manifest_type</span><span class="p">][</span><span class="n">manifest_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">manifest</span>
+        <span class="n">dbg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Registered </span><span class="si">{</span><span class="n">manifest_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        
+        <span class="c1"># --- Register units inside the manifest -------------------------------</span>
+
+        <span class="c1"># 1) RTL modules</span>
+        <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;rtl&quot;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;modules&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># or f&quot;{manifest_name}:{module.name}&quot; if you want namespaced</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">]:</span>
+                    <span class="n">wrn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Duplicate RTL module name &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;(from manifest </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">UnitRef</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">module</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">manifest_type</span><span class="o">=</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span>
+                    <span class="n">manifest_name</span><span class="o">=</span><span class="n">manifest_name</span><span class="p">,</span>
+                    <span class="n">manifest</span><span class="o">=</span><span class="n">manifest</span><span class="p">,</span>
+                    <span class="n">obj</span><span class="o">=</span><span class="n">module</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="c1"># 2) Testbenches (once TestbenchManifest has a .testbenches list)</span>
+        <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;testbench&quot;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;testbenches&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">tb</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">testbenches</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">name</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;testbench&quot;</span><span class="p">]:</span>
+                    <span class="n">wrn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Duplicate testbench name &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;(from manifest </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;testbench&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">UnitRef</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;testbench&quot;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">tb</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">manifest_type</span><span class="o">=</span><span class="s2">&quot;testbench&quot;</span><span class="p">,</span>
+                    <span class="n">manifest_name</span><span class="o">=</span><span class="n">manifest_name</span><span class="p">,</span>
+                    <span class="n">manifest</span><span class="o">=</span><span class="n">manifest</span><span class="p">,</span>
+                    <span class="n">obj</span><span class="o">=</span><span class="n">tb</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="c1"># 3) Firmware builds (once FirmwareManifest has a .builds or similar)</span>
+        <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;firmware&quot;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;builds&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">build</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">builds</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">build</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># or build.id / build.target, depending on your schema</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">]:</span>
+                    <span class="n">wrn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Duplicate firmware build name &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;(from manifest </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">UnitRef</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+                    <span class="n">manifest_type</span><span class="o">=</span><span class="s2">&quot;firmware&quot;</span><span class="p">,</span>
+                    <span class="n">manifest_name</span><span class="o">=</span><span class="n">manifest_name</span><span class="p">,</span>
+                    <span class="n">manifest</span><span class="o">=</span><span class="n">manifest</span><span class="p">,</span>
+                    <span class="n">obj</span><span class="o">=</span><span class="n">build</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="c1"># 4) Named packages (from RTL manifests)</span>
+        <span class="k">if</span> <span class="n">manifest_type</span> <span class="o">==</span> <span class="s2">&quot;rtl&quot;</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;packages&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">packages</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">pkg</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                    <span class="k">continue</span>  <span class="c1"># skip unnamed packages</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">pkg</span><span class="o">.</span><span class="n">name</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;package&quot;</span><span class="p">]:</span>
+                    <span class="n">wrn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Duplicate package name &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;(from manifest </span><span class="si">{</span><span class="n">manifest_name</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;package&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">UnitRef</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;package&quot;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">pkg</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">manifest_type</span><span class="o">=</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span>
+                    <span class="n">manifest_name</span><span class="o">=</span><span class="n">manifest_name</span><span class="p">,</span>
+                    <span class="n">manifest</span><span class="o">=</span><span class="n">manifest</span><span class="p">,</span>
+                    <span class="n">obj</span><span class="o">=</span><span class="n">pkg</span><span class="p">,</span>
+                <span class="p">)</span>
+
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Manifest Access (low-level, manifest-centric)</span>
+    <span class="c1"># =========================================================================</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_discovered</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure manifests and units have been discovered.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">discover_all</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ProjectConfig.get">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manifest_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a manifest by type and name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            manifest_type: Component type (rtl, ip, testbench, firmware, test_suite)</span>
+<span class="sd">            name: Manifest name</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Manifest object or None if not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">manifest_type</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manifest_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all manifest names of a specific type.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            manifest_type: Component type</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of manifest names.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">manifest_type</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_all">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manifest_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all manifests of a specific type.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            manifest_type: Component type</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict mapping name to manifest object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">manifest_type</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+    
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Convenience Methods for Components (unit-centric)</span>
+    <span class="c1"># =========================================================================</span>
+
+    <span class="c1"># ------------------------- Generic unit access ---------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_unit">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_unit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a unit (rtl_module, testbench, firmware_build, ...) by kind and name.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_units">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_units">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_units</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all unit names of a given kind.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+
+    <span class="c1"># ------------------------- RTL module units -----------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_rtl_module">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_rtl_module">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rtl_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a single RTL module unit by name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unit</span><span class="p">(</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_rtl_modules">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_rtl_modules">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_rtl_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all RTL module unit names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_units</span><span class="p">(</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="ProjectConfig.iter_rtl_modules">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.iter_rtl_modules">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_rtl_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over all RTL module units.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            UnitRef objects for each RTL module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="ProjectConfig.get_rtl_module_objects">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_rtl_module_objects">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rtl_module_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">RTLModule</span><span class="p">,</span> <span class="n">RTLManifest</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all RTL modules with their parent manifests.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: module_name -&gt; (module_obj, parent_manifest)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">RTLModule</span><span class="p">,</span> <span class="n">RTLManifest</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;rtl_module&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ref</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span><span class="p">)</span>  <span class="c1"># obj is RTLModule, manifest is RTLManifest</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    
+    
+<div class="viewcode-block" id="ProjectConfig.get_rtl_module_files">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_rtl_module_files">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rtl_module_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get compilation files (packages + module files) for a given RTL module.</span>
+
+<span class="sd">        Module is looked up project-wide, by name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rtl_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ref</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">RTLModule</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>
+        <span class="n">manifest</span><span class="p">:</span> <span class="n">RTLManifest</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span>
+        <span class="k">return</span> <span class="n">manifest</span><span class="o">.</span><span class="n">get_files_for_module</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ProjectConfig.get_rtl_module_package_files">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_rtl_module_package_files">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rtl_module_package_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get package files that apply to a given RTL module.&quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rtl_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ref</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">RTLModule</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>
+        <span class="n">manifest</span><span class="p">:</span> <span class="n">RTLManifest</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span>
+        <span class="k">return</span> <span class="n">manifest</span><span class="o">.</span><span class="n">get_pkg_files_for_module</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ------------------------- Testbench units ------------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_testbench_unit">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_testbench_unit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_testbench_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a single testbench unit by name.</span>
+
+<span class="sd">        Requires that TestbenchManifest exposes a `testbenches` list and that</span>
+<span class="sd">        `_register()` populates `_units[&quot;testbench&quot;]`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unit</span><span class="p">(</span><span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_testbench_units">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_testbench_units">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_testbench_units</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all testbench unit names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_units</span><span class="p">(</span><span class="s2">&quot;testbench&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_testbench">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_testbench">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_testbench</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a testbench by name (returns Testbench object).</span>
+
+<span class="sd">        This is a convenience method that returns the testbench object directly,</span>
+<span class="sd">        rather than the UnitRef wrapper.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_testbench_unit</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span> <span class="k">if</span> <span class="n">ref</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_testbenches">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_testbenches">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_testbenches</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all testbench names.</span>
+
+<span class="sd">        Convenience alias for list_testbench_units().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_testbench_units</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.iter_testbenches">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.iter_testbenches">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_testbenches</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over all testbench units.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            UnitRef objects for each testbench.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;testbench&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+
+    <span class="c1"># ------------------------- Test suite access -----------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_testsuite">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_testsuite">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_testsuite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a test suite by name (searches all testbench manifests).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            TestSuite object or None if not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">manifest</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;testsuites&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">suite</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">testsuites</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">suite</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">suite</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_testsuites">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_testsuites">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_testsuites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all test suite names.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">manifest</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">manifest</span><span class="p">,</span> <span class="s2">&quot;testsuites&quot;</span><span class="p">):</span>
+                <span class="n">names</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">manifest</span><span class="o">.</span><span class="n">testsuites</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">names</span></div>
+
+
+    <span class="c1"># ------------------------- Dependency Resolution -------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.resolve_rtl_deps">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.resolve_rtl_deps">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_rtl_deps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">_visited</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">set</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recursively resolve RTL dependencies for a unit (testbench or RTL module).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            unit: Testbench or RTLModule object with dependencies list</span>
+<span class="sd">            _visited: Internal set to track visited modules and prevent cycles</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of UnitRef objects (containing both RTLModule obj and RTLManifest manifest)</span>
+<span class="sd">            in dependency order (dependencies before dependents)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_visited</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">resolved</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">deps</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s2">&quot;dependencies&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+        <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">deps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dep</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;rtl&quot;</span><span class="p">:</span>
+                <span class="n">dep_name</span> <span class="o">=</span> <span class="n">dep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">dep_name</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Skip if already visited (avoid cycles)</span>
+                <span class="k">if</span> <span class="n">dep_name</span> <span class="ow">in</span> <span class="n">_visited</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rtl_module</span><span class="p">(</span><span class="n">dep_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ref</span><span class="p">:</span>
+                    <span class="n">_visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dep_name</span><span class="p">)</span>
+
+                    <span class="c1"># Recursively resolve dependencies of this RTL module</span>
+                    <span class="n">module</span><span class="p">:</span> <span class="n">RTLModule</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>
+                    <span class="n">sub_deps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_rtl_deps</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">_visited</span><span class="p">)</span>
+
+                    <span class="c1"># Add sub-dependencies first (topological order)</span>
+                    <span class="k">for</span> <span class="n">sub_ref</span> <span class="ow">in</span> <span class="n">sub_deps</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">sub_ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resolved</span><span class="p">:</span>
+                            <span class="n">resolved</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_ref</span><span class="p">)</span>
+
+                    <span class="c1"># Then add this dependency</span>
+                    <span class="k">if</span> <span class="n">ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resolved</span><span class="p">:</span>
+                        <span class="n">resolved</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">resolved</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.resolve_package_deps">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.resolve_package_deps">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_package_deps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">testbench</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve package dependencies for a testbench.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            testbench: Testbench object with dependencies list</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of UnitRef objects (containing RTLPackage obj and parent RTLManifest)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resolved</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">deps</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">testbench</span><span class="p">,</span> <span class="s2">&quot;dependencies&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">deps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dep</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;package&quot;</span><span class="p">:</span>
+                <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_package_unit</span><span class="p">(</span><span class="n">dep</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">ref</span><span class="p">:</span>
+                    <span class="n">resolved</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resolved</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.resolve_package_dep_files">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.resolve_package_dep_files">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_package_dep_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">testbench</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve package dependencies for a testbench and return file paths.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            testbench: Testbench object with dependencies list</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of resolved Paths for package files.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">seen</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_package_deps</span><span class="p">(</span><span class="n">testbench</span><span class="p">):</span>
+            <span class="n">pkg</span><span class="p">:</span> <span class="n">RTLPackage</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>
+            <span class="n">manifest</span><span class="p">:</span> <span class="n">RTLManifest</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">manifest</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">pkg</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">files</span></div>
+
+
+    <span class="c1"># ------------------------- Package units ----------------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_package_unit">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_package_unit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_package_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a package unit by name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: The package name to look up.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            UnitRef containing the RTLPackage obj and parent RTLManifest.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unit</span><span class="p">(</span><span class="s2">&quot;package&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_package">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_package">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_package</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RTLPackage</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a package by name (returns RTLPackage object).</span>
+
+<span class="sd">        This is a convenience method that returns the package object directly,</span>
+<span class="sd">        rather than the UnitRef wrapper.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_package_unit</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span> <span class="k">if</span> <span class="n">ref</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_packages">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_packages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all named package names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_units</span><span class="p">(</span><span class="s2">&quot;package&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.iter_packages">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.iter_packages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over all package units.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            UnitRef objects for each named package.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;package&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_package_file">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_package_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_package_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the resolved file path for a package by name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: The package name to look up.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Resolved Path if found and exists, None otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_package_unit</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ref</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pkg</span><span class="p">:</span> <span class="n">RTLPackage</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span>
+        <span class="n">manifest</span><span class="p">:</span> <span class="n">RTLManifest</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">manifest</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">manifest</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">pkg</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_package_files_by_names">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_package_files_by_names">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_package_files_by_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get package files by their names (for dependency resolution).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            names: List of package names to include.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of resolved paths for the named packages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">seen</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_package_file</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">files</span></div>
+
+
+    <span class="c1"># ------------------------- Firmware build units -------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_firmware_build">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_firmware_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_firmware_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UnitRef</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a single firmware build unit by name.</span>
+
+<span class="sd">        Requires that FirmwareManifest exposes a `builds` list and that</span>
+<span class="sd">        `_register()` populates `_units[&quot;firmware_build&quot;]`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unit</span><span class="p">(</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_firmware_builds">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_firmware_builds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_firmware_builds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all firmware build unit names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_units</span><span class="p">(</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_firmware">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_firmware">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FirmwareBuild</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a firmware build by name (returns FirmwareBuild object).</span>
+
+<span class="sd">        This is a convenience method that returns the build object directly,</span>
+<span class="sd">        rather than the UnitRef wrapper.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_firmware_build</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ref</span><span class="o">.</span><span class="n">obj</span> <span class="k">if</span> <span class="n">ref</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_firmware">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_firmware">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_firmware</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all firmware build names.</span>
+
+<span class="sd">        Convenience alias for list_firmware_builds().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_firmware_builds</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.iter_firmware_builds">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.iter_firmware_builds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_firmware_builds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over all firmware build units.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            UnitRef objects for each firmware build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_discovered</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">[</span><span class="s2">&quot;firmware_build&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+
+    <span class="c1"># ------------------------- Toolchain access ------------------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_toolchain">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_toolchain">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_toolchain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Toolchain</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a toolchain by name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_toolchains</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_toolchains">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_toolchains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_toolchains</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all loaded toolchain names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_toolchains</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+
+    <span class="c1"># ------------------------- IP manifests (no units) ----------------------</span>
+
+<div class="viewcode-block" id="ProjectConfig.get_ip">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_ip">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IPManifest</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an IP manifest by name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.list_ips">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.list_ips">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_ips</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all discovered IP manifest names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s2">&quot;ip&quot;</span><span class="p">)</span></div>
+
+
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Configuration Access (Lazy-Loaded Properties)</span>
+    <span class="c1"># =========================================================================</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sim</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Simulation configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sim</span> <span class="o">=</span> <span class="n">SimConfig</span><span class="p">(</span><span class="n">_project_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">synth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SynthConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Synthesis configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_synth</span> <span class="o">=</span> <span class="n">SynthConfig</span><span class="p">(</span><span class="n">_project_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synth</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LintConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lint configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lint</span> <span class="o">=</span> <span class="n">LintConfig</span><span class="p">(</span><span class="n">_project_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lint</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConstraintsConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constraints configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span> <span class="o">=</span> <span class="n">ConstraintsConfig</span><span class="p">(</span><span class="n">_project_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraints</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fpga</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FPGAConfig</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;FPGA configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fpga</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fpga</span> <span class="o">=</span> <span class="n">FPGAConfig</span><span class="p">(</span><span class="n">_project_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fpga</span>
+
+    <span class="c1"># =========================================================================</span>
+    <span class="c1"># Utility Methods</span>
+    <span class="c1"># =========================================================================</span>
+
+<div class="viewcode-block" id="ProjectConfig.is_enabled">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.is_enabled">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if a feature is enabled.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.resolve_path">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.resolve_path">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve path relative to project root.&quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_absolute</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">/</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.get_sim_tool">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.get_sim_tool">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_sim_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SimToolConfig</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get simulator tool configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">simulator</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span> <span class="k">else</span> <span class="s2">&quot;xsim&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">get_tool</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.refresh">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.refresh">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Force re-discovery of all manifests.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_components</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">t</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="s2">&quot;firmware&quot;</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;rtl_module&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;testbench&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;firmware_build&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;package&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_toolchains</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discover_all</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.summary">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.summary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a summary of discovered components by type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict mapping component type to count</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">discover_all</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+<div class="viewcode-block" id="ProjectConfig.validate_all">
+<a class="viewcode-back" href="../../../api/index.html#aly.config.ProjectConfig.validate_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate all discovered components.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict mapping component type to list of validation messages</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationLevel</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">component_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;rtl&quot;</span><span class="p">,</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;testbench&quot;</span><span class="p">,</span> <span class="s2">&quot;firmware&quot;</span><span class="p">]:</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">component_type</span><span class="p">)</span>
+            <span class="n">all_messages</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">manifest</span> <span class="ow">in</span> <span class="n">components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">messages</span> <span class="o">=</span> <span class="n">manifest</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+                <span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">level</span> <span class="o">==</span> <span class="n">ValidationLevel</span><span class="o">.</span><span class="n">ERROR</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+                    <span class="n">all_messages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">all_messages</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">component_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_messages</span>
+
+        <span class="k">return</span> <span class="n">results</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ProjectConfig(not loaded, root=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span><span class="si">}</span><span class="s2">)&quot;</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ProjectConfig(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> v</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">counts</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;ProjectConfig(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> v</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">, not discovered)&quot;</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

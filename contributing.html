@@ -1,0 +1,1025 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/static.css?v=f91f3a36" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=92734c54"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manifest_system.html">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest_system.html#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manifest_system.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h1>
+<p>Thank you for your interest in contributing to ALY! This guide will help you get started.</p>
+<nav class="contents toc-hidden local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-started" id="id1">Getting Started</a></p>
+<ul>
+<li><p><a class="reference internal" href="#development-setup" id="id2">Development Setup</a></p></li>
+<li><p><a class="reference internal" href="#project-structure" id="id3">Project Structure</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#development-workflow" id="id4">Development Workflow</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-a-branch" id="id5">Creating a Branch</a></p></li>
+<li><p><a class="reference internal" href="#making-changes" id="id6">Making Changes</a></p></li>
+<li><p><a class="reference internal" href="#submitting-changes" id="id7">Submitting Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#code-style" id="id8">Code Style</a></p>
+<ul>
+<li><p><a class="reference internal" href="#python-style" id="id9">Python Style</a></p></li>
+<li><p><a class="reference internal" href="#commit-messages" id="id10">Commit Messages</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing" id="id11">Testing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#running-tests" id="id12">Running Tests</a></p></li>
+<li><p><a class="reference internal" href="#writing-tests" id="id13">Writing Tests</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#documentation" id="id14">Documentation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building-documentation" id="id15">Building Documentation</a></p></li>
+<li><p><a class="reference internal" href="#writing-documentation" id="id16">Writing Documentation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#adding-new-features" id="id17">Adding New Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#adding-a-simulator-backend" id="id18">Adding a Simulator Backend</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-cli-command" id="id19">Adding a CLI Command</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#release-process" id="id20">Release Process</a></p>
+<ul>
+<li><p><a class="reference internal" href="#version-bumping" id="id21">Version Bumping</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#getting-help" id="id22">Getting Help</a></p></li>
+<li><p><a class="reference internal" href="#license" id="id23">License</a></p></li>
+</ul>
+</nav>
+<section id="getting-started">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<section id="development-setup">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Development Setup</a><a class="headerlink" href="#development-setup" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Fork the repository on GitHub</p></li>
+<li><p>Clone your fork:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/aly-tool.git
+<span class="nb">cd</span><span class="w"> </span>aly-tool
+</pre></div>
+</div>
+</li>
+<li><p>Create a virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># or venv\Scripts\activate on Windows</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install in development mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="project-structure">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Project Structure</a><a class="headerlink" href="#project-structure" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>aly-tool/
++-- src/aly/              # Main source code
+|   +-- app/              # CLI commands
+|   +-- config/           # Configuration system
+|   +-- templates/        # Project templates
++-- tests/                # Test suite
++-- docs/                 # Documentation
+</pre></div>
+</div>
+</section>
+</section>
+<section id="development-workflow">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Development Workflow</a><a class="headerlink" href="#development-workflow" title="Link to this heading"></a></h2>
+<section id="creating-a-branch">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Creating a Branch</a><a class="headerlink" href="#creating-a-branch" title="Link to this heading"></a></h3>
+<p>Create a feature branch from <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/my-new-feature
+</pre></div>
+</div>
+<p>Branch naming conventions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">feature/</span></code> - New features</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fix/</span></code> - Bug fixes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/</span></code> - Documentation updates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refactor/</span></code> - Code refactoring</p></li>
+</ul>
+</section>
+<section id="making-changes">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Making Changes</a><a class="headerlink" href="#making-changes" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Write your code following the style guidelines</p></li>
+<li><p>Add tests for new functionality</p></li>
+<li><p>Update documentation as needed</p></li>
+<li><p>Run the test suite:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>tests/
+</pre></div>
+</div>
+</li>
+<li><p>Run linting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ruff<span class="w"> </span>check<span class="w"> </span>src/
+ruff<span class="w"> </span>format<span class="w"> </span>src/
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="submitting-changes">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Submitting Changes</a><a class="headerlink" href="#submitting-changes" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Commit your changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add support for new simulator&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Push to your fork:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/my-new-feature
+</pre></div>
+</div>
+</li>
+<li><p>Open a Pull Request on GitHub</p></li>
+</ol>
+</section>
+</section>
+<section id="code-style">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Code Style</a><a class="headerlink" href="#code-style" title="Link to this heading"></a></h2>
+<section id="python-style">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Python Style</a><a class="headerlink" href="#python-style" title="Link to this heading"></a></h3>
+<p>We follow PEP 8 with these additions:</p>
+<ul class="simple">
+<li><p>Line length: 88 characters (Black default)</p></li>
+<li><p>Use type hints for function signatures</p></li>
+<li><p>Use docstrings for public functions and classes</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_manifest</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RTLManifest</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load an RTL manifest from a YAML file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: Path to the manifest file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Loaded RTLManifest object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the manifest file doesn&#39;t exist.</span>
+<span class="sd">        ValueError: If the manifest is invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Manifest not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">RTLManifest</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="commit-messages">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Commit Messages</a><a class="headerlink" href="#commit-messages" title="Link to this heading"></a></h3>
+<p>Follow <a class="reference external" href="https://www.conventionalcommits.org/">Conventional Commits</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;type&gt;(&lt;scope&gt;): &lt;description&gt;
+
+[optional body]
+
+[optional footer]
+</pre></div>
+</div>
+<p>Types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">feat</span></code>: New feature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fix</span></code>: Bug fix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs</span></code>: Documentation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refactor</span></code>: Code refactoring</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code>: Adding tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chore</span></code>: Maintenance</p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>feat(simulation): add QuestaSim backend support
+
+fix(synthesis): handle spaces in file paths
+
+docs: update installation guide
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<section id="running-tests">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Running Tests</a><a class="headerlink" href="#running-tests" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests</span>
+pytest<span class="w"> </span>tests/
+
+<span class="c1"># Run with coverage</span>
+pytest<span class="w"> </span>tests/<span class="w"> </span>--cov<span class="o">=</span>src/aly<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Run specific test file</span>
+pytest<span class="w"> </span>tests/test_config.py
+
+<span class="c1"># Run specific test</span>
+pytest<span class="w"> </span>tests/test_config.py::test_load_project_config
+</pre></div>
+</div>
+</section>
+<section id="writing-tests">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Writing Tests</a><a class="headerlink" href="#writing-tests" title="Link to this heading"></a></h3>
+<p>Place tests in the <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_rtl_manifest.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.config.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">RTLManifest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_manifest</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">manifest_file</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;manifest.yaml&quot;</span>
+    <span class="n">manifest_file</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">name: test_design</span>
+<span class="s2">type: rtl</span>
+<span class="s2">modules:</span>
+<span class="s2">  - name: counter</span>
+<span class="s2">    top: counter</span>
+<span class="s2">    files:</span>
+<span class="s2">      - counter.sv</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">manifest_file</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_load_manifest</span><span class="p">(</span><span class="n">sample_manifest</span><span class="p">):</span>
+    <span class="n">manifest</span> <span class="o">=</span> <span class="n">RTLManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sample_manifest</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">manifest</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;test_design&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">manifest</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_manifest</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">invalid</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;invalid.yaml&quot;</span>
+    <span class="n">invalid</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;not: valid: yaml:&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">RTLManifest</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Documentation</a><a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<section id="building-documentation">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Building Documentation</a><a class="headerlink" href="#building-documentation" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html
+
+<span class="c1"># View locally</span>
+open<span class="w"> </span>build/html/index.html
+</pre></div>
+</div>
+</section>
+<section id="writing-documentation">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Writing Documentation</a><a class="headerlink" href="#writing-documentation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Use reStructuredText format</p></li>
+<li><p>Include code examples</p></li>
+<li><p>Add diagrams where helpful (PlantUML, Graphviz)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">New Feature</span>
+<span class="gh">-----------</span>
+
+Description of the feature.
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">bash</span>
+
+   aly<span class="w"> </span>new-command<span class="w"> </span>--option<span class="w"> </span>value
+
+<span class="p">..</span> <span class="ow">uml</span><span class="p">::</span>
+
+   @startuml
+   Alice -&gt; Bob: Hello
+   @enduml
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-new-features">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Adding New Features</a><a class="headerlink" href="#adding-new-features" title="Link to this heading"></a></h2>
+<section id="adding-a-simulator-backend">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Adding a Simulator Backend</a><a class="headerlink" href="#adding-a-simulator-backend" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Create a new backend file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># src/aly/sim_newsim.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NewSimBackend</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sources</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">],</span> <span class="n">options</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># Implementation</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">elaborate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># Implementation</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+        <span class="c1"># Implementation</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+<li><p>Register the backend in <code class="docutils literal notranslate"><span class="pre">backends.py</span></code></p></li>
+<li><p>Add configuration options in <code class="docutils literal notranslate"><span class="pre">config/models/tools.py</span></code></p></li>
+<li><p>Update documentation</p></li>
+<li><p>Add tests</p></li>
+</ol>
+</section>
+<section id="adding-a-cli-command">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Adding a CLI Command</a><a class="headerlink" href="#adding-a-cli-command" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Create command module in <code class="docutils literal notranslate"><span class="pre">app/</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># src/aly/app/mycommand.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aly.log</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mycommand</span><span class="p">(</span>
+    <span class="n">option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Description&quot;</span><span class="p">)</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Command description.&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running with </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Implementation</span>
+</pre></div>
+</div>
+</li>
+<li><p>Register in <code class="docutils literal notranslate"><span class="pre">app/main.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aly.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">mycommand</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_typer</span><span class="p">(</span><span class="n">mycommand</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mycommand&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add tests and documentation</p></li>
+</ol>
+</section>
+</section>
+<section id="release-process">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Release Process</a><a class="headerlink" href="#release-process" title="Link to this heading"></a></h2>
+<section id="version-bumping">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Version Bumping</a><a class="headerlink" href="#version-bumping" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Update version in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code></p></li>
+<li><p>Create a release commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;chore: release v1.2.0&quot;</span>
+git<span class="w"> </span>tag<span class="w"> </span>v1.2.0
+</pre></div>
+</div>
+</li>
+<li><p>Push with tags:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>--tags
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="getting-help">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Getting Help</a><a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Open an issue on GitHub for bugs or features</p></li>
+<li><p>Join discussions for questions</p></li>
+<li><p>Review existing issues before creating new ones</p></li>
+</ul>
+</section>
+<section id="license">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">License</a><a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>By contributing, you agree that your contributions will be licensed under the Apache 2.0 License.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

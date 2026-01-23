@@ -1,0 +1,1375 @@
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manifest System &mdash; ALY Tool Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/static.css?v=f91f3a36" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=92734c54"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Template System" href="templates.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" />
+   
+  <style>
+    .wy-nav-content {
+      max-width: 1400px !important;
+      width: 100%;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ALY
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-pypi-recommended">From PyPI (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#tool-paths">Tool Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-project">Create a New Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-rtl-module">Create RTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-testbench">Create Testbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-simulation">Run Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lint-the-design">Lint the Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#synthesize">Synthesize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#workflow-diagram">Workflow Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#manifest-system">Manifest System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#manifest-types">Manifest Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rtl-modules">RTL Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-definition">Module Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#file-resolution">File Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#testbenches">Testbenches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#dependency-types">Dependency Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#firmware-builds">Firmware Builds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#build-pipeline">Build Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#ip-management">IP Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#ip-types">IP Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-system">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="concepts.html#backend-architecture">Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#feature-flags">Feature Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#path-configuration">Path Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#default-tools">Default Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#simulation-configuration">Simulation Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#tool-options-reference">Tool Options Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#synthesis-configuration-still-under-development-to-be-used-for-synth-commands">Synthesis Configuration (still under development to be used for synth commands)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#synthesis-target-options">Synthesis Target Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#lint-configuration">Lint Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#constraints-configuration-under-development">Constraints Configuration (Under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#fpga-configuration-under-development-to-be-used-with-the-program-synth-command">FPGA Configuration (Under development to be used with the program/synth command)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#toolchain-configuration">Toolchain Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manifest System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl-manifest">RTL Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#schema">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-example">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-class-diagram">Module Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testbench-manifest">Testbench Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testbench-class-diagram">Testbench Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#firmware-manifest">Firmware Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-class-diagram">Firmware Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ip-manifest">IP Manifest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Complete Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-with-nested-manifests">IP with Nested Manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-class-diagram">IP Class Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-resolution">File Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Template System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#template-directory-structure">Template Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#the-template-yaml-file">The template.yaml File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#basic-structure">Basic Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variables-section">Variables Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#structure-section">Structure Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#files-section">Files Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#glob-patterns-in-files">Glob Patterns in Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#directory-copy-shorthand">Directory Copy Shorthand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates.html#conditional-file-creation-when">Conditional File Creation (when:)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#hooks-section">Hooks Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-inheritance">Template Inheritance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#jinja2-templating">Jinja2 Templating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#variable-substitution">Variable Substitution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#conditional-content">Conditional Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#loops">Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#complete-example">Complete Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-yaml">template.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#template-file-rtl-top-sv-j2">Template File (rtl/top.sv.j2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#fallback-without-jinja2">Fallback Without Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#api-reference">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="templates.html#templateloader-class">TemplateLoader Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html#available-templates">Available Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints (Under Development)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#xdc-constraints-vivado">XDC Constraints (Vivado)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#pin-assignments">Pin Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-constraints">Clock Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#timing-constraints">Timing Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#clock-domain-crossing">Clock Domain Crossing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#pcf-constraints-yosys-nextpnr">PCF Constraints (Yosys/nextpnr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#sdc-constraints">SDC Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#list-constraints">List Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#generate-template">Generate Template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html#validate-constraints">Validate Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#i-o-standards">I/O Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#board-files">Board Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#template-variables">Template Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-flow">Simulation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#tool-configuration">Tool Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#xsim-xilinx">XSim (Xilinx)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#verilator">Verilator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#questasim">QuestaSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#waveform-viewing">Waveform Viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#test-suites">Test Suites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#plusargs">Plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#show-logs">Show Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#build-directory">Build Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#backend-comparison">Backend Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="synthesis.html">Synthesis (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#synthesis-flow">Synthesis Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#target-configuration">Target Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#vivado-synthesis">Vivado Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#tool-configuration">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#vivado-options">Vivado Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#yosys-synthesis">Yosys Synthesis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#id1">Tool Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#technology-targets">Technology Targets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#asic-synthesis">ASIC Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#xdc-vivado">XDC (Vivado)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#pcf-yosys-nextpnr">PCF (Yosys/nextpnr)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#reports">Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#build-artifacts">Build Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#multi-clock-designs">Multi-Clock Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#debug-cores">Debug Cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="synthesis.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthesis.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linting.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-flow">Lint Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#lint-rules-under-development">Lint Rules (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#verilator-rules">Verilator Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#rule-categories">Rule Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#waivers">Waivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#inline-waivers">Inline Waivers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#ci-integration-under-development">CI Integration (Under Development)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#pre-commit-hook">Pre-commit Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#common-patterns">Common Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#avoiding-warnings">Avoiding Warnings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linting.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linting.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ip_management.html">IP Management (Under Development for Enhanced Features)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-directory-structure">IP Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#creating-ip">Creating IP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#basic-ip-manifest">Basic IP Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#vendor-ip">Vendor IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#complex-ip-with-nested-manifests">Complex IP with Nested Manifests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#cli-commands">CLI Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#list-ip">List IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#show-ip-details">Show IP Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#using-ip-in-projects">Using IP in Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-rtl-manifest">Reference in RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_management.html#reference-in-testbench">Reference in Testbench</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-discovery">IP Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-with-internal-structure">IP with Internal Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#binary-ip">Binary IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-parameters">IP Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#ip-interfaces">IP Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_management.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#command-overview">Command Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#global-options">Global Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#sim">sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#synth">synth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#lint">lint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#firmware">firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#program-still-under-development">program (still under development)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#config">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#rtl">rtl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#constraints">constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#exit-codes">Exit Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#utility-commands">Utility Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#configuration-api">Configuration API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#projectconfig">ProjectConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.ProjectConfig"><code class="docutils literal notranslate"><span class="pre">ProjectConfig</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#model-classes">Model Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmanifest">RTLManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#rtlmodule">RTLModule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.RTLModule"><code class="docutils literal notranslate"><span class="pre">aly.config.models.RTLModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbenchmanifest">TestbenchManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.TestbenchManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.TestbenchManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#testbench">Testbench</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.Testbench"><code class="docutils literal notranslate"><span class="pre">aly.config.models.Testbench</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#firmwaremanifest">FirmwareManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.FirmwareManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.FirmwareManifest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#ipmanifest">IPManifest</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.config.models.IPManifest"><code class="docutils literal notranslate"><span class="pre">aly.config.models.IPManifest</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#backend-api">Backend API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#simulatorbackend">SimulatorBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SimulatorBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SimulatorBackend</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#synthbackend">SynthBackend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.backends.SynthBackend"><code class="docutils literal notranslate"><span class="pre">aly.backends.SynthBackend</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.log">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.configuration">Configuration Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.configuration.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#module-aly.templates">Template System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#aly.templates.TemplateLoader"><code class="docutils literal notranslate"><span class="pre">TemplateLoader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#loading-a-project">Loading a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#running-simulation">Running Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#programmatic-synthesis">Programmatic Synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#system-overview">System Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-structure">Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#configuration-system">Configuration System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#configuration-class-hierarchy">Configuration Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#unit-registry-system">Unit Registry System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#unit-types">Unit Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#discovery-process">Discovery Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#manifest-validation">Manifest Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#backend-system">Backend System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#synthesis-backend-architecture">Synthesis Backend Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#command-processing">Command Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#dependency-resolution">Dependency Resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture.html#resolution-algorithm">Resolution Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-principles">Design Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#extension-points">Extension Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-counter-project">Simple Counter Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-manifest">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#rtl-code">RTL Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#testbench">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#risc-v-soc-project">RISC-V SoC Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">RTL Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#firmware-manifest">Firmware Manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Testbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#multi-target-project">Multi-Target Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#ip-reuse-example">IP Reuse Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#create-ip">Create IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#use-ip">Use IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#waveform-debugging-example">Waveform Debugging Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#project-structure">Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#creating-a-branch">Creating a Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#making-changes">Making Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#submitting-changes">Submitting Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style">Code Style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style">Python Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#commit-messages">Commit Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-documentation">Writing Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#adding-new-features">Adding New Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-simulator-backend">Adding a Simulator Backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-a-cli-command">Adding a CLI Command</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version-bumping">Version Bumping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#apache-license-2-0">Apache License 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#what-this-means">What This Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ALY</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Manifest System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/manifest_system.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manifest-system">
+<h1>Manifest System<a class="headerlink" href="#manifest-system" title="Link to this heading"></a></h1>
+<p>ALY uses YAML manifests to describe project components. This reference covers all manifest types and their fields.</p>
+<nav class="contents toc-hidden local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id12">Overview</a></p></li>
+<li><p><a class="reference internal" href="#rtl-manifest" id="id13">RTL Manifest</a></p>
+<ul>
+<li><p><a class="reference internal" href="#schema" id="id14">Schema</a></p></li>
+<li><p><a class="reference internal" href="#complete-example" id="id15">Complete Example</a></p></li>
+<li><p><a class="reference internal" href="#module-class-diagram" id="id16">Module Class Diagram</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testbench-manifest" id="id17">Testbench Manifest</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id18">Schema</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id19">Complete Example</a></p></li>
+<li><p><a class="reference internal" href="#testbench-class-diagram" id="id20">Testbench Class Diagram</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#firmware-manifest" id="id21">Firmware Manifest</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id22">Schema</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id23">Complete Example</a></p></li>
+<li><p><a class="reference internal" href="#firmware-class-diagram" id="id24">Firmware Class Diagram</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ip-manifest" id="id25">IP Manifest</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id26">Schema</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id27">Complete Example</a></p></li>
+<li><p><a class="reference internal" href="#ip-with-nested-manifests" id="id28">IP with Nested Manifests</a></p></li>
+<li><p><a class="reference internal" href="#ip-class-diagram" id="id29">IP Class Diagram</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#validation" id="id30">Validation</a></p></li>
+<li><p><a class="reference internal" href="#file-resolution" id="id31">File Resolution</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id32">Next Steps</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Each component type has its own manifest format. Manifests are typically named <code class="docutils literal notranslate"><span class="pre">manifest.yaml</span></code> and placed in their respective directories.</p>
+<figure class="align-center" id="id7">
+<div class="graphviz"><object data="_images/graphviz-f6ed966c716745ed0746e404924beaa06bd0dd68.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph manifests {
+   rankdir=TB;
+   node [shape=note, style=filled, fontname=&quot;sans-serif&quot;];
+
+   rtl [label=&quot;RTL Manifest\nrtl/manifest.yaml&quot;, fillcolor=&quot;#e8f5e9&quot;];
+   tb [label=&quot;Testbench Manifest\ntb/manifest.yaml&quot;, fillcolor=&quot;#fce4ec&quot;];
+   fw [label=&quot;Firmware Manifest\nfw/manifest.yaml&quot;, fillcolor=&quot;#f3e5f5&quot;];
+   ip [label=&quot;IP Manifest\nip/*/manifest.yaml&quot;, fillcolor=&quot;#e0f7fa&quot;];
+}</p></object></div>
+<figcaption>
+<p><span class="caption-number">Figure 10 </span><span class="caption-text">Manifest Types</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rtl-manifest">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">RTL Manifest</a><a class="headerlink" href="#rtl-manifest" title="Link to this heading"></a></h2>
+<p>RTL manifests define synthesizable hardware modules.</p>
+<section id="schema">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Schema</a><a class="headerlink" href="#schema" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># rtl/manifest.yaml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">           </span><span class="c1"># Required: manifest name</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span><span class="w">                </span><span class="c1"># Required: must be &quot;rtl&quot;</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: version (default: &quot;1.0.0&quot;)</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">    </span><span class="c1"># Optional: manifest description</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">         </span><span class="c1"># Optional: author name</span>
+<span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: license identifier</span>
+<span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">         </span><span class="c1"># Optional: vendor name</span>
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Optional: verilog|systemverilog|vhdl</span>
+
+<span class="c1"># Top module reference (name of a module in modules list)</span>
+<span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+
+<span class="c1"># Global settings applied to all modules</span>
+<span class="nt">includes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">      </span><span class="c1"># Include directories</span>
+<span class="nt">defines</span><span class="p">:</span><span class="w">                 </span><span class="c1"># Preprocessor defines</span>
+<span class="w">  </span><span class="nt">KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
+
+<span class="c1"># Package definitions (for SystemVerilog packages)</span>
+<span class="nt">packages</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">         </span><span class="c1"># Required: package file path</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Optional: package name</span>
+<span class="w">    </span><span class="nt">modules</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;list&gt;</span><span class="p p-Indicator">]</span><span class="w">    </span><span class="c1"># Optional: which modules use this package (empty = all)</span>
+
+<span class="c1"># Module definitions</span>
+<span class="nt">modules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Required: module identifier</span>
+<span class="w">    </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">     </span><span class="c1"># Optional: module author</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">    </span><span class="c1"># Optional: module version</span>
+<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># Optional: module language</span>
+<span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: top-level module name</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># Source files (supports globs)</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span><span class="w">        </span><span class="c1"># Module dependencies</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># Dependency name</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># rtl|package</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-example">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Complete Example</a><a class="headerlink" href="#complete-example" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_core</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemverilog</span>
+
+<span class="nt">modules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_core</span>
+<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemverilog</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU.sv</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PC.sv</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_pkg</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decoder</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regfile</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu</span>
+<span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemverilog</span>
+<span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu/*.sv</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regfile</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regfile/register_file.sv</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regfile/reg_read.sv</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regfile/reg_write.sv</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decoder</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decoder.sv</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+</pre></div>
+</div>
+</section>
+<section id="module-class-diagram">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Module Class Diagram</a><a class="headerlink" href="#module-class-diagram" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id8">
+<p class="plantuml">
+<object data="_images/plantuml-854918139aea3c0f1c685a9cc0abfd3802d74ddb.svg" type="image/svg+xml" style="width:398px;height:479px;">
+<img src="_images/plantuml-854918139aea3c0f1c685a9cc0abfd3802d74ddb.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class RTLManifest {
+   +name: str
+   +type: str
+   +version: str
+   +language: str
+   +modules: List[RTLModule]
+   +packages: List[RTLPackage]
+   +includes: List[str]
+   +defines: Dict[str, str]
+   --
+   +get_module(name): RTLModule
+   +get_all_files(): List[Path]
+   +validate(): List[ValidationMessage]
+}
+
+class RTLModule {
+   +name: str
+   +author: str
+   +top: str
+   +version: str
+   +language: str
+   +files: List[str]
+   +dependencies: List[Dict]
+   --
+   +resolve_files(): List[Path]
+}
+
+class RTLPackage {
+   +path: str
+   +name: str
+   +modules: List[str]
+   --
+   +to_dict(): Dict
+}
+
+RTLManifest &quot;1&quot; *-- &quot;*&quot; RTLModule
+RTLManifest &quot;1&quot; *-- &quot;*&quot; RTLPackage
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 11 </span><span class="caption-text">RTLManifest Structure</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="testbench-manifest">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Testbench Manifest</a><a class="headerlink" href="#testbench-manifest" title="Link to this heading"></a></h2>
+<p>Testbench manifests define simulation environments.</p>
+<section id="id1">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Schema</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># tb/manifest.yaml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">           </span><span class="c1"># Required: manifest name</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testbench</span><span class="w">          </span><span class="c1"># Required: must be &quot;testbench&quot;</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: version</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">    </span><span class="c1"># Optional: description</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">         </span><span class="c1"># Optional: author</span>
+
+<span class="c1"># Testbench definitions</span>
+<span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Required: testbench identifier</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w"> </span><span class="c1"># Optional: testbench description</span>
+<span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: top module name (defaults to name)</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># Testbench source files</span>
+<span class="w">    </span><span class="nt">includes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Include directories</span>
+<span class="w">    </span><span class="nt">defines</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w">          </span><span class="c1"># Preprocessor defines</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span><span class="w">        </span><span class="c1"># Dependencies</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># Dependency name</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># rtl|firmware|package</span>
+<span class="w">    </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;int|str&gt;</span><span class="w">  </span><span class="c1"># Simulation timeout (int or &quot;forever&quot;)</span>
+<span class="w">    </span><span class="nt">plusargs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w">         </span><span class="c1"># Runtime plusargs</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;tags&gt;</span><span class="p p-Indicator">]</span><span class="w">       </span><span class="c1"># Tags for filtering</span>
+
+<span class="c1"># Test suites (group testbenches)</span>
+<span class="nt">testsuites</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Suite name</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w"> </span><span class="c1"># Suite description</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;names&gt;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># List of testbench names</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;int&gt;</span><span class="w">      </span><span class="c1"># Number of parallel jobs</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;int&gt;</span><span class="w">       </span><span class="c1"># Suite-level timeout (seconds)</span>
+<span class="w">    </span><span class="nt">stop_on_fail</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;bool&gt;</span><span class="w"> </span><span class="c1"># Stop on first failure</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Complete Example</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64imac_tb</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testbench</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Testbenches for RV64IMAC processor</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mohamed Aly</span>
+
+<span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base RV64I testbench</span>
+<span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i.sv</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_soc</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_pkg</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firmware</span>
+<span class="w">    </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100000</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">integration</span><span class="p p-Indicator">]</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i_alu</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALU instruction test</span>
+<span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i</span>
+<span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i_alu.sv</span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rv64i_soc</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alu_test</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firmware</span>
+<span class="w">    </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100000</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">unit</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">alu</span><span class="p p-Indicator">]</span>
+
+<span class="nt">testsuites</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instruction_tests</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">All instruction tests</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i_alu</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regression</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Full regression suite</span>
+<span class="w">    </span><span class="nt">testbenches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb_rv64i_alu</span>
+<span class="w">    </span><span class="nt">parallel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">stop_on_fail</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="testbench-class-diagram">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Testbench Class Diagram</a><a class="headerlink" href="#testbench-class-diagram" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id9">
+<p class="plantuml">
+<object data="_images/plantuml-1fce7c66a2c1e77e95aba7346bfaf0b7e30dd8d3.svg" type="image/svg+xml" style="width:351px;height:736px;">
+<img src="_images/plantuml-1fce7c66a2c1e77e95aba7346bfaf0b7e30dd8d3.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class TestbenchManifest {
+   +name: str
+   +type: str
+   +testbenches: List[Testbench]
+   +test_suites: List[TestSuite]
+   +packages: List[RTLPackage]
+   --
+   +get_testbench(name): Testbench
+   +get_suite(name): TestSuite
+}
+
+class Testbench {
+   +name: str
+   +description: str
+   +top: str
+   +files: List[str]
+   +includes: List[str]
+   +defines: Dict[str, str]
+   +dependencies: List[Dict]
+   +default_timeout: int|str
+   +plusargs: Dict[str, str]
+   +tags: List[str]
+   --
+   +resolve_files(): List[Path]
+   +get_rtl_deps(): List[Dict]
+   +get_firmware_deps(): List[Dict]
+   +get_package_deps(): List[Dict]
+}
+
+class TestSuite {
+   +name: str
+   +description: str
+   +testbenches: List[str]
+   +parallel: int
+   +timeout: int
+   +stop_on_fail: bool
+}
+
+TestbenchManifest &quot;1&quot; *-- &quot;*&quot; Testbench
+TestbenchManifest &quot;1&quot; *-- &quot;*&quot; TestSuite
+TestSuite --&gt; Testbench : references
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 12 </span><span class="caption-text">TestbenchManifest Structure</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="firmware-manifest">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Firmware Manifest</a><a class="headerlink" href="#firmware-manifest" title="Link to this heading"></a></h2>
+<p>Firmware manifests define embedded software builds.</p>
+<section id="id3">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Schema</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># fw/manifest.yaml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">           </span><span class="c1"># Required: manifest name</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firmware</span><span class="w">           </span><span class="c1"># Required: must be &quot;firmware&quot;</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Optional: version</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">    </span><span class="c1"># Optional: description</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">         </span><span class="c1"># Optional: author</span>
+
+<span class="c1"># Default toolchain (can be overridden per-build)</span>
+<span class="nt">toolchain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">      </span><span class="c1"># Reference to toolchain name in toolchains.yaml</span>
+
+<span class="c1"># Build definitions</span>
+<span class="nt">builds</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># Required: build identifier</span>
+<span class="w">    </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">     </span><span class="c1"># Optional: build author</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">    </span><span class="c1"># Optional: build version</span>
+<span class="w">    </span><span class="nt">languages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;langs&gt;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Languages used (c, asm)</span>
+<span class="w">    </span><span class="nt">sources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># Source files (.c, .S, .asm)</span>
+<span class="w">    </span><span class="nt">includes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Include directories</span>
+<span class="w">    </span><span class="nt">linker_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">  </span><span class="c1"># Linker script</span>
+<span class="w">    </span><span class="nt">toolchain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">  </span><span class="c1"># Override toolchain</span>
+<span class="w">    </span><span class="nt">defines</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w">          </span><span class="c1"># Preprocessor defines</span>
+<span class="w">    </span><span class="nt">flags</span><span class="p">:</span><span class="w">               </span><span class="c1"># Compiler/linker flags</span>
+<span class="w">      </span><span class="nt">common</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;flags&gt;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Flags for all tools</span>
+<span class="w">      </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;flags&gt;</span><span class="p p-Indicator">]</span><span class="w">       </span><span class="c1"># C compiler flags</span>
+<span class="w">      </span><span class="nt">asm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;flags&gt;</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># Assembler flags</span>
+<span class="w">      </span><span class="nt">ld</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;flags&gt;</span><span class="p p-Indicator">]</span><span class="w">      </span><span class="c1"># Linker flags</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span><span class="w">             </span><span class="c1"># Output formats</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elf|bin|hex|mem|coe|lst|map|disasm</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;bool&gt;</span>
+<span class="w">        </span><span class="nt">plusarg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">  </span><span class="c1"># Plusarg name for simulation</span>
+<span class="w">    </span><span class="nt">mem</span><span class="p">:</span><span class="w">                 </span><span class="c1"># Memory file configuration</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">   </span><span class="c1"># Output filename</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w"> </span><span class="c1"># Format (mem, hex, coe)</span>
+<span class="w">        </span><span class="nt">word_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;int&gt;</span><span class="w">  </span><span class="c1"># Word width (8, 16, 32, 64)</span>
+<span class="w">        </span><span class="nt">byte_order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">  </span><span class="c1"># little|big</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Complete Example</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instr_test</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firmware</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mohamed Aly</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+
+<span class="nt">toolchain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">riscv64</span>
+
+<span class="nt">builds</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bootloader</span>
+<span class="w">    </span><span class="nt">languages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">asm</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">c</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boot/start.S</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boot/main.c</span>
+<span class="w">    </span><span class="nt">includes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">include/</span>
+<span class="w">    </span><span class="nt">linker_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linkers/memory.ld</span>
+<span class="w">    </span><span class="nt">flags</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">common</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-fno-builtin</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-nostdlib</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-O2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-Wall</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">asm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-x</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">ld</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-nostartfiles</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elf</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mem</span>
+<span class="w">        </span><span class="nt">plusarg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MEM_FILE</span>
+<span class="w">    </span><span class="nt">mem</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memory_le.mem</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mem</span>
+<span class="w">        </span><span class="nt">word_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span>
+<span class="w">        </span><span class="nt">byte_order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">little</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application</span>
+<span class="w">    </span><span class="nt">languages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">c</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">sources</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app/*.c</span>
+<span class="w">    </span><span class="nt">includes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">include/</span>
+<span class="w">    </span><span class="nt">linker_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linkers/memory.ld</span>
+<span class="w">    </span><span class="nt">flags</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">common</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-fno-builtin</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-nostdlib</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-O2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-Wall</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">ld</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-nostartfiles</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elf</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mem</span>
+<span class="w">    </span><span class="nt">mem</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memory.mem</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mem</span>
+<span class="w">        </span><span class="nt">word_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span>
+<span class="w">        </span><span class="nt">byte_order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">little</span>
+</pre></div>
+</div>
+</section>
+<section id="firmware-class-diagram">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Firmware Class Diagram</a><a class="headerlink" href="#firmware-class-diagram" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id10">
+<p class="plantuml">
+<object data="_images/plantuml-9c27b0c9771961e43d215d3b7bd22e9c8c85b8c2.svg" type="image/svg+xml" style="width:491px;height:669px;">
+<img src="_images/plantuml-9c27b0c9771961e43d215d3b7bd22e9c8c85b8c2.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class FirmwareManifest {
+   +name: str
+   +type: str
+   +toolchain: str
+   +builds: List[FirmwareBuild]
+   --
+   +get_build(name): FirmwareBuild
+   +get_build_names(): List[str]
+}
+
+class FirmwareBuild {
+   +name: str
+   +author: str
+   +version: str
+   +languages: List[str]
+   +sources: List[str]
+   +includes: List[str]
+   +linker_script: str
+   +toolchain: str
+   +defines: Dict[str, str]
+   +flags: FirmwareFlags
+   +outputs: List[OutputSpec]
+   +mem: List[MemFormat]
+   --
+   +resolve_files(): List[Path]
+   +get_source_files(): List[Path]
+}
+
+class FirmwareFlags {
+   +common: List[str]
+   +c: List[str]
+   +asm: List[str]
+   +ld: List[str]
+}
+
+class OutputSpec {
+   +format: str
+   +required: bool
+   +plusarg: str
+}
+
+class MemFormat {
+   +name: str
+   +format: str
+   +word_width: int
+   +byte_order: str
+}
+
+FirmwareManifest &quot;1&quot; *-- &quot;*&quot; FirmwareBuild
+FirmwareBuild &quot;1&quot; *-- &quot;1&quot; FirmwareFlags
+FirmwareBuild &quot;1&quot; *-- &quot;*&quot; OutputSpec
+FirmwareBuild &quot;1&quot; *-- &quot;*&quot; MemFormat
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 13 </span><span class="caption-text">FirmwareManifest Structure</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="ip-manifest">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">IP Manifest</a><a class="headerlink" href="#ip-manifest" title="Link to this heading"></a></h2>
+<p>IP manifests define reusable or vendor-provided IP blocks.</p>
+<section id="id5">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Schema</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ip/&lt;name&gt;/manifest.yaml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">           </span><span class="c1"># Required: IP name</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip</span><span class="w">                 </span><span class="c1"># Required: must be &quot;ip&quot;</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># Version</span>
+<span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">         </span><span class="c1"># Vendor name</span>
+<span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">        </span><span class="c1"># License type</span>
+
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span><span class="w">       </span><span class="c1"># HDL language</span>
+
+<span class="c1"># Source files (for source IP)</span>
+<span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span>
+<span class="nt">includes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;paths&gt;</span><span class="p p-Indicator">]</span>
+<span class="nt">defines</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+
+<span class="c1"># Precompiled models (for binary IP)</span>
+<span class="nt">binaries</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">simulation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">     </span><span class="c1"># Precompiled simulation model</span>
+
+<span class="c1"># Tool compatibility</span>
+<span class="nt">compatibility</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;tools&gt;</span><span class="p p-Indicator">]</span><span class="w">       </span><span class="c1"># Compatible simulators</span>
+<span class="w">  </span><span class="nt">languages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;langs&gt;</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># Supported languages</span>
+
+<span class="c1"># Design metadata</span>
+<span class="nt">parameters</span><span class="p">:</span><span class="w">              </span><span class="c1"># Configurable parameters</span>
+<span class="w">  </span><span class="nt">PARAM_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
+<span class="nt">interfaces</span><span class="p">:</span><span class="w">              </span><span class="c1"># Port interfaces</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+<span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input|output|inout</span>
+<span class="w">    </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;int&gt;</span>
+
+<span class="c1"># Discovery metadata</span>
+<span class="nt">discoverable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;bool&gt;</span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">&lt;tags&gt;</span><span class="p p-Indicator">]</span>
+<span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;string&gt;</span>
+
+<span class="c1"># Nested manifests (for complex IP)</span>
+<span class="nt">rtl_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">     </span><span class="c1"># Internal RTL manifest</span>
+<span class="nt">tb_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">      </span><span class="c1"># Internal testbench manifest</span>
+<span class="nt">fw_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path&gt;</span><span class="w">      </span><span class="c1"># Internal firmware manifest</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Complete Example</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">axi_uart</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1.0</span>
+<span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xilinx</span>
+<span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Proprietary</span>
+
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemverilog</span>
+
+<span class="nt">files</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl/axi_uart.sv</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl/uart_tx.sv</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl/uart_rx.sv</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl/axi_slave.sv</span>
+
+<span class="nt">includes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">include</span>
+
+<span class="nt">compatibility</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xsim</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">questa</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verilator</span>
+<span class="w">  </span><span class="nt">languages</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemverilog</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verilog</span>
+
+<span class="nt">parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">BAUD_RATE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">115200</span>
+<span class="w">  </span><span class="nt">DATA_BITS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">  </span><span class="nt">STOP_BITS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">PARITY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">  </span><span class="nt">FIFO_DEPTH</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+
+<span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s_axi</span>
+<span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inout</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">axi4_lite</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tx</span>
+<span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output</span>
+<span class="w">    </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rx</span>
+<span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input</span>
+<span class="w">    </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">interrupt</span>
+<span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output</span>
+<span class="w">    </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">tags</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uart</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">axi</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">communication</span>
+<span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xilinx</span>
+</pre></div>
+</div>
+</section>
+<section id="ip-with-nested-manifests">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">IP with Nested Manifests</a><a class="headerlink" href="#ip-with-nested-manifests" title="Link to this heading"></a></h3>
+<p>Complex IP can have internal structure:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">complex_ip</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internal</span>
+
+<span class="c1"># Reference nested manifests</span>
+<span class="nt">rtl_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rtl/manifest.yaml</span>
+<span class="nt">tb_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tb/manifest.yaml</span>
+<span class="nt">fw_manifest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fw/manifest.yaml</span>
+
+<span class="c1"># OR auto-detect standard locations</span>
+<span class="c1"># ip/complex_ip/rtl/manifest.yaml</span>
+<span class="c1"># ip/complex_ip/tb/manifest.yaml</span>
+<span class="c1"># ip/complex_ip/fw/manifest.yaml</span>
+</pre></div>
+</div>
+</section>
+<section id="ip-class-diagram">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">IP Class Diagram</a><a class="headerlink" href="#ip-class-diagram" title="Link to this heading"></a></h3>
+<figure class="align-center" id="id11">
+<p class="plantuml">
+<object data="_images/plantuml-52de833c824f61e3977c73b550f7a1192047a1dc.svg" type="image/svg+xml" style="width:524px;height:415px;">
+<img src="_images/plantuml-52de833c824f61e3977c73b550f7a1192047a1dc.png" alt="&#64;startuml
+skinparam backgroundColor transparent
+skinparam defaultFontName sans-serif
+
+class IPManifest {
+   +name: str
+   +type: str
+   +version: str
+   +vendor: str
+   +license: str
+   +language: str
+   +files: List[str]
+   +binaries: Dict[str, str]
+   +parameters: Dict[str, Any]
+   +interfaces: List[Dict]
+   --
+   +get_rtl_files(): List[Path]
+   +has_simulation_model(): bool
+   +get_rtl_manifest(): RTLManifest
+   +get_testbench_manifest(): TestbenchManifest
+}
+
+IPManifest ..&gt; RTLManifest : may contain
+IPManifest ..&gt; TestbenchManifest : may contain
+IPManifest ..&gt; FirmwareManifest : may contain
+&#64;enduml"/>
+
+</object></p>
+<figcaption>
+<p><span class="caption-number">Figure 14 </span><span class="caption-text">IPManifest Structure</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="validation">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Validation</a><a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<p>ALY validates manifests when loading them. Validation checks:</p>
+<ul class="simple">
+<li><p>Required fields are present</p></li>
+<li><p>Referenced files exist</p></li>
+<li><p>Dependencies are valid</p></li>
+<li><p>Type values are correct</p></li>
+</ul>
+<p>Validation messages have severity levels:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Level</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></p></td>
+<td><p>Fatal issues that prevent loading</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WARNING</span></code></p></td>
+<td><p>Non-fatal issues that should be addressed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INFO</span></code></p></td>
+<td><p>Informational messages</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="file-resolution">
+<h2><a class="toc-backref" href="#id31" role="doc-backlink">File Resolution</a><a class="headerlink" href="#file-resolution" title="Link to this heading"></a></h2>
+<p>File paths in manifests are resolved relative to the manifest location:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>project/
++-- rtl/
+|   +-- manifest.yaml      # Manifest location
+|   +-- core/
+|   |   +-- cpu.sv         # files: [&quot;core/cpu.sv&quot;]
+|   +-- include/           # includes: [&quot;include&quot;]
+</pre></div>
+</div>
+<p>Glob patterns are expanded:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">files</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*.sv&quot;</span><span class="w">           </span><span class="c1"># All .sv files in same directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;core/*.sv&quot;</span><span class="w">      </span><span class="c1"># All .sv files in core/</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;**/*.sv&quot;</span><span class="w">        </span><span class="c1"># All .sv files recursively</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2><a class="toc-backref" href="#id32" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a> - Project configuration reference</p></li>
+<li><p><a class="reference internal" href="commands/index.html"><span class="doc">Command Reference</span></a> - CLI commands for working with manifests</p></li>
+<li><p><a class="reference internal" href="api/index.html"><span class="doc">API Reference</span></a> - Python API for manifest handling</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="templates.html" class="btn btn-neutral float-right" title="Template System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, Mohamed Aly.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
