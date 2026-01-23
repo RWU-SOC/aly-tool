@@ -6,6 +6,7 @@ This document describes ALY's internal architecture and design principles.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 System Overview

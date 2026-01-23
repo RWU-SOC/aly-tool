@@ -6,6 +6,7 @@ This section documents ALY's Python API for programmatic access.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

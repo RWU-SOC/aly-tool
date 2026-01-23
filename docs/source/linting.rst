@@ -6,6 +6,7 @@ This guide covers RTL linting and static analysis.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

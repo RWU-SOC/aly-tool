@@ -6,6 +6,7 @@ This guide covers managing IP blocks in ALY projects.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

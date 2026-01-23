@@ -6,6 +6,7 @@ ALY uses a YAML-based configuration system with a clear hierarchy. This guide co
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Configuration Files

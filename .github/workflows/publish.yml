@@ -3,10 +3,6 @@ name: Publish to PyPI
 on:
   push:
     branches: [master]
-    paths:
-      - 'src/**'
-      - 'pyproject.toml'
-      - 'MANIFEST.in'
   workflow_dispatch:
     inputs:
       test_pypi:
@@ -54,7 +50,7 @@ jobs:
     name: Publish to Test PyPI
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && inputs.test_pypi
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_pypi == 'true'
 
     steps:
     - name: Download artifacts
@@ -72,7 +68,8 @@ jobs:
     name: Publish to PyPI
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.test_pypi)
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_pypi != 'true')
+
 
     steps:
     - name: Download artifacts

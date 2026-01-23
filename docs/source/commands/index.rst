@@ -6,6 +6,7 @@ ALY provides a comprehensive CLI for all HDL development tasks.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Command Overview

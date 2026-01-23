@@ -6,6 +6,7 @@ This section provides complete examples for common workflows.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Simple Counter Project

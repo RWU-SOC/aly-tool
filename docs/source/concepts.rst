@@ -6,6 +6,7 @@ Understanding ALY's core concepts will help you effectively manage your HDL proj
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Project Structure

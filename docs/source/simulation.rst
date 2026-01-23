@@ -6,6 +6,7 @@ This guide covers simulation workflows and supported tools.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

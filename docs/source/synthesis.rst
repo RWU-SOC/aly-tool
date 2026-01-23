@@ -6,6 +6,7 @@ This guide covers synthesis workflows for FPGA and ASIC targets.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

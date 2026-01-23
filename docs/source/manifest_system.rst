@@ -6,6 +6,7 @@ ALY uses YAML manifests to describe project components. This reference covers al
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

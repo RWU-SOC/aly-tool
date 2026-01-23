@@ -6,6 +6,7 @@
 import os
 import sys
 import pathlib
+from docutils import nodes
 
 # Add the project's `src` directory to sys.path for autodoc.
 # Resolve relative to this file so Sphinx works regardless of CWD.
@@ -111,6 +112,7 @@ plantuml_latex_output_format = "pdf"
 
 html_theme = "sphinx_rtd_theme"  # ReadTheDocs theme for better appearance
 html_static_path = ["_static"]
+html_css_files = ['static.css']
 html_logo = None
 html_title = "ALY Tool Documentation"
 
@@ -124,28 +126,94 @@ html_theme_options = {
 
 
 # -- Options for LaTeX output ------------------------------------------------
-latex_engine = "pdflatex"
+latex_engine = "xelatex"
+latex_toplevel_sectioning = "section"
+
 latex_elements = {
     "papersize": "a4paper",
     "pointsize": "12pt",
+
+    # Clean, consistent fonts (Latin Modern)
+    "fontpkg": r"""
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase,Ligatures=TeX}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}[Scale=0.9]
+""",
+
     "preamble": r"""
-\usepackage{charter}
-\usepackage[defaultsans]{lato}
-\usepackage{inconsolata}
+% --- Unicode helpers ---
 \usepackage{newunicodechar}
 \newunicodechar{‾}{\textasciimacron}
-\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+
+% Box-drawing characters via a font that actually has them (Consolas on Windows)
+\newfontfamily\BoxDrawingFont{Consolas}
+\newunicodechar{─}{{\BoxDrawingFont ─}}
+\newunicodechar{│}{{\BoxDrawingFont │}}
+\newunicodechar{┌}{{\BoxDrawingFont ┌}}
+\newunicodechar{┐}{{\BoxDrawingFont ┐}}
+\newunicodechar{└}{{\BoxDrawingFont └}}
+\newunicodechar{┘}{{\BoxDrawingFont ┘}}
+\newunicodechar{├}{{\BoxDrawingFont ├}}
+\newunicodechar{┤}{{\BoxDrawingFont ┤}}
+\newunicodechar{┬}{{\BoxDrawingFont ┬}}
+\newunicodechar{┴}{{\BoxDrawingFont ┴}}
+\newunicodechar{┼}{{\BoxDrawingFont ┼}}
+\newunicodechar{═}{{\BoxDrawingFont ═}}
+\newunicodechar{║}{{\BoxDrawingFont ║}}
+
+% --- Figures: keep them near where they’re defined ---
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% --- Code blocks: avoid ugly page breaks ---
+\usepackage{etoolbox}
+\usepackage{needspace}
+\makeatletter
+% Reserve about 3 lines of space before a Sphinx verbatim block
+\preto{\sphinxVerbatim}{\Needspace{3\baselineskip}}
+
+% Force new page at each \section
+\preto\section{\clearpage}
+% For \subsection, only start a new page if there isn't enough space remaining
+\preto\subsection{\Needspace{3\baselineskip}}
+
+% Helper: keep a short paragraph together with the following block.
+% Use in RST before the paragraph you want to move together with the next block:
+% .. raw:: latex
+% 
+%    \KeepWithNext{3\baselineskip}
+\newcommand{\KeepWithNext}[1]{\Needspace{#1}}
+\makeatother
+
+% Reduce vertical stretching that causes awkward breaks
+\raggedbottom
+
+% Improve widow/orphan control
+\widowpenalty=10000
+\clubpenalty=10000
+
+% --- Layout tweaks ---
 \usepackage{ragged2e}
-\raggedright
+% Uncomment if you like ragged right:
+% \raggedright
+
+\setlength{\headheight}{15pt} % fix fancyhdr warnings
 """,
-    "babel": "\\usepackage[english]{babel}",
+
+    "babel": r"\usepackage[english]{babel}",
     "fncychap": "",
+    "extraclassoptions": "openany,oneside",
 }
+
+
 
 latex_documents = [
     (
         "index",
-        "ALY-Advanced Logic Yieldflow.tex",
+        "ALY-Advanced-Logic-Yieldflow.tex",
         "ALY (Advanced Logic Yieldflow)",
         "Mohamed",
         "manual",
@@ -159,10 +227,10 @@ man_pages = [("index", "aly", "ALY (Advanced Logic Yieldflow)", [author], 1)]
 texinfo_documents = [
     (
         "index",
-        "ALY-Advanced Logic Yieldflow",
+        "ALY-Advanced-Logic-Yieldflow",
         "ALY (Advanced Logic Yieldflow)",
         author,
-        "ALY-Advanced Logic Yieldflow",
+        "ALY-Advanced-Logic-Yieldflow",
         "Implementation specification for ALY (Advanced Logic Yieldflow).",
         "Miscellaneous",
     ),

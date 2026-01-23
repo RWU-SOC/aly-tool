@@ -6,10 +6,6 @@ ALY - Advanced Logic Yieldflow
 
 **ALY** is a comprehensive HDL/FPGA development tool that streamlines the entire hardware design workflow from RTL development through simulation, synthesis, and FPGA programming.
 
-.. image:: https://img.shields.io/badge/License-Apache_2.0-blue.svg
-   :target: https://opensource.org/licenses/Apache-2.0
-   :alt: License
-
 .. graphviz::
    :align: center
 
@@ -26,8 +22,10 @@ ALY - Advanced Logic Yieldflow
       RTL -> Sim -> Synth -> FPGA;
    }
 
-Key Features
-------------
+.. only:: html
+
+   Key Features
+   -------------
 
 - **Manifest-Based Project Management**: YAML manifests for RTL, testbench, firmware, and IP components
 - **Multi-Tool Support**: Works with Vivado, Yosys, Verilator, QuestaSim, and more
@@ -35,27 +33,30 @@ Key Features
 - **Template System**: Quick project scaffolding with customizable templates
 - **Hierarchical Configuration**: Project-wide settings with per-component overrides
 
-Getting Started
----------------
 
-.. code-block:: bash
+.. only:: html
 
-   # Install ALY
-   pip install aly-tool
+   Getting Started
+   ---------------
 
-   # Initialize a new project
-   aly init my_project --template basic
+   .. code-block:: bash
 
-   # Run simulation
-   aly sim --top my_testbench
+      # Install ALY
+      pip install aly-tool
 
-   # Synthesize design
-   aly synth --target arty_a7
+      # Initialize a new project
+      aly init my_project --template basic
 
-Quick Navigation
-----------------
+      # Run simulation
+      aly sim --top my_testbench
+
+      # Synthesize design
+      aly synth --module my_design
+
+
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: User Guide
 
@@ -64,6 +65,7 @@ Quick Navigation
    concepts
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Configuration
 
@@ -73,6 +75,7 @@ Quick Navigation
    constraints
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Workflows
 
@@ -82,6 +85,7 @@ Quick Navigation
    ip_management
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Reference
 
@@ -91,6 +95,7 @@ Quick Navigation
    examples
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Project
 

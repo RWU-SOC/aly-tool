@@ -6,6 +6,7 @@ This guide covers design constraint management.
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Overview

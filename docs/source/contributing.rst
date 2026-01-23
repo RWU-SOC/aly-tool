@@ -6,6 +6,7 @@ Thank you for your interest in contributing to ALY! This guide will help you get
 
 .. contents::
    :local:
+   :class: toc-hidden
    :depth: 2
 
 Getting Started
