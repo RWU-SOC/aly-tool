@@ -19,8 +19,8 @@ sys.path.insert(0, str((HERE / ".." / ".." / "src").resolve()))
 project = "ALY"
 copyright = "2025-2026, Mohamed Aly"
 author = "Mohamed Aly"
-release = "1.0.0"
-version = "1.0.0"
+release = "0.1.2"
+version = "0.1.2"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -215,7 +215,7 @@ latex_documents = [
         "index",
         "ALY-Advanced-Logic-Yieldflow.tex",
         "ALY (Advanced Logic Yieldflow)",
-        "Mohamed",
+        "Mohamed Aly",
         "manual",
     ),
 ]

@@ -238,71 +238,254 @@ Configuration Class Hierarchy
    @enduml
 
 
-Manifest System
----------------
 
-Manifests describe project components with a unified structure.
+
+Unit Registry System
+~~~~~~~~~~~~~~~~~~~~
+
+ALY uses a unified unit registry that tracks individual components (modules, testbenches, builds) separately from their parent manifests. This enables efficient lookup and dependency resolution without requiring knowledge of the parent manifest.
 
 .. uml::
    :align: center
-   :caption: Manifest Class Relationships
+   :caption: Unit Reference Architecture
 
    @startuml
    skinparam backgroundColor transparent
    skinparam defaultFontName sans-serif
 
-   abstract class BaseManifest {
-      +name: str
-      +type: str
-      +version: str
-      +_manifest_path: Path
+   class ProjectConfig {
+      -_units: Dict[str, Dict[str, UnitRef]]
+      -_components: Dict[str, Dict[str, Manifest]]
       --
-      +load(path): BaseManifest
-      +validate(): List[ValidationMessage]
-      +resolve_path(path): Path
+      +get_rtl_module(name): UnitRef
+      +get_testbench(name): UnitRef
+      +get_firmware_build(name): UnitRef
+      +get_package_unit(name): UnitRef
+      +resolve_rtl_deps(unit): List[UnitRef]
+      +resolve_package_deps(tb): List[UnitRef]
+   }
+
+   class UnitRef {
+      +kind: str
+      +name: str
+      +manifest_type: str
+      +manifest_name: str
+      +manifest: Any
+      +obj: Any
    }
 
    class RTLManifest {
       +modules: List[RTLModule]
       +packages: List[RTLPackage]
-      +includes: List[str]
-      +defines: Dict[str, str]
-      --
-      +get_module(name): RTLModule
-      +get_all_files(): List[Path]
    }
 
-   class TestbenchManifest {
-      +testbenches: List[Testbench]
-      +test_suites: List[TestSuite]
-      --
-      +get_testbench(name): Testbench
-      +get_suite(name): TestSuite
-   }
-
-   class FirmwareManifest {
-      +toolchain: Toolchain
-      +builds: List[FirmwareBuild]
-      --
-      +get_build(name): FirmwareBuild
-   }
-
-   class IPManifest {
-      +vendor: str
-      +license: str
+   class RTLModule {
+      +name: str
       +files: List[str]
-      +binaries: Dict[str, str]
-      +parameters: Dict[str, Any]
-      --
-      +get_rtl_manifest(): RTLManifest
-      +has_simulation_model(): bool
+      +dependencies: List[Dict]
    }
 
-   BaseManifest <|-- RTLManifest
-   BaseManifest <|-- TestbenchManifest
-   BaseManifest <|-- FirmwareManifest
-   BaseManifest <|-- IPManifest
+   class Testbench {
+      +name: str
+      +files: List[str]
+      +dependencies: List[Dict]
+   }
+
+   ProjectConfig "1" *-- "*" UnitRef : contains
+   ProjectConfig "1" *-- "*" RTLManifest : discovers
+   RTLManifest "1" *-- "*" RTLModule : defines
+   UnitRef --> RTLModule : obj
+   UnitRef --> RTLManifest : manifest
+   UnitRef --> Testbench : obj (for testbench units)
    @enduml
+
+The unit registry provides several key capabilities:
+
+**Direct Lookup**
+   Components can be retrieved by name without knowing which manifest contains them:
+
+   .. code-block:: python
+
+      # Get RTL module from anywhere in the project
+      ref = config.get_rtl_module("cpu_core")
+      module = ref.obj          # RTLModule object
+      manifest = ref.manifest   # Parent RTLManifest
+
+**Dependency Resolution**
+   Dependencies are resolved recursively with automatic cycle detection:
+
+   .. code-block:: python
+
+      # Resolve all RTL dependencies for a testbench
+      deps = config.resolve_rtl_deps(testbench)
+      for dep_ref in deps:
+          module = dep_ref.obj
+          files = dep_ref.manifest.get_files_for_module(module.name)
+
+**Type Safety**
+   Each unit type has dedicated accessor methods with proper typing:
+
+   .. code-block:: python
+
+      # Type-safe accessors
+      rtl_modules = config.list_rtl_modules()      # List[str]
+      testbenches = config.list_testbenches()      # List[str]
+      fw_builds = config.list_firmware_builds()    # List[str]
+      packages = config.list_packages()            # List[str]
+
+**Manifest Context**
+   Units maintain bidirectional references to their parent manifests for path resolution and file access:
+
+   .. code-block:: python
+
+      ref = config.get_rtl_module("alu")
+      
+      # Access module object
+      module_name = ref.obj.name
+      module_files = ref.obj.files
+      
+      # Access parent manifest for path resolution
+      resolved_files = ref.manifest.get_files_for_module(ref.obj.name)
+
+Unit Types
+^^^^^^^^^^
+
+The registry tracks four unit types:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Unit Kind
+     - Source
+     - Description
+   * - ``rtl_module``
+     - RTL manifests
+     - Individual synthesizable modules
+   * - ``testbench``
+     - Testbench manifests
+     - Individual simulation testbenches
+   * - ``firmware_build``
+     - Firmware manifests
+     - Individual firmware build configurations
+   * - ``package``
+     - RTL manifests
+     - Named SystemVerilog packages
+
+Discovery Process
+^^^^^^^^^^^^^^^^^
+
+Units are registered during manifest discovery:
+
+.. uml::
+   :align: center
+   :caption: Unit Registration Flow
+
+   @startuml
+   skinparam backgroundColor transparent
+   skinparam defaultFontName sans-serif
+
+   start
+   :Discover manifest.yaml;
+   :Load and parse manifest;
+   :Register manifest in _components;
+   
+   if (Manifest type?) then (rtl)
+      :Extract modules list;
+      while (For each module) is (more)
+         :Create UnitRef;
+         :Register in _units["rtl_module"];
+      endwhile (done)
+      
+      :Extract packages list;
+      while (For each package) is (more)
+         :Create UnitRef;
+         :Register in _units["package"];
+      endwhile (done)
+      
+   else (testbench)
+      :Extract testbenches list;
+      while (For each testbench) is (more)
+         :Create UnitRef;
+         :Register in _units["testbench"];
+      endwhile (done)
+      
+   else (firmware)
+      :Extract builds list;
+      while (For each build) is (more)
+         :Create UnitRef;
+         :Register in _units["firmware_build"];
+      endwhile (done)
+   endif
+   
+   stop
+   @enduml
+
+
+Manifest Validation
+~~~~~~~~~~~~~~~~~~~
+
+ALY validates manifests at load time to catch configuration errors early.
+
+.. uml::
+   :align: center
+   :caption: Manifest Validation Process
+
+   @startuml
+   skinparam backgroundColor transparent
+   skinparam defaultFontName sans-serif
+
+   start
+   :Load YAML file;
+   
+   :Parse YAML structure;
+   
+   if (Valid YAML?) then (no)
+      :Return syntax error;
+      stop
+   endif
+   
+   :Validate required fields;
+   
+   if (All required fields present?) then (no)
+      :Return missing field error;
+      stop
+   endif
+   
+   :Validate field types;
+   
+   if (All types correct?) then (no)
+      :Return type error;
+      stop
+   endif
+   
+   :Validate cross-references;
+   note right
+      - Dependencies exist
+      - File paths are valid
+      - Module names unique
+   end note
+   
+   if (References valid?) then (no)
+      :Return reference error;
+      stop
+   endif
+   
+   :Create manifest object;
+   :Return success;
+   stop
+   @enduml
+
+Validation checks include:
+
+- **Syntax validation**: YAML structure is well-formed
+- **Schema validation**: Required fields are present with correct types
+- **Reference validation**: Dependencies reference existing components
+- **Path validation**: File paths exist relative to manifest location
+- **Uniqueness validation**: Module/build names are unique within manifest
+- **Type compatibility**: Dependency types match referenced component types
+
+Validation errors are reported with the manifest file path, line number (when available), and a descriptive error message to help users quickly locate and fix issues.
 
 
 Backend System
@@ -467,6 +650,59 @@ Commands are processed through the Typer CLI framework.
    @enduml
 
 
+Error Handling
+~~~~~~~~~~~~~~
+
+ALY uses a structured error handling approach to provide clear, actionable feedback.
+
+.. list-table:: Error Categories
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Error Type
+     - Description
+     - Example
+   * - Configuration Error
+     - Invalid or missing configuration files
+     - ``config.yaml not found in project root``
+   * - Manifest Error
+     - Invalid manifest structure or references
+     - ``Module 'alu' referenced but not found``
+   * - Dependency Error
+     - Missing or circular dependencies
+     - ``Circular dependency detected: cpu → alu → cpu``
+   * - Tool Error
+     - External tool execution failure
+     - ``XSim compilation failed: syntax error in counter.sv``
+   * - File Error
+     - Missing or inaccessible files
+     - ``File not found: rtl/counter.sv``
+   * - Backend Error
+     - Backend-specific errors
+     - ``Vivado backend requires --part argument``
+
+Error messages include:
+
+- **Context**: Which file or component caused the error
+- **Location**: Line number or path when available
+- **Description**: Clear explanation of what went wrong
+- **Suggestion**: Recommended fix or next steps
+
+Example error output:
+
+.. code-block:: text
+
+   Error: Manifest validation failed
+   File: testbench/tb_cpu/manifest.yaml
+   Line: 12
+   Issue: Dependency 'cpu_core' not found
+   
+   The testbench references RTL module 'cpu_core' but this module
+   does not exist in rtl/manifest.yaml.
+   
+   Suggestion: Add cpu_core to rtl/manifest.yaml or check the spelling.
+
+
 Dependency Resolution
 ---------------------
 
@@ -489,12 +725,12 @@ ALY resolves module dependencies through a graph-based approach.
       fw [label="boot.hex\n(firmware)", fillcolor="#f3e5f5"];
       pkg [label="cpu_pkg\n(package)", fillcolor="#e0f7fa"];
 
-      tb -> cpu [label="rtl_deps"];
-      tb -> fw [label="fw_deps"];
-      cpu -> alu [label="deps"];
-      cpu -> regfile [label="deps"];
-      cpu -> decoder [label="deps"];
-      decoder -> alu [label="deps"];
+      tb -> cpu [label="deps (type: rtl)"];
+      tb -> fw [label="deps (type: firmware)"];
+      cpu -> alu [label="deps (type: rtl)"];
+      cpu -> regfile [label="deps (type: rtl)"];
+      cpu -> decoder [label="deps (type: rtl)"];
+      decoder -> alu [label="deps (type: rtl)"];
       cpu -> pkg [style=dashed, label="uses"];
       alu -> pkg [style=dashed, label="uses"];
    }

@@ -101,8 +101,9 @@ Testbench
        top: tb_counter
        files:
          - tb_counter.sv
-       rtl_deps:
-         - counter
+       dependencies:
+         - name: counter
+           type: rtl
 
 .. code-block:: systemverilog
 
@@ -137,13 +138,13 @@ Commands
 .. code-block:: bash
 
    # Simulate
-   aly simulate --top tb_counter
+   aly sim --top tb_counter
 
    # Lint
-   aly lint
+   aly lint --module counter
 
    # Synthesize
-   aly synth --target arty_a7 --top counter
+   aly synth --module counter --part xc7a100tcsg324-1
 
 
 RISC-V SoC Project
@@ -242,16 +243,19 @@ RTL Manifest
        top: decoder
        files:
          - cpu/decoder.sv
-       deps:
-         - alu
+       dependencies:
+         - name: alu
+           type: rtl
 
      - name: cpu_core
        top: cpu_core
        files:
          - cpu/cpu_core.sv
-       deps:
-         - alu
-         - decoder
+       dependencies:
+         - name: alu
+           type: rtl
+         - name: decoder
+           type: rtl
 
      - name: uart
        top: uart
@@ -267,10 +271,13 @@ RTL Manifest
        top: soc_top
        files:
          - soc_top.sv
-       deps:
-         - cpu_core
-         - uart
-         - gpio
+       dependencies:
+         - name: cpu_core
+           type: rtl
+         - name: uart
+           type: rtl
+         - name: gpio
+           type: rtl
 
 Firmware Manifest
 ~~~~~~~~~~~~~~~~~
@@ -280,27 +287,20 @@ Firmware Manifest
    # fw/manifest.yaml
    name: soc_firmware
    type: firmware
-
-   toolchain:
-     prefix: riscv64-unknown-elf-
-     march: rv32i
-     mabi: ilp32
-     cflags:
-       - -O2
-       - -Wall
-       - -nostdlib
-       - -ffreestanding
+   toolchain: riscv64
 
    builds:
      - name: bootloader
+       languages: [asm, c]
        sources:
          - boot.S
          - main.c
        linker_script: linker.ld
+       flags:
+         common: [-O2, -Wall, -nostdlib, -ffreestanding]
        outputs:
          - format: elf
          - format: hex
-           base_address: 0x80000000
 
 Testbench
 ~~~~~~~~~
@@ -316,19 +316,21 @@ Testbench
        top: tb_soc
        files:
          - tb_soc.sv
-       rtl_deps:
-         - soc_top
-       fw_deps:
-         - bootloader
-       timeout: 10ms
+       dependencies:
+         - name: soc_top
+           type: rtl
+         - name: bootloader
+           type: firmware
+       default_timeout: 10000
        plusargs:
          FIRMWARE: "fw/bootloader.hex"
 
-   test_suites:
+   testsuites:
      - name: regression
        testbenches:
          - tb_soc
-       parallel: false
+       parallel: 1
+       stop_on_fail: false
 
 Commands
 ~~~~~~~~
@@ -336,16 +338,16 @@ Commands
 .. code-block:: bash
 
    # Build firmware
-   aly firmware build --name bootloader
+   aly firmware bootloader
 
    # Simulate with firmware
-   aly simulate --top tb_soc
+   aly sim --top tb_soc
 
    # Run regression
-   aly simulate --suite regression
+   aly sim --suite regression
 
    # Synthesize
-   aly synth --target arty_a7 --impl
+   aly synth --module soc_top --part xc7a100tcsg324-1
 
 
 Multi-Target Project
@@ -383,62 +385,10 @@ Commands:
 
 .. code-block:: bash
 
-   # Synthesize for each target
-   aly synth --target arty_a7
-   aly synth --target nexys_a7
-   aly synth --target icebreaker
+   # Synthesize for different FPGA parts
+   aly synth --module fpga_top --part xc7a100tcsg324-1  # Arty/Nexys A7
+   aly synth --module fpga_top --tool yosys              # iCE40 with Yosys
 
-
-CI/CD Pipeline Example
-----------------------
-
-GitHub Actions workflow for automated testing.
-
-.. code-block:: yaml
-
-   # .github/workflows/ci.yml
-   name: CI
-
-   on: [push, pull_request]
-
-   jobs:
-     lint:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-         - name: Install tools
-           run: |
-             apt-get update
-             apt-get install -y verilator
-             pip install aly
-         - name: Lint
-           run: aly lint --format sarif > lint.sarif
-         - uses: github/codeql-action/upload-sarif@v2
-           with:
-             sarif_file: lint.sarif
-
-     simulate:
-       runs-on: ubuntu-latest
-       needs: lint
-       steps:
-         - uses: actions/checkout@v3
-         - name: Install tools
-           run: |
-             apt-get install -y verilator
-             pip install aly
-         - name: Run tests
-           run: aly simulate --suite regression
-
-     synthesize:
-       runs-on: ubuntu-latest
-       needs: simulate
-       if: github.ref == 'refs/heads/main'
-       steps:
-         - uses: actions/checkout@v3
-         - name: Setup Vivado
-           run: # Install Vivado
-         - name: Synthesize
-           run: aly synth --target arty_a7
 
 
 IP Reuse Example
@@ -485,8 +435,9 @@ Use IP
      - name: soc_top
        files:
          - soc_top.sv
-       deps:
-         - uart  # Reference IP
+       dependencies:
+         - name: uart
+           type: ip
 
 .. code-block:: systemverilog
 
@@ -518,13 +469,16 @@ Complete workflow for debugging with waveforms.
 .. code-block:: bash
 
    # Run simulation with waves
-   aly simulate --top tb_cpu --waves --tool verilator
+   aly sim --top tb_cpu --gtkwave --tool verilator
 
    # View waveforms
-   gtkwave build/sim/verilator/trace.vcd &
+   gtkwave build/sim/verilator/tb_cpu/trace.vcd &
 
-   # For XSim
-   aly simulate --top tb_cpu --waves --gui --tool xsim
+   # For XSim with GUI
+   aly sim --top tb_cpu --gui --tool xsim
+
+   # Open waves in GTKWave automatically
+   aly sim --top tb_cpu --gtkwave --tool verilator
 
 Add signals programmatically:
 

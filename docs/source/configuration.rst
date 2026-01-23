@@ -442,7 +442,7 @@ Configure design constraints in ``.aly/constraints.yaml``:
 
 
 FPGA Configuration (Under development to be used with the program/synth command)
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 
 Configure FPGA programming in ``.aly/fpga.yaml``:
 
