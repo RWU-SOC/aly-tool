@@ -2,7 +2,7 @@
 
 **Professional Python build and verification tool for RTL/SoC development**
 
-[![Tests](https://github.com/RWU-SOC/aly-tool/workflows/Tests/badge.svg)](https://github.com/RWU-SOC/aly-tool/actions)
+
 [![Documentation](https://github.com/RWU-SOC/aly-tool/workflows/Build%20and%20Deploy%20Documentation/badge.svg)](https://RWU-SOC.github.io/aly-tool/)
 [![PyPI](https://img.shields.io/pypi/v/aly-tool.svg)](https://pypi.org/project/aly-tool/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
